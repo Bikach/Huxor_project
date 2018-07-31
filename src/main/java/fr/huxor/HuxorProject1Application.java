@@ -34,6 +34,11 @@ public class HuxorProject1Application implements CommandLineRunner {
 		Users us3 = usersRepo.save(new Customers("beauvaisjack@gmail.com", "bea56", "Beauvai", "alain", true,
 				new Date("04/10/ 1980"), "238784678263872",
 				new Addresses("2 rue du lion", "Paris", "75012")));
+		Users us4 = usersRepo.save(new Customers("sonicboum@gmail.com", "son78", "Sonic", "boum",false,
+				new Date("14/03/ 1990"), "987678952678287",
+				new Addresses("5 avenue Dausmenil", "Gagny", "93000")));
+		
+		//Cars test
 
 	}
 }

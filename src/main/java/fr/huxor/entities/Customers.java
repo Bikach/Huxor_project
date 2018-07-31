@@ -2,6 +2,8 @@ package fr.huxor.entities;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -11,6 +13,7 @@ import javax.validation.constraints.Past;
 
 @Entity
 @PrimaryKeyJoinColumn(name="CODE_USER")
+@DiscriminatorValue("CU")
 public class Customers extends Users {
 
 	private static final long serialVersionUID = -3900769779146477645L;
@@ -20,7 +23,7 @@ public class Customers extends Users {
 	private Date birthDate;
 	@NotNull
 	private String drivingLicenceNumber;
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name = "CODE_ADRESS")
 	private Addresses address;
 

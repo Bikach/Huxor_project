@@ -1,11 +1,13 @@
 package fr.huxor.entities;
 
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.validation.constraints.NotNull;
 
 @Entity
 @PrimaryKeyJoinColumn(name="CODE_USER")
+@DiscriminatorValue("MA")
 public class Managers extends Users {
 
 	private static final long serialVersionUID = -7942635791750160132L;

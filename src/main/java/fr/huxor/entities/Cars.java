@@ -2,6 +2,7 @@ package fr.huxor.entities;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -20,7 +21,7 @@ public class Cars implements Serializable {
 	@NotNull
 	private byte licencePlate;
 	private String kmNumber;
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name = "CODE_FEATURE")
 	private Features feature;
 

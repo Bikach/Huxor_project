@@ -2,6 +2,7 @@ package fr.huxor.entities;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -16,18 +17,18 @@ public class Features implements Serializable {
 	@Id
 	@GeneratedValue
 	private long idFeature;
-	private byte cartDoor;
+	private byte carDoor;
 	private byte seatingCapacity;
 	private byte power;
 	private String color;
 	private String transmission;
 	private String fuel;
-	private String typeChar;
+	private String typeCar;
 
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name = "CODE_MODEL")
 	private Models model;
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name = "CODE_BRAND")	
 	private Brands brand;
 
@@ -39,25 +40,25 @@ public class Features implements Serializable {
 	/**
 	 * Constructor with parameters
 	 * 
-	 * @param cartDoor
+	 * @param carDoor
 	 * @param seatingCapacity
 	 * @param power
 	 * @param color
 	 * @param transmission
 	 * @param fuel
-	 * @param typeChar
+	 * @param typeCar
 	 * @param model
 	 * @param brand
 	 */
-	public Features(byte cartDoor, byte seatingCapacity, byte power, String color, String transmission, String fuel,
-			String typeChar, Models model, Brands brand) {
-		this.cartDoor = cartDoor;
+	public Features(byte carDoor, byte seatingCapacity, byte power, String color, String transmission, String fuel,
+			String typeCar, Models model, Brands brand) {
+		this.carDoor = carDoor;
 		this.seatingCapacity = seatingCapacity;
 		this.power = power;
 		this.color = color;
 		this.transmission = transmission;
 		this.fuel = fuel;
-		this.typeChar = typeChar;
+		this.typeCar = typeCar;
 		this.model = model;
 		this.brand = brand;
 	}
@@ -72,12 +73,12 @@ public class Features implements Serializable {
 		this.idFeature = idFeature;
 	}
 
-	public byte getCartDoor() {
-		return cartDoor;
+	public byte getCarDoor() {
+		return carDoor;
 	}
 
-	public void setCartDoor(byte cartDoor) {
-		this.cartDoor = cartDoor;
+	public void setCartDoor(byte carDoor) {
+		this.carDoor = carDoor;
 	}
 
 	public byte getSeatingCapacity() {
@@ -120,12 +121,12 @@ public class Features implements Serializable {
 		this.fuel = fuel;
 	}
 
-	public String getTypeChar() {
-		return typeChar;
+	public String getTypeCar() {
+		return typeCar;
 	}
 
-	public void setTypeChar(String typeChar) {
-		this.typeChar = typeChar;
+	public void setTypeCar(String typeCar) {
+		this.typeCar = typeCar;
 	}
 
 	public Models getModel() {

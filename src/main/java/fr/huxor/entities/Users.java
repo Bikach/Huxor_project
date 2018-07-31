@@ -2,6 +2,8 @@ package fr.huxor.entities;
 
 import java.io.Serializable;
 
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -12,6 +14,7 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Inheritance(strategy=InheritanceType.JOINED)
+@DiscriminatorColumn(name = "TYPE_USER", discriminatorType = DiscriminatorType.STRING, length = 2)
 public  abstract class Users implements Serializable {
 
 	private static final long serialVersionUID = -9125319231283171487L;
