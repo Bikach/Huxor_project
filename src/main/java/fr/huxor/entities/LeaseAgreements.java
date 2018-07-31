@@ -28,7 +28,9 @@ public class LeaseAgreements implements Serializable {
 	@NotNull
 	private Date comebackDate;
 	@NotNull
-	private boolean dropCar;;
+	private boolean dropCar;
+	@NotNull
+	private double price;
 
 	@ManyToOne
 	@JoinColumn(name = "CODE_CUSTOMER")
@@ -56,9 +58,10 @@ public class LeaseAgreements implements Serializable {
 	 * @param customer
 	 * @param car
 	 * @param checkCar
+	 * @param price
 	 */
 	public LeaseAgreements(String numberAgreement, Date startDate, Date comebackDate, boolean dropCar,
-			Customers customer, Cars car, CheckCars checkCar) {
+			Customers customer, Cars car, CheckCars checkCar, double price) {
 		this.numberAgreement = numberAgreement;
 		this.startDate = startDate;
 		this.comebackDate = comebackDate;
@@ -66,6 +69,7 @@ public class LeaseAgreements implements Serializable {
 		this.customer = customer;
 		this.car = car;
 		this.checkCar = checkCar;
+		this.price = price;
 	}
 
 	// ===== Getters & Setters =====//
@@ -124,6 +128,14 @@ public class LeaseAgreements implements Serializable {
 
 	public void setCheckCar(CheckCars checkCar) {
 		this.checkCar = checkCar;
+	}
+
+	public double getPrice() {
+		return price;
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
 	}
 
 }

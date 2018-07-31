@@ -2,16 +2,15 @@ package fr.huxor.entities;
 
 import java.util.Date;
 
-import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 
 @Entity
-@DiscriminatorValue("CU")
+@PrimaryKeyJoinColumn(name="CODE_USER")
 public class Customers extends Users {
 
 	private static final long serialVersionUID = -3900769779146477645L;
@@ -21,9 +20,6 @@ public class Customers extends Users {
 	private Date birthDate;
 	@NotNull
 	private String drivingLicenceNumber;
-	@OneToOne
-	@JoinColumn(name = "CODE_USER")
-	private Users user;
 	@ManyToOne
 	@JoinColumn(name = "CODE_ADRESS")
 	private Addresses address;
@@ -38,7 +34,6 @@ public class Customers extends Users {
 	/**
 	 * Constructor with parameters
 	 * 
-	 * @param username (Users)
 	 * @param email (Users)
 	 * @param password (Users)
 	 * @param lasName (Users)
@@ -46,15 +41,13 @@ public class Customers extends Users {
 	 * @param enabled (Users)
 	 * @param birthDate
 	 * @param drivingLicenceNumber
-	 * @param user
 	 * @param address
 	 */
-	public Customers(String username, String email, String password, String lasName, String firstName, boolean enabled,
-			Date birthDate, String drivingLicenceNumber, Users user, Addresses address) {
-		super(username, email, password, lasName, firstName, enabled);
+	public Customers( String email, String password, String lasName, String firstName, boolean enabled,
+			Date birthDate, String drivingLicenceNumber, Addresses address) {
+		super( email, password, lasName, firstName, enabled);
 		this.birthDate = birthDate;
 		this.drivingLicenceNumber = drivingLicenceNumber;
-		this.user = user;
 		this.address = address;
 	}
 
@@ -74,15 +67,6 @@ public class Customers extends Users {
 
 	public void setDrivingLicenceNumber(String drivingLicenceNumber) {
 		this.drivingLicenceNumber = drivingLicenceNumber;
-	}
-
-
-	public Users getUser() {
-		return user;
-	}
-
-	public void setUser(Users user) {
-		this.user = user;
 	}
 
 	public Addresses getAddress() {

@@ -1,22 +1,17 @@
 package fr.huxor.entities;
 
-import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@DiscriminatorValue("MA")
+@PrimaryKeyJoinColumn(name="CODE_USER")
 public class Managers extends Users {
 
 	private static final long serialVersionUID = -7942635791750160132L;
 
 	@NotNull
 	private String registrationNumber;
-	@OneToOne
-	@JoinColumn(name = "CODE_USER")
-	private Users user;
 
 	/**
 	 * Default constructor
@@ -35,13 +30,11 @@ public class Managers extends Users {
 	 * @param firstName (Users)
 	 * @param enabled (Users)
 	 * @param registrationNumber
-	 * @param user
 	 */
-	public Managers(String username, String email, String password, String lasName, String firstName, boolean enabled,
-			String registrationNumber, Users user) {
-		super(username, email, password, lasName, firstName, enabled);
+	public Managers(String email, String password, String lasName, String firstName, boolean enabled,
+			String registrationNumber) {
+		super(email, password, lasName, firstName, enabled);
 		this.registrationNumber = registrationNumber;
-		this.user = user;
 	}
 
 	// ===== Getters & Setters =====//
@@ -52,14 +45,6 @@ public class Managers extends Users {
 
 	public void setRegistrationNumber(String registrationNumber) {
 		this.registrationNumber = registrationNumber;
-	}
-
-	public Users getUser() {
-		return user;
-	}
-
-	public void setUser(Users user) {
-		this.user = user;
 	}
 
 }

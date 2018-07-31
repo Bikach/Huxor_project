@@ -19,7 +19,7 @@ public class Addresses implements Serializable {
 	private String street;
 	private String city;
 	@NotNull
-	private byte postalCode;
+	private String postalCode;
 
 	/**
 	 * Default constructor
@@ -33,7 +33,7 @@ public class Addresses implements Serializable {
 	 * @param city
 	 * @param postalCode
 	 */
-	public Addresses(String street, String city, byte postalCode) {
+	public Addresses(String street, String city, String postalCode) {
 		this.street = street;
 		this.city = city;
 		this.postalCode = postalCode;
@@ -65,11 +65,11 @@ public class Addresses implements Serializable {
 		this.city = city;
 	}
 
-	public byte getPostalCode() {
+	public String getPostalCode() {
 		return postalCode;
 	}
 
-	public void setPostalCode(byte postalCode) {
+	public void setPostalCode(String postalCode) {
 		this.postalCode = postalCode;
 	}
 
