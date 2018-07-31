@@ -19,8 +19,8 @@ public class Cars implements Serializable {
 	@GeneratedValue
 	private long idCar;
 	@NotNull
-	private byte licencePlate;
-	private String kmNumber;
+	private String licencePlate;
+	private int kmNumber;
 	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name = "CODE_FEATURE")
 	private Features feature;
@@ -37,7 +37,7 @@ public class Cars implements Serializable {
 	 * @param kmNumber
 	 * @param feature
 	 */
-	public Cars(byte licencePlate, String kmNumber, Features feature) {
+	public Cars(String licencePlate, int kmNumber, Features feature) {
 		this.licencePlate = licencePlate;
 		this.kmNumber = kmNumber;
 		this.feature = feature;
@@ -53,19 +53,19 @@ public class Cars implements Serializable {
 		this.idCar = idCar;
 	}
 
-	public byte getLicencePlate() {
+	public String getLicencePlate() {
 		return licencePlate;
 	}
 
-	public void setLicencePlate(byte licencePlate) {
+	public void setLicencePlate(String licencePlate) {
 		this.licencePlate = licencePlate;
 	}
 
-	public String getKmNumber() {
+	public int getKmNumber() {
 		return kmNumber;
 	}
 
-	public void setKmNumber(String kmNumber) {
+	public void setKmNumber(int kmNumber) {
 		this.kmNumber = kmNumber;
 	}
 

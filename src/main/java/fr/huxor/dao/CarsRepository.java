@@ -4,6 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import fr.huxor.entities.Cars;
 
-public interface CarRepository extends JpaRepository<Cars, Long>{
+public interface CarsRepository extends JpaRepository<Cars, Long>{
 
 }
