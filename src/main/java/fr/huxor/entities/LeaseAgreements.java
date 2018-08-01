@@ -3,7 +3,6 @@ package fr.huxor.entities;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -38,8 +37,7 @@ public class LeaseAgreements implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "CODE_CAR")
 	private Cars car;
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "CODE_CHECKCAR")
+	@OneToOne(mappedBy="leaseAgreement")
 	private CheckCars checkCar;
 
 	/**
@@ -57,18 +55,16 @@ public class LeaseAgreements implements Serializable {
 	 * @param dropCar
 	 * @param customer
 	 * @param car
-	 * @param checkCar
 	 * @param price
 	 */
 	public LeaseAgreements(String numberAgreement, Date startDate, Date comebackDate, boolean dropCar,
-			Customers customer, Cars car, CheckCars checkCar, double price) {
+			Customers customer, Cars car,  double price) {
 		this.numberAgreement = numberAgreement;
 		this.startDate = startDate;
 		this.comebackDate = comebackDate;
 		this.dropCar = dropCar;
 		this.customer = customer;
 		this.car = car;
-		this.checkCar = checkCar;
 		this.price = price;
 	}
 

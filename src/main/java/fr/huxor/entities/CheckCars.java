@@ -2,6 +2,7 @@ package fr.huxor.entities;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -30,7 +31,8 @@ public class CheckCars implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "CODE_MANAGER")
 	private Managers manager;
-	@OneToOne(mappedBy = "checkCar")
+	@OneToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name = "CODE_NUMBER_AGREEMENT")
 	private LeaseAgreements leaseAgreement;
 
 	/**
@@ -53,7 +55,6 @@ public class CheckCars implements Serializable {
 	 * @param engineAfter
 	 * @param car
 	 * @param manager
-	 * @param leaseAgreement
 	 */
 	public CheckCars(String checkNumber, String carriageBefore, String carriageAftter, String opticsBefore,
 			String opticsAfter, String panesBefore, String panesAfter, String enginesBefore, String engineAfter,
