@@ -31,8 +31,8 @@ public class CheckCars implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "CODE_MANAGER")
 	private Managers manager;
-	@OneToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name = "CODE_NUMBER_AGREEMENT")
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "CODE_CHECKCAR")
 	private LeaseAgreements leaseAgreement;
 
 	/**

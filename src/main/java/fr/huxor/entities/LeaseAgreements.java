@@ -58,7 +58,7 @@ public class LeaseAgreements implements Serializable {
 	 * @param price
 	 */
 	public LeaseAgreements(String numberAgreement, Date startDate, Date comebackDate, boolean dropCar,
-			Customers customer, Cars car,  double price) {
+			Customers customer, Cars car, double price) {
 		this.numberAgreement = numberAgreement;
 		this.startDate = startDate;
 		this.comebackDate = comebackDate;

@@ -6,6 +6,7 @@ import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
@@ -20,7 +21,7 @@ public  abstract class Users implements Serializable {
 	private static final long serialVersionUID = -9125319231283171487L;
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType. IDENTITY)
 	private long idUser;
 	@Email
 	@NotNull

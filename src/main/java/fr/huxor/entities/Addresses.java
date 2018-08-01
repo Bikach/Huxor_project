@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 
@@ -13,7 +14,7 @@ public class Addresses implements Serializable {
 	private static final long serialVersionUID = 217921902342387244L;
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType. IDENTITY)
 	private long idAddress;
 	@NotNull
 	private String street;

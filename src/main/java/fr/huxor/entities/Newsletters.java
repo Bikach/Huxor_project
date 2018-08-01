@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.Email;
 
@@ -13,7 +14,7 @@ public class Newsletters implements Serializable {
 	private static final long serialVersionUID = -9209276475373038017L;
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType. IDENTITY)
 	private long idNewsletter;
 	@Email
 	private String email;
