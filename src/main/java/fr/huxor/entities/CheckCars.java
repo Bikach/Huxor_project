@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -25,14 +26,14 @@ public class CheckCars implements Serializable {
 	private String enginesBefore;
 	private String engineAfter;
 
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name = "CODE_CAR")
 	private Cars car;
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name = "CODE_MANAGER")
 	private Managers manager;
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "CODE_CHECKCAR")
+	@OneToOne(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
+	@JoinColumn(name = "CODE_LEASE_AGRE")
 	private LeaseAgreements leaseAgreement;
 
 	/**

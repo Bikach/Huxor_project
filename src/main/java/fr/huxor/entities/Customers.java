@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 
@@ -20,10 +22,11 @@ public class Customers extends Users {
 
 	@Past
 	@NotNull
+	@Temporal(TemporalType.DATE)
 	private Date birthDate;
 	@NotNull
 	private String drivingLicenceNumber;
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne(cascade=CascadeType.ALL, optional = false)
 	@JoinColumn(name = "CODE_ADRESS")
 	private Addresses address;
 

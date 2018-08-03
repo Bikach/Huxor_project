@@ -4,10 +4,13 @@ import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.FutureOrPresent;
 import javax.validation.constraints.NotNull;
@@ -22,22 +25,24 @@ public class LeaseAgreements implements Serializable {
 	private String numberAgreement;
 	@NotNull
 	@FutureOrPresent
+	@Temporal(TemporalType.DATE)
 	private Date startDate;
 	@Future
 	@NotNull
+	@Temporal(TemporalType.DATE)
 	private Date comebackDate;
 	@NotNull
 	private boolean dropCar;
 	@NotNull
 	private double price;
 
-	@ManyToOne
+	@ManyToOne (fetch=FetchType.EAGER)
 	@JoinColumn(name = "CODE_CUSTOMER")
 	private Customers customer;
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name = "CODE_CAR")
 	private Cars car;
-	@OneToOne(mappedBy="leaseAgreement")
+	@OneToOne(mappedBy="leaseAgreement", fetch=FetchType.EAGER)
 	private CheckCars checkCar;
 
 	/**

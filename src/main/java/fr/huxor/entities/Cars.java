@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -22,7 +23,8 @@ public class Cars implements Serializable {
 	@NotNull
 	private String licencePlate;
 	private int kmNumber;
-	@ManyToOne(cascade=CascadeType.ALL)
+	private double dailyPrice;
+	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
 	@JoinColumn(name = "CODE_FEATURE")
 	private Features feature;
 
@@ -38,9 +40,10 @@ public class Cars implements Serializable {
 	 * @param kmNumber
 	 * @param feature
 	 */
-	public Cars(String licencePlate, int kmNumber, Features feature) {
+	public Cars(String licencePlate, int kmNumber, double dailyPrice,  Features feature) {
 		this.licencePlate = licencePlate;
 		this.kmNumber = kmNumber;
+		this.dailyPrice = dailyPrice;
 		this.feature = feature;
 	}
 
@@ -76,6 +79,14 @@ public class Cars implements Serializable {
 
 	public void setFeature(Features feature) {
 		this.feature = feature;
+	}
+
+	public double getDailyPrice() {
+		return dailyPrice;
+	}
+
+	public void setDailyPrice(double dailyPrice) {
+		this.dailyPrice = dailyPrice;
 	}
 
 }
