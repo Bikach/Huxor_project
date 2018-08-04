@@ -18,8 +18,8 @@ public class Cars implements Serializable {
 	private static final long serialVersionUID = 3654714278688930949L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType. IDENTITY)
-	private long idCar;
+//	@GeneratedValue(strategy = GenerationType. IDENTITY)
+//	private long idCar;
 	@NotNull
 	private String licencePlate;
 	private int kmNumber;
@@ -49,13 +49,13 @@ public class Cars implements Serializable {
 
 	// ===== Getters & Setters =====//
 
-	public long getIdCar() {
-		return idCar;
-	}
-
-	public void setIdCar(long idCar) {
-		this.idCar = idCar;
-	}
+//	public long getIdCar() {
+//		return idCar;
+//	}
+//
+//	public void setIdCar(long idCar) {
+//		this.idCar = idCar;
+//	}
 
 	public String getLicencePlate() {
 		return licencePlate;

@@ -42,7 +42,7 @@ public class LeaseAgreements implements Serializable {
 	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name = "CODE_CAR")
 	private Cars car;
-	@OneToOne(mappedBy="leaseAgreement", fetch=FetchType.EAGER)
+	@OneToOne(mappedBy="leaseAgreement", fetch=FetchType.LAZY)
 	private CheckCars checkCar;
 
 	/**

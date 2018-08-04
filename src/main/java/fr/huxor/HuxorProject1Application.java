@@ -2,6 +2,7 @@ package fr.huxor;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -16,7 +17,20 @@ import fr.huxor.dao.ILeaseAgreementsRepository;
 import fr.huxor.dao.IMessagesRepository;
 import fr.huxor.dao.INewslettersRepository;
 import fr.huxor.dao.IUsersRepository;
+import fr.huxor.entities.Addresses;
+import fr.huxor.entities.Brands;
 import fr.huxor.entities.Cars;
+import fr.huxor.entities.CheckCars;
+import fr.huxor.entities.Customers;
+import fr.huxor.entities.Features;
+import fr.huxor.entities.LeaseAgreements;
+import fr.huxor.entities.Managers;
+import fr.huxor.entities.Messages;
+import fr.huxor.entities.Models;
+import fr.huxor.entities.Newsletters;
+import fr.huxor.entities.Users;
+import fr.huxor.service.IRentalService;
+import fr.huxor.service.RentalServiceImpl;
 
 @SpringBootApplication
 public class HuxorProject1Application implements CommandLineRunner {
@@ -98,12 +112,17 @@ public class HuxorProject1Application implements CommandLineRunner {
 //		Newsletters nl2 = newslettersRepo.save(new Newsletters("jacqueschirac@gmail.com"));
 
 		// Permet d'afficher a la console les voitures libre entre deux date passé en parametre
-		final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-		ArrayList<Map<String, String>> objects = carsRepo.carListAvailable( dateFormat.parse("2018-09-04"),  dateFormat.parse("2018-09-18"));
-		objects.forEach(object->System.out.println(object));
+//		final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+//		ArrayList<Map<String, String>> objects = carsRepo.carListAvailable( dateFormat.parse("2018-09-04"),  dateFormat.parse("2018-09-18"));
+//		objects.forEach(object->System.out.println(object));
 		
 		
+		// IRentalService test
+//		RentalServiceImpl rental = new RentalServiceImpl();
+//		long price = rental.totalPrice("2018-08-05", "2018-08-15", 50);
+//		System.out.println(price);
 		
-		
+//		Cars c = rental.searchACar("KL-228-MH");
+//		System.out.println(c.getLicencePlate());
 	}
 }
