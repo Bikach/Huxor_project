@@ -17,7 +17,7 @@ public class Features implements Serializable {
 	private static final long serialVersionUID = 6301692554367921705L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType. IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long idFeature;
 	private byte carDoor;
 	private byte seatingCapacity;
@@ -27,17 +27,40 @@ public class Features implements Serializable {
 	private String fuel;
 	private String typeCar;
 
-	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "CODE_MODEL")
 	private Models model;
-	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
-	@JoinColumn(name = "CODE_BRAND")	
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name = "CODE_BRAND")
 	private Brands brand;
 
 	/**
 	 * Default constructor
 	 */
-	public Features() {}
+	public Features() {
+	}
+
+	/**
+	 * Constructor with parameters
+	 * 
+	 * @param carDoor
+	 * @param seatingCapacity
+	 * @param power
+	 * @param color
+	 * @param transmission
+	 * @param fuel
+	 * @param typeCar
+	 */
+	public Features(byte carDoor, byte seatingCapacity, byte power, String color, String transmission, String fuel,
+			String typeCar) {
+		this.carDoor = carDoor;
+		this.seatingCapacity = seatingCapacity;
+		this.power = power;
+		this.color = color;
+		this.transmission = transmission;
+		this.fuel = fuel;
+		this.typeCar = typeCar;
+	}
 
 	/**
 	 * Constructor with parameters

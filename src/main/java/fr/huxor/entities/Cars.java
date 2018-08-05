@@ -24,14 +24,28 @@ public class Cars implements Serializable {
 	private String licencePlate;
 	private int kmNumber;
 	private double dailyPrice;
-	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "CODE_FEATURE")
 	private Features feature;
 
 	/**
 	 * Default constructor
 	 */
-	public Cars() {}
+	public Cars() {
+	}
+
+	/**
+	 * Constructor with parameters
+	 * 
+	 * @param licencePlate
+	 * @param kmNumber
+	 * @param dailyPrice
+	 */
+	public Cars(String licencePlate, int kmNumber, double dailyPrice) {
+		this.licencePlate = licencePlate;
+		this.kmNumber = kmNumber;
+		this.dailyPrice = dailyPrice;
+	}
 
 	/**
 	 * Constructor with parameters
@@ -40,7 +54,7 @@ public class Cars implements Serializable {
 	 * @param kmNumber
 	 * @param feature
 	 */
-	public Cars(String licencePlate, int kmNumber, double dailyPrice,  Features feature) {
+	public Cars(String licencePlate, int kmNumber, double dailyPrice, Features feature) {
 		this.licencePlate = licencePlate;
 		this.kmNumber = kmNumber;
 		this.dailyPrice = dailyPrice;

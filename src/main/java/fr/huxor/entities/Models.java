@@ -14,8 +14,6 @@ public class Models implements Serializable {
 	private static final long serialVersionUID = -1879785430919026789L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType. IDENTITY)
-	private long idModel;
 	@NotNull
 	private String modelName;
 
@@ -34,14 +32,6 @@ public class Models implements Serializable {
 	}
 
 	// ===== Getters & Setters =====//
-
-	public long getIdModel() {
-		return idModel;
-	}
-
-	public void setIdModel(long idModel) {
-		this.idModel = idModel;
-	}
 
 	public String getModelName() {
 		return modelName;

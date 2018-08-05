@@ -5,22 +5,26 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import fr.huxor.dao.IBrandsRepository;
 import fr.huxor.dao.ICarsRepository;
 import fr.huxor.dao.ICheckCarsRepository;
 import fr.huxor.dao.ILeaseAgreementsRepository;
 import fr.huxor.dao.IMessagesRepository;
+import fr.huxor.dao.IModelsRepository;
 import fr.huxor.dao.INewslettersRepository;
 import fr.huxor.dao.IUsersRepository;
 import fr.huxor.entities.Addresses;
 import fr.huxor.entities.Brands;
 import fr.huxor.entities.Cars;
 import fr.huxor.entities.CheckCars;
+import fr.huxor.entities.CustomException;
 import fr.huxor.entities.Customers;
 import fr.huxor.entities.Features;
 import fr.huxor.entities.LeaseAgreements;
@@ -47,6 +51,10 @@ public class HuxorProject1Application implements CommandLineRunner {
 	private IMessagesRepository messagesRepo;
 	@Autowired
 	private INewslettersRepository newslettersRepo;
+	@Autowired
+	private IBrandsRepository brandRepo;
+	@Autowired
+	private IModelsRepository modelRepo;
 
 	public static void main(String[] args) {
 		SpringApplication.run(HuxorProject1Application.class, args);
@@ -84,7 +92,7 @@ public class HuxorProject1Application implements CommandLineRunner {
 //				"automatique", "gazol", "familiale", new Models("classe V"), new Brands("Mercedes"))));
 //		Cars ca4 = carsRepo.save(new Cars("ML-432-MH", 22800, 100d,  new Features((byte) 5, (byte) 5, (byte) 7, "black",
 //				"automatique", "gazol", "luxe", new Models("serie 5"), new Brands("BMW"))));
-		
+
 		// LeaseAgreements, checkCars test
 //		LeaseAgreements la1 = agreementsRepo.save(new LeaseAgreements("jueidl12876", new Date("08/05/2018"),
 //				new Date("08/15/2018"), false, (Customers) us4, ca1, 500d));
@@ -111,18 +119,78 @@ public class HuxorProject1Application implements CommandLineRunner {
 //		Newsletters nl1 = newslettersRepo.save(new Newsletters("emmanuelmacron@gmail.com"));
 //		Newsletters nl2 = newslettersRepo.save(new Newsletters("jacqueschirac@gmail.com"));
 
-		// Permet d'afficher a la console les voitures libre entre deux date passé en parametre
+		// Permet d'afficher a la console les voitures libre entre deux date passé en
+		// parametre
 //		final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 //		ArrayList<Map<String, String>> objects = carsRepo.carListAvailable( dateFormat.parse("2018-09-04"),  dateFormat.parse("2018-09-18"));
 //		objects.forEach(object->System.out.println(object));
-		
-		
+
 		// IRentalService test
 //		RentalServiceImpl rental = new RentalServiceImpl();
 //		long price = rental.totalPrice("2018-08-05", "2018-08-15", 50);
 //		System.out.println(price);
-		
+
 //		Cars c = rental.searchACar("KL-228-MH");
 //		System.out.println(c.getLicencePlate());
+
+//		List<Cars> list =  carsRepo.findAll(); 
+//		list.forEach(car -> {
+//			if (car.getLicencePlate().equals("jn-138-lk".toUpperCase())) {
+//				
+//			}
+//		});
+
+//		for (Cars car : list) {
+//			if(car.getLicencePlate().equals("jn-138-lk".toUpperCase())) {
+//				System.out.println("voiture trouve");
+//			}
+
+		// list.forEach(car- > System.out.println(car.getLicencePlate()));
+//		if (!carsRepo.existsById("KL-228-KH")) {
+//			System.out.println("ajout dun véhicule");
+//		} else {
+//			System.out.println("exception = le véhicule existe deja");
+//		}
+
+//		RentalServiceImpl rental = new RentalServiceImpl();
+//		
+//		Cars ca = carsRepo.save(new Cars("numero_test", 22800, 100d, new Features((byte) 5, (byte) 5, (byte) 7, "rose",
+//				"automatique", "gazol", "luxe", new Models("serie 2"), new Brands("BMW")))); 
+//		Cars ca = carsRepo.save(new Cars("numero_test2", 22800, 100d, new Features((byte) 5, (byte) 5, (byte) 7, "rose",
+//		"automatique", "gazol", "luxe", new Models("serie 2"), new Brands("BMW")))); 
+//		carsRepo.deleteById("numero_test");	
+		
+//		brandRepo.save(new Brands("BMW"));
+//		modelRepo.save(new Models("serie 5")); 
+
 	}
+	
+	
+/*	public Brands checksBrands(String brandName) throws CustomException {
+		if (brandRepo.existsById(brandName)) {
+			Optional<Brands> brand = brandRepo.findById(brandName);
+			if (brand == null)
+				throw new CustomException("Le modèle " + brandName + " n'existe pas");
+			Brands brandAvailable = brand.get();
+			return brandAvailable;
+			
+		}else {
+			Brands freshBrand = new Brands(brandName);
+			return freshBrand;	
+		}		
+	}
+	
+	public Models checksModels(String modelName) throws CustomException {
+		if (modelRepo.existsById(modelName)) {
+			Optional<Models> model = modelRepo.findById(modelName);
+			if (model == null)
+				throw new CustomException("Le modèle " + modelName + " n'existe pas");
+			Models modelAvailable = model.get();
+			return modelAvailable;
+			
+		}else {
+			Models freshModel = new Models(modelName);
+			return freshModel;	
+		}		
+	}*/
 }

@@ -14,8 +14,6 @@ public class Brands implements Serializable {
 	private static final long serialVersionUID = 4156772275668996847L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType. IDENTITY)
-	private long idBrand;
 	@NotNull
 	private String brandName;
 
@@ -34,14 +32,6 @@ public class Brands implements Serializable {
 	}
 
 	// ===== Getters & Setters =====//
-
-	public long getIdBrand() {
-		return idBrand;
-	}
-
-	public void setIdBrand(long idBrand) {
-		this.idBrand = idBrand;
-	}
 
 	public String getBrandName() {
 		return brandName;
