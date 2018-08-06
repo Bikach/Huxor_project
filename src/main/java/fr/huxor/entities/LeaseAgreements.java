@@ -5,6 +5,8 @@ import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -21,7 +23,8 @@ public class LeaseAgreements implements Serializable {
 	private static final long serialVersionUID = 7647304234628938461L;
 
 	@Id
-	@NotNull
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private long idLeaseArgreements;
 	private String numberAgreement;
 	@NotNull
 	@FutureOrPresent
@@ -31,8 +34,6 @@ public class LeaseAgreements implements Serializable {
 	@NotNull
 	@Temporal(TemporalType.DATE)
 	private Date comebackDate;
-	@NotNull
-	private boolean dropCar;
 	@NotNull
 	private double price;
 
@@ -62,12 +63,11 @@ public class LeaseAgreements implements Serializable {
 	 * @param car
 	 * @param price
 	 */
-	public LeaseAgreements(String numberAgreement, Date startDate, Date comebackDate, boolean dropCar,
+	public LeaseAgreements(String numberAgreement, Date startDate, Date comebackDate,
 			Customers customer, Cars car, double price) {
 		this.numberAgreement = numberAgreement;
 		this.startDate = startDate;
 		this.comebackDate = comebackDate;
-		this.dropCar = dropCar;
 		this.customer = customer;
 		this.car = car;
 		this.price = price;
@@ -75,9 +75,19 @@ public class LeaseAgreements implements Serializable {
 
 	// ===== Getters & Setters =====//
 
+	
+	public long getIdLeaseArgreements() {
+		return idLeaseArgreements;
+	}
+	
+	public void setIdLeaseArgreements(long idLeaseArgreements) {
+		this.idLeaseArgreements = idLeaseArgreements;
+	}
+	
 	public String getNumberAgreement() {
 		return numberAgreement;
 	}
+
 
 	public void setNumberAgreement(String numberAgreement) {
 		this.numberAgreement = numberAgreement;
@@ -97,14 +107,6 @@ public class LeaseAgreements implements Serializable {
 
 	public void setComebackDate(Date comebackDate) {
 		this.comebackDate = comebackDate;
-	}
-
-	public boolean isDropCar() {
-		return dropCar;
-	}
-
-	public void setDropCar(boolean dropCar) {
-		this.dropCar = dropCar;
 	}
 
 	public Customers getCustomer() {
