@@ -1,5 +1,7 @@
 package fr.huxor.service;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.Date;
@@ -10,12 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 
-import fr.huxor.dao.IBrandsRepository;
 import fr.huxor.dao.ICarsRepository;
 import fr.huxor.dao.IFeaturesRepository;
 import fr.huxor.dao.ILeaseAgreementsRepository;
-import fr.huxor.dao.IModelsRepository;
-import fr.huxor.dao.IUsersRepository;
 import fr.huxor.entities.Brands;
 import fr.huxor.entities.Cars;
 import fr.huxor.entities.CustomException;
@@ -23,7 +22,6 @@ import fr.huxor.entities.Customers;
 import fr.huxor.entities.Features;
 import fr.huxor.entities.LeaseAgreements;
 import fr.huxor.entities.Models;
-import fr.huxor.entities.Users;
 
 public class RentalServiceImpl implements IRentalService {
 
@@ -37,16 +35,32 @@ public class RentalServiceImpl implements IRentalService {
 	@Autowired
 	private IUsersService userService;
 
+	private final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
 	// ===== Customer ===== //
 
+	/**
+	 * 
+	 * Customer book a car
+	 * 
+	 * @param idCustomer 
+	 * @param licencePlate
+	 * @param pickupDate 
+	 * @paramdropDate 
+	 * @throws Custom Exeption
+	 */
 	@Override
 	public void bookACar(long idCustomer, String licencePlate, String pickupDate, String dropDate)
 			throws CustomException {
-		Customers user = (Customers)userService.findAUser(idCustomer);
+		Customers user = (Customers) userService.findAUser(idCustomer);
 		Cars car = findACar(licencePlate);
 		double totalPrice = totalPrice(pickupDate, dropDate, car.getDailyPrice());
-//		leaseRepo.save(new LeaseAgreements(null, pickupDate, dropDate, user, car, totalPrice));
-		// TODO correction Date et cast user
+		try {
+			leaseRepo.save(new LeaseAgreements(null, dateFormat.parse(pickupDate), dateFormat.parse(dropDate), user,
+					car, totalPrice));
+		} catch (ParseException e) {
+			throw new CustomException("Le format de la date est incorect");
+		}
 	}
 
 	// ===== Manager ===== //
@@ -54,8 +68,9 @@ public class RentalServiceImpl implements IRentalService {
 	/**
 	 * Add a car to the BDD
 	 * 
-	 * @param car     attributes
+	 * @param car  attributes
 	 * @param feature attributes
+	 * @throws Custom Exeption
 	 */
 	@Override
 	public void addACar(String licencePlate, int kmNumber, double dailyPrice, byte carDoor, byte seatingCapacity,
@@ -81,6 +96,7 @@ public class RentalServiceImpl implements IRentalService {
 	 * 
 	 * @param licence plate
 	 * @return a car
+	 * @throws Custom Exeption
 	 */
 	@Override
 	public Cars findACar(String licencePlate) throws CustomException {
@@ -93,6 +109,14 @@ public class RentalServiceImpl implements IRentalService {
 
 	// ===== Manager/Customer =====//
 
+	/**
+	 * Return available vehicles on more than one page
+	 * 
+	 * @param pickup
+	 * @param drop
+	 * @param page
+	 * @param size
+	 */
 	@Override
 	public Page<Map<String, String>> carListAvailable(Date pickup, Date drop, int page, int size) {
 		return carsRepo.carListAvailable(pickup, drop, PageRequest.of(page, size));
@@ -101,6 +125,7 @@ public class RentalServiceImpl implements IRentalService {
 	// ===== class methode ===== //
 
 	/**
+	 * Calculate the total price of a reservation
 	 * 
 	 * @param pickup
 	 * @param drop
@@ -112,6 +137,16 @@ public class RentalServiceImpl implements IRentalService {
 		LocalDate endDate = LocalDate.parse(drop);
 		long Days = ChronoUnit.DAYS.between(startDate, endDate);
 		return Days * dailyPrice;
+	}
+
+	/**
+	 * check if feature already exists
+	 * 
+	 * @param features
+	 * @return features that already exist or a new one
+	 */
+	private Features avoidsDuplicatingFeatures(Features features) {
+		return new Features();
 	}
 
 }
