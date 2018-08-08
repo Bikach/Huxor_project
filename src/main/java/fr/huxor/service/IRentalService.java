@@ -20,6 +20,7 @@ public interface IRentalService {
 				String brandName) throws CustomException;
 	public void deleteACar(String licensePlate) throws CustomException;
 	public Cars findACar(String licensePlate) throws CustomException;
+	public void updateCar(String licencePlate) throws CustomException;
 
 	// Customer/Manager
 	public Page<Map<String, String>> carListAvailable(Date pickup, Date drop, int page, int size) throws CustomException;

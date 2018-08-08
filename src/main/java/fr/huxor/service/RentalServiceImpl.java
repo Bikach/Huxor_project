@@ -28,8 +28,6 @@ public class RentalServiceImpl implements IRentalService {
 	@Autowired
 	private ICarsRepository carsRepo;
 	@Autowired
-	private IFeaturesRepository featureRepo;
-	@Autowired
 	private ILeaseAgreementsRepository leaseRepo;
 
 	@Autowired
@@ -106,6 +104,11 @@ public class RentalServiceImpl implements IRentalService {
 		Cars c = car.get();
 		return c;
 	}
+	
+	@Override
+	public void updateCar(String licencePlate) throws CustomException {
+		// TODO
+	}
 
 	// ===== Manager/Customer =====//
 
@@ -148,5 +151,6 @@ public class RentalServiceImpl implements IRentalService {
 	private Features avoidsDuplicatingFeatures(Features features) {
 		return new Features();
 	}
+
 
 }

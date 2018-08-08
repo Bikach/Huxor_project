@@ -177,8 +177,11 @@ public class HuxorProject1Application implements CommandLineRunner {
 //		
 //		Optional<Cars> car = carsRepo.findById("BN-268-KH");
 //		if (car == null)
-//			throw new CustomException("Le véhicule " + "BN-268-KH" + " n'existe pas");
+//			throw new CustomException("Le véhicule " + "BN-268-KH" + " n'existe pas");getClass();
 //		Cars c = car.get();
+//
+//		c.setDailyPrice(60);
+//		carsRepo.save(c);
 //
 //		try {
 //			agreementsRepo.save(new LeaseAgreements(null, dateFormat.parse("01/10/2019"), dateFormat.parse("01/12/2019"), u, c, 500d));
@@ -193,6 +196,9 @@ public class HuxorProject1Application implements CommandLineRunner {
 //				
 //			}
 //		});
+		
+//		carsRepo.save(new Cars("BN-268-KH", 1, 1d, new Features((byte)1, (byte)1, (byte)1,
+//				"color", "transmissiontest", "fuelgazol", "typecar", new Models("modeltest"), new Brands("bradntest"))));
 
 	}
 	
