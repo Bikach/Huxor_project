@@ -23,7 +23,7 @@ public interface ICarsRepository extends JpaRepository<Cars, String> {
 	@Query(value="SELECT new map("
 			+ "c.licencePlate as licencePlate, c.dailyPrice as Price, c.carCategory, f.carDoor as Door, "
 			+ "f.color as color, f.fuel as fuel, f.power as power, f.seatingCapacity as seat, f.transmission as transmission, "
-			+ "f.carBrand as brand, f.model.modelName as model) "
+			+ "f.brand.brandName as brand, f.model.modelName as model) "
 			+ "FROM Cars c "
 			+ "INNER JOIN Features f ON c.feature= f.idFeature "
 			+ "WHERE c.licencePlate NOT IN "

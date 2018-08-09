@@ -24,7 +24,7 @@ public class Cars implements Serializable {
 	private String licencePlate;
 	private int kmNumber;
 	private double dailyPrice;
-	private byte kmPrice;
+	private float kmPrice;
 
 	@Enumerated(EnumType.STRING)
 	private CarsCategorys carCategory;
@@ -48,7 +48,7 @@ public class Cars implements Serializable {
 	 * @param dailyPrice
 	 * @param kmPrice
 	 */
-	public Cars(String licencePlate, int kmNumber, CarsCategorys category, double dailyPrice, byte kmPrice) {
+	public Cars(String licencePlate, int kmNumber, CarsCategorys category, double dailyPrice, float kmPrice) {
 		this.licencePlate = licencePlate;
 		this.kmNumber = kmNumber;
 		this.carCategory = category;
@@ -98,7 +98,7 @@ public class Cars implements Serializable {
 		this.dailyPrice = dailyPrice;
 	}
 
-	public byte getKmPrice() {
+	public float getKmPrice() {
 		return kmPrice;
 	}
 

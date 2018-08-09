@@ -49,9 +49,9 @@ public class Customers extends Users {
 	 * @param drivingLicenceNumber
 	 * @param address
 	 */
-	public Customers( String email, String password, String lasName, String firstName, boolean enabled,
+	public Customers(String username,  String email, String password, String lasName, String firstName, boolean enabled,
 			Date birthDate, String drivingLicenceNumber, Addresses address) {
-		super( email, password, lasName, firstName, enabled);
+		super(username,  email, password, lasName, firstName, enabled);
 		this.birthDate = birthDate;
 		this.drivingLicenceNumber = drivingLicenceNumber;
 		this.address = address;

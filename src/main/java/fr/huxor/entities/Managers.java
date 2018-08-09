@@ -33,9 +33,9 @@ public class Managers extends Users {
 	 * @param enabled (Users)
 	 * @param registrationNumber
 	 */
-	public Managers(String email, String password, String lasName, String firstName, boolean enabled,
+	public Managers(String username, String email, String password, String lasName, String firstName, boolean enabled,
 			String registrationNumber) {
-		super(email, password, lasName, firstName, enabled);
+		super(username, email, password, lasName, firstName, enabled);
 		this.registrationNumber = registrationNumber;
 	}
 

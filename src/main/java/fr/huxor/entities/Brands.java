@@ -3,16 +3,14 @@ package fr.huxor.entities;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 
 @Entity
 public class Brands implements Serializable {
 
-	private static final long serialVersionUID = 4156772275668996847L;
-
+	private static final long serialVersionUID = 7364026866652714040L;
+	
 	@Id
 	@NotNull
 	private String brandName;
@@ -25,7 +23,7 @@ public class Brands implements Serializable {
 	/**
 	 * Constructor with parameters
 	 * 
-	 * @param brandName
+	 * @param modelName
 	 */
 	public Brands(String brandName) {
 		this.brandName = brandName;
@@ -33,12 +31,11 @@ public class Brands implements Serializable {
 
 	// ===== Getters & Setters =====//
 
-	public String getBrandName() {
+	public String getModelBrand() {
 		return brandName;
 	}
 
-	public void setBrandName(String brandName) {
+	public void setModelBrand(String brandName) {
 		this.brandName = brandName;
 	}
-
 }

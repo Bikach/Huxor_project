@@ -11,7 +11,10 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import fr.huxor.HuxorProject1Application;
 import fr.huxor.dao.ICarsRepository;
 import fr.huxor.dao.IFeaturesRepository;
 import fr.huxor.dao.ILeaseAgreementsRepository;
@@ -22,9 +25,10 @@ import fr.huxor.entities.Customers;
 import fr.huxor.entities.Features;
 import fr.huxor.entities.LeaseAgreements;
 import fr.huxor.entities.Models;
-import fr.huxor.util.CarBrand;
 import fr.huxor.util.CarsCategorys;
 
+@Service
+@Transactional
 public class RentalServiceImpl implements IRentalService {
 
 	@Autowired
@@ -35,8 +39,6 @@ public class RentalServiceImpl implements IRentalService {
 	private IFeaturesRepository featuresRepo;
 	@Autowired
 	private IUsersService userService;
-
-	private final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
 	// ===== Customer ===== //
 
@@ -51,14 +53,14 @@ public class RentalServiceImpl implements IRentalService {
 	 * @throws Custom Exeption
 	 */
 	@Override
-	public void bookACar(long idCustomer, String licencePlate, String pickupDate, String dropDate, int startKm)
+	public void bookACar(String username, String licencePlate, String pickupDate, String dropDate)
 			throws CustomException {
-		Customers user = (Customers) userService.findAUser(idCustomer);
+		Customers user = (Customers) userService.findAUser(username);
 		Cars car = findACar(licencePlate);
 		double totalPrice = totalPrice(pickupDate, dropDate, car.getDailyPrice());
 		try {
-			leaseRepo.save(new LeaseAgreements(null, dateFormat.parse(pickupDate), dateFormat.parse(dropDate), startKm, 0, user,
-					car, totalPrice));
+			leaseRepo.save(new LeaseAgreements(null, HuxorProject1Application.DATE_FORMAT.parse(pickupDate),
+					HuxorProject1Application.DATE_FORMAT.parse(dropDate), car.getKmNumber(), 0, user, car, totalPrice));
 		} catch (ParseException e) {
 			throw new CustomException("Le format de la date est incorect");
 		}
@@ -69,19 +71,23 @@ public class RentalServiceImpl implements IRentalService {
 	/**
 	 * Add a car to the BDD
 	 * 
-	 * @param car attributes
+	 * @param car     attributes
 	 * @param feature attributes
 	 * @throws Custom Exeption
 	 */
 	@Override
-	public void addACar(String licencePlate, int kmNumber, CarsCategorys category, double dailyPrice, byte kmPrice, CarBrand brand, byte carDoor, byte seatingCapacity,
-			byte power, String color, String transmission, String fuel,  String modelName,
-			String brandName) throws CustomException {
-		// TODO verifier feature si il existe avant
+	public void addACar(String licencePlate, int kmNumber, CarsCategorys category, double dailyPrice, float kmPrice,
+			byte carDoor, byte seatingCapacity, byte power, String color, String transmission, String fuel,
+			Brands brand, Models model) throws CustomException {
+
 		if (!carsRepo.existsById(licencePlate)) {
 
-			carsRepo.save(new Cars(licencePlate, kmNumber, category, dailyPrice, kmPrice));
-			featuresRepo.save(new Features(brand, carDoor, seatingCapacity, power, color, transmission, fuel));
+			Cars car = new Cars(licencePlate, kmNumber, category, dailyPrice, kmPrice);
+			Features feature = new Features(carDoor, seatingCapacity, power, color, transmission, fuel, brand, model);
+
+			featuresRepo.save(feature);
+			car.setFeature(feature);
+			carsRepo.save(car);
 
 		} else {
 			throw new CustomException("Le véhicule " + licencePlate + " est déja enregistré");

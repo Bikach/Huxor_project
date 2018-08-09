@@ -5,8 +5,6 @@ import java.io.Serializable;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
@@ -21,8 +19,7 @@ public  abstract class Users implements Serializable {
 	private static final long serialVersionUID = -9125319231283171487L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType. IDENTITY)
-	private long idUser;
+	private String username;
 	@Email
 	@NotNull
 	private String email;
@@ -50,7 +47,8 @@ public  abstract class Users implements Serializable {
 	 * @param enabled
 
 	 */
-	public Users( String email, String password, String lasName, String firstName, boolean enabled) {
+	public Users(String username,String email, String password, String lasName, String firstName, boolean enabled) {
+		this.username = username;
 		this.email = email;
 		this.password = password;
 		this.lastName = lasName;
@@ -60,6 +58,14 @@ public  abstract class Users implements Serializable {
 
 	// ===== Getters & Setters =====//
 
+	public String getUsername() {
+		return username;
+	}
+	
+	public void setUsername(String username) {
+		this.username = username;
+	}
+	
 	public String getEmail() {
 		return email;
 	}
