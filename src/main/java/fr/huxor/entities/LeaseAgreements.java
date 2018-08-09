@@ -27,13 +27,14 @@ public class LeaseAgreements implements Serializable {
 	private long idLeaseArgreements;
 	private String numberAgreement;
 	@NotNull
-	@FutureOrPresent
 	@Temporal(TemporalType.DATE)
 	private Date startDate;
-	@Future
 	@NotNull
 	@Temporal(TemporalType.DATE)
 	private Date comebackDate;
+	@NotNull
+	private int startKm;
+	private int endKm;
 	@NotNull
 	private double price;
 
@@ -63,11 +64,13 @@ public class LeaseAgreements implements Serializable {
 	 * @param car
 	 * @param price
 	 */
-	public LeaseAgreements(String numberAgreement, Date startDate, Date comebackDate,
+	public LeaseAgreements(String numberAgreement, Date startDate, Date comebackDate, int startKm, int endKm,
 			Customers customer, Cars car, double price) {
-		this.numberAgreement = numberAgreement;
+		this.numberAgreement = numberAgreement ;
 		this.startDate = startDate;
 		this.comebackDate = comebackDate;
+		this.startKm = startKm;
+		this.endKm = endKm;
 		this.customer = customer;
 		this.car = car;
 		this.price = price;
@@ -103,6 +106,22 @@ public class LeaseAgreements implements Serializable {
 
 	public Date getComebackDate() {
 		return comebackDate;
+	}
+
+	public int getStartKm() {
+		return startKm;
+	}
+
+	public void setStartKm(int startKm) {
+		this.startKm = startKm;
+	}
+
+	public int getEndKm() {
+		return endKm;
+	}
+
+	public void setEndKm(int endKm) {
+		this.endKm = endKm;
 	}
 
 	public void setComebackDate(Date comebackDate) {

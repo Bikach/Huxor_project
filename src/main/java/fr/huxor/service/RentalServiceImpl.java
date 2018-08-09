@@ -22,6 +22,8 @@ import fr.huxor.entities.Customers;
 import fr.huxor.entities.Features;
 import fr.huxor.entities.LeaseAgreements;
 import fr.huxor.entities.Models;
+import fr.huxor.util.CarBrand;
+import fr.huxor.util.CarsCategorys;
 
 public class RentalServiceImpl implements IRentalService {
 
@@ -29,7 +31,8 @@ public class RentalServiceImpl implements IRentalService {
 	private ICarsRepository carsRepo;
 	@Autowired
 	private ILeaseAgreementsRepository leaseRepo;
-
+	@Autowired
+	private IFeaturesRepository featuresRepo;
 	@Autowired
 	private IUsersService userService;
 
@@ -41,20 +44,20 @@ public class RentalServiceImpl implements IRentalService {
 	 * 
 	 * Customer book a car
 	 * 
-	 * @param idCustomer 
+	 * @param idCustomer
 	 * @param licencePlate
-	 * @param pickupDate 
-	 * @paramdropDate 
+	 * @param pickupDate
+	 * @paramdropDate
 	 * @throws Custom Exeption
 	 */
 	@Override
-	public void bookACar(long idCustomer, String licencePlate, String pickupDate, String dropDate)
+	public void bookACar(long idCustomer, String licencePlate, String pickupDate, String dropDate, int startKm)
 			throws CustomException {
 		Customers user = (Customers) userService.findAUser(idCustomer);
 		Cars car = findACar(licencePlate);
 		double totalPrice = totalPrice(pickupDate, dropDate, car.getDailyPrice());
 		try {
-			leaseRepo.save(new LeaseAgreements(null, dateFormat.parse(pickupDate), dateFormat.parse(dropDate), user,
+			leaseRepo.save(new LeaseAgreements(null, dateFormat.parse(pickupDate), dateFormat.parse(dropDate), startKm, 0, user,
 					car, totalPrice));
 		} catch (ParseException e) {
 			throw new CustomException("Le format de la date est incorect");
@@ -66,18 +69,20 @@ public class RentalServiceImpl implements IRentalService {
 	/**
 	 * Add a car to the BDD
 	 * 
-	 * @param car  attributes
+	 * @param car attributes
 	 * @param feature attributes
 	 * @throws Custom Exeption
 	 */
 	@Override
-	public void addACar(String licencePlate, int kmNumber, double dailyPrice, byte carDoor, byte seatingCapacity,
-			byte power, String color, String transmission, String fuel, String typeCar, String modelName,
+	public void addACar(String licencePlate, int kmNumber, CarsCategorys category, double dailyPrice, byte kmPrice, CarBrand brand, byte carDoor, byte seatingCapacity,
+			byte power, String color, String transmission, String fuel,  String modelName,
 			String brandName) throws CustomException {
 		// TODO verifier feature si il existe avant
 		if (!carsRepo.existsById(licencePlate)) {
-			carsRepo.save(new Cars(licencePlate, kmNumber, dailyPrice, new Features(carDoor, seatingCapacity, power,
-					color, transmission, fuel, typeCar, new Models("modelName"), new Brands("brandName"))));
+
+			carsRepo.save(new Cars(licencePlate, kmNumber, category, dailyPrice, kmPrice));
+			featuresRepo.save(new Features(brand, carDoor, seatingCapacity, power, color, transmission, fuel));
+
 		} else {
 			throw new CustomException("Le véhicule " + licencePlate + " est déja enregistré");
 		}
@@ -104,13 +109,35 @@ public class RentalServiceImpl implements IRentalService {
 		Cars c = car.get();
 		return c;
 	}
-	
+
+	/**
+	 * 
+	 * Update daily price
+	 * 
+	 * @param licencePlate
+	 * @param dalilyPrice
+	 */
 	@Override
-	public void updateCar(String licencePlate) throws CustomException {
-		// TODO
+	public void updateDailyPriceCar(String licencePlate, double dailyPrice) throws CustomException {
+		Cars car = findACar(licencePlate);
+		car.setDailyPrice(dailyPrice);
+		carsRepo.save(car);
 	}
 
-	// ===== Manager/Customer =====//
+	/**
+	 * Update km
+	 * 
+	 * @param licencePlate
+	 * @param numbre       km
+	 */
+	@Override
+	public void updateKmCar(String licencePlate, int nbkm) throws CustomException {
+		Cars car = findACar(licencePlate);
+		car.setKmNumber(nbkm);
+		carsRepo.save(car);
+	}
+
+	// ===== Manager/Customer/admin =====//
 
 	/**
 	 * Return available vehicles on more than one page
@@ -151,6 +178,5 @@ public class RentalServiceImpl implements IRentalService {
 	private Features avoidsDuplicatingFeatures(Features features) {
 		return new Features();
 	}
-
 
 }

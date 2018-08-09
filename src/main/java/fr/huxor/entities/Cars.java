@@ -4,13 +4,15 @@ import java.io.Serializable;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
+
+import fr.huxor.util.CarsCategorys;
 
 @Entity
 public class Cars implements Serializable {
@@ -18,12 +20,15 @@ public class Cars implements Serializable {
 	private static final long serialVersionUID = 3654714278688930949L;
 
 	@Id
-//	@GeneratedValue(strategy = GenerationType. IDENTITY)
-//	private long idCar;
 	@NotNull
 	private String licencePlate;
 	private int kmNumber;
 	private double dailyPrice;
+	private byte kmPrice;
+
+	@Enumerated(EnumType.STRING)
+	private CarsCategorys carCategory;
+
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "CODE_FEATURE")
 	private Features feature;
@@ -39,37 +44,19 @@ public class Cars implements Serializable {
 	 * 
 	 * @param licencePlate
 	 * @param kmNumber
+	 * @param category
 	 * @param dailyPrice
+	 * @param kmPrice
 	 */
-	public Cars(String licencePlate, int kmNumber, double dailyPrice) {
+	public Cars(String licencePlate, int kmNumber, CarsCategorys category, double dailyPrice, byte kmPrice) {
 		this.licencePlate = licencePlate;
 		this.kmNumber = kmNumber;
+		this.carCategory = category;
 		this.dailyPrice = dailyPrice;
-	}
-
-	/**
-	 * Constructor with parameters
-	 * 
-	 * @param licencePlate
-	 * @param kmNumber
-	 * @param feature
-	 */
-	public Cars(String licencePlate, int kmNumber, double dailyPrice, Features feature) {
-		this.licencePlate = licencePlate;
-		this.kmNumber = kmNumber;
-		this.dailyPrice = dailyPrice;
-		this.feature = feature;
+		this.kmPrice = kmPrice;
 	}
 
 	// ===== Getters & Setters =====//
-
-//	public long getIdCar() {
-//		return idCar;
-//	}
-//
-//	public void setIdCar(long idCar) {
-//		this.idCar = idCar;
-//	}
 
 	public String getLicencePlate() {
 		return licencePlate;
@@ -95,6 +82,14 @@ public class Cars implements Serializable {
 		this.feature = feature;
 	}
 
+	public CarsCategorys getCarCategory() {
+		return carCategory;
+	}
+
+	public void setCarCategory(CarsCategorys carCategory) {
+		this.carCategory = carCategory;
+	}
+
 	public double getDailyPrice() {
 		return dailyPrice;
 	}
@@ -102,5 +97,14 @@ public class Cars implements Serializable {
 	public void setDailyPrice(double dailyPrice) {
 		this.dailyPrice = dailyPrice;
 	}
+
+	public byte getKmPrice() {
+		return kmPrice;
+	}
+
+	public void setKmPrice(byte kmPrice) {
+		this.kmPrice = kmPrice;
+	}
+		
 
 }

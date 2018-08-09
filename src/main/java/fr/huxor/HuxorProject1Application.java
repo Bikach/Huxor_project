@@ -199,6 +199,8 @@ public class HuxorProject1Application implements CommandLineRunner {
 		
 //		carsRepo.save(new Cars("BN-268-KH", 1, 1d, new Features((byte)1, (byte)1, (byte)1,
 //				"color", "transmissiontest", "fuelgazol", "typecar", new Models("modeltest"), new Brands("bradntest"))));
+		
+//		carsRepo.deleteById("BN-268-KH");
 
 	}
 	

@@ -4,12 +4,16 @@ import java.io.Serializable;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+
+import fr.huxor.util.CarBrand;
 
 @Entity
 public class Features implements Serializable {
@@ -25,14 +29,13 @@ public class Features implements Serializable {
 	private String color;
 	private String transmission;
 	private String fuel;
-	private String typeCar;
+	
+	@Enumerated(EnumType.STRING)
+	private CarBrand carBrand;
 
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinColumn(name = "CODE_MODEL")
+	@JoinColumn(name = "MODEL_NAME")
 	private Models model;
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinColumn(name = "CODE_BRAND")
-	private Brands brand;
 
 	/**
 	 * Default constructor
@@ -43,49 +46,22 @@ public class Features implements Serializable {
 	/**
 	 * Constructor with parameters
 	 * 
-	 * @param carDoor
-	 * @param seatingCapacity
-	 * @param power
-	 * @param color
-	 * @param transmission
-	 * @param fuel
-	 * @param typeCar
-	 */
-	public Features(byte carDoor, byte seatingCapacity, byte power, String color, String transmission, String fuel,
-			String typeCar) {
-		this.carDoor = carDoor;
-		this.seatingCapacity = seatingCapacity;
-		this.power = power;
-		this.color = color;
-		this.transmission = transmission;
-		this.fuel = fuel;
-		this.typeCar = typeCar;
-	}
-
-	/**
-	 * Constructor with parameters
-	 * 
-	 * @param carDoor
-	 * @param seatingCapacity
-	 * @param power
-	 * @param color
-	 * @param transmission
-	 * @param fuel
-	 * @param typeCar
-	 * @param model
 	 * @param brand
+	 * @param carDoor
+	 * @param seatingCapacity
+	 * @param power
+	 * @param color
+	 * @param transmission
+	 * @param fuel
 	 */
-	public Features(byte carDoor, byte seatingCapacity, byte power, String color, String transmission, String fuel,
-			String typeCar, Models model, Brands brand) {
+	public Features(CarBrand brand,byte carDoor, byte seatingCapacity, byte power, String color, String transmission, String fuel) {
+		this.carBrand = brand;
 		this.carDoor = carDoor;
 		this.seatingCapacity = seatingCapacity;
 		this.power = power;
 		this.color = color;
 		this.transmission = transmission;
 		this.fuel = fuel;
-		this.typeCar = typeCar;
-		this.model = model;
-		this.brand = brand;
 	}
 
 	// ===== Getters & Setters =====//
@@ -96,6 +72,18 @@ public class Features implements Serializable {
 
 	public void setIdFeature(long idFeature) {
 		this.idFeature = idFeature;
+	}
+
+	public CarBrand getCarBrand() {
+		return carBrand;
+	}
+
+	public void setCarBrand(CarBrand carBrand) {
+		this.carBrand = carBrand;
+	}
+
+	public void setCarDoor(byte carDoor) {
+		this.carDoor = carDoor;
 	}
 
 	public byte getCarDoor() {
@@ -146,28 +134,12 @@ public class Features implements Serializable {
 		this.fuel = fuel;
 	}
 
-	public String getTypeCar() {
-		return typeCar;
-	}
-
-	public void setTypeCar(String typeCar) {
-		this.typeCar = typeCar;
-	}
-
 	public Models getModel() {
 		return model;
 	}
 
 	public void setModel(Models model) {
 		this.model = model;
-	}
-
-	public Brands getBrand() {
-		return brand;
-	}
-
-	public void setBrand(Brands brand) {
-		this.brand = brand;
 	}
 
 }
