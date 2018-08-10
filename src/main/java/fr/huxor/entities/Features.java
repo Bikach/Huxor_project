@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import org.springframework.context.annotation.Primary;
+
 @Entity
 public class Features implements Serializable {
 
@@ -26,11 +28,11 @@ public class Features implements Serializable {
 	private String transmission;
 	private String fuel;
 	
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "BRAND_NAME")
 	private Brands brand;
 
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "MODEL_NAME")
 	private Models model;
 

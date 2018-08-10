@@ -5,10 +5,12 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -83,9 +85,10 @@ public class RentalServiceImpl implements IRentalService {
 		if (!carsRepo.existsById(licencePlate)) {
 
 			Cars car = new Cars(licencePlate, kmNumber, category, dailyPrice, kmPrice);
+
 			Features feature = new Features(carDoor, seatingCapacity, power, color, transmission, fuel, brand, model);
 
-			featuresRepo.save(feature);
+			featuresRepo.saveAndFlush(feature);
 			car.setFeature(feature);
 			carsRepo.save(car);
 
@@ -153,10 +156,10 @@ public class RentalServiceImpl implements IRentalService {
 	 * @param page
 	 * @param size
 	 */
-	@Override
-	public Page<Map<String, String>> carListAvailable(Date pickup, Date drop, int page, int size) {
-		return carsRepo.carListAvailable(pickup, drop, PageRequest.of(page, size));
-	}
+//	@Override
+//	public Page<Map<String, String>> carListAvailable(Date pickup, Date drop, int page, int size) {
+//		return carsRepo.carListAvailable(pickup, drop, PageRequest.of(page, size));
+//	}
 
 	// ===== class methode ===== //
 
@@ -181,8 +184,16 @@ public class RentalServiceImpl implements IRentalService {
 	 * @param features
 	 * @return features that already exist or a new one
 	 */
-	private Features avoidsDuplicatingFeatures(Features features) {
-		return new Features();
+	private Features avoidsDuplicatingFeatures(Features feature) {
+		Example<Features> example = Example.of(feature);
+		
+		if (!featuresRepo.exists(example)) 
+			return feature;
+
+		Optional<Features> featOpt = featuresRepo.findOne(example);
+		Features feat = featOpt.get();
+		
+		return feat;
 	}
 
 }

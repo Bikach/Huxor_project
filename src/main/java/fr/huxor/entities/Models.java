@@ -33,9 +33,11 @@ public class Models implements Serializable {
 
 	// ===== Getters & Setters =====//
 
+	
 	public String getModelName() {
 		return modelName;
 	}
+
 
 	public void setModelName(String modelName) {
 		this.modelName = modelName;

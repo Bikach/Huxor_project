@@ -31,7 +31,7 @@ public interface IRentalService {
 	public void updateDailyPriceCar(String licencePlate, double dailyPrice) throws CustomException;
 
 	// Customer/Manager
-	public Page<Map<String, String>> carListAvailable(Date pickup, Date drop, int page, int size)
-			throws CustomException;
+//	public Page<Map<String, String>> carListAvailable(Date pickup, Date drop, int page, int size)
+//			throws CustomException;
 
 }

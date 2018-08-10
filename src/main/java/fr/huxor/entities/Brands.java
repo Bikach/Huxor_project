@@ -3,6 +3,8 @@ package fr.huxor.entities;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 
@@ -30,12 +32,13 @@ public class Brands implements Serializable {
 	}
 
 	// ===== Getters & Setters =====//
-
-	public String getModelBrand() {
+	
+	public String getlBrandName() {
 		return brandName;
 	}
 
-	public void setModelBrand(String brandName) {
+
+	public void setBrandName(String brandName) {
 		this.brandName = brandName;
 	}
 }
