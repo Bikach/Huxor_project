@@ -1,33 +1,27 @@
 package fr.huxor.service;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import fr.huxor.HuxorProject1Application;
+import fr.huxor.dao.IBrandsRepository;
 import fr.huxor.dao.ICarsRepository;
-import fr.huxor.dao.IFeaturesRepository;
+import fr.huxor.dao.ICategorysRepository;
 import fr.huxor.dao.ILeaseAgreementsRepository;
+import fr.huxor.dao.IModelsRepository;
 import fr.huxor.entities.Brands;
 import fr.huxor.entities.Cars;
+import fr.huxor.entities.Categorys;
 import fr.huxor.entities.CustomException;
 import fr.huxor.entities.Customers;
-import fr.huxor.entities.Features;
 import fr.huxor.entities.LeaseAgreements;
 import fr.huxor.entities.Models;
-import fr.huxor.util.CarsCategorys;
 
 @Service
 @Transactional
@@ -38,9 +32,13 @@ public class RentalServiceImpl implements IRentalService {
 	@Autowired
 	private ILeaseAgreementsRepository leaseRepo;
 	@Autowired
-	private IFeaturesRepository featuresRepo;
-	@Autowired
 	private IUsersService userService;
+	@Autowired
+	private IModelsRepository modelRepo;
+	@Autowired
+	private IBrandsRepository brandRepo;
+	@Autowired
+	private ICategorysRepository categoryRepo;
 
 	// ===== Customer ===== //
 
@@ -78,18 +76,18 @@ public class RentalServiceImpl implements IRentalService {
 	 * @throws Custom Exeption
 	 */
 	@Override
-	public void addACar(String licencePlate, int kmNumber, CarsCategorys category, double dailyPrice, float kmPrice,
-			byte carDoor, byte seatingCapacity, byte power, String color, String transmission, String fuel,
-			Brands brand, Models model) throws CustomException {
+	public void addACar(String licencePlate, int kmNumber, double dailyPrice, float kmPrice, byte carDoor,
+			byte seatingCapacity, byte power, String color, String transmission, String fuel, String category,
+			String brand, String model) throws CustomException {
 
 		if (!carsRepo.existsById(licencePlate)) {
 
-			Cars car = new Cars(licencePlate, kmNumber, category, dailyPrice, kmPrice);
+			Cars car = new Cars(licencePlate, kmNumber, dailyPrice, kmPrice, carDoor, seatingCapacity, power, color,
+					transmission, fuel);
+			car.setCategory(checkAllCategorys(category));
+			car.setBrand(checkAllBrands(brand));
+			car.setModel(checkAllModels(model));
 
-			Features feature = new Features(carDoor, seatingCapacity, power, color, transmission, fuel, brand, model);
-
-			featuresRepo.saveAndFlush(feature);
-			car.setFeature(feature);
 			carsRepo.save(car);
 
 		} else {
@@ -137,7 +135,7 @@ public class RentalServiceImpl implements IRentalService {
 	 * Update km
 	 * 
 	 * @param licencePlate
-	 * @param numbre       km
+	 * @param numbre km
 	 */
 	@Override
 	public void updateKmCar(String licencePlate, int nbkm) throws CustomException {
@@ -179,21 +177,60 @@ public class RentalServiceImpl implements IRentalService {
 	}
 
 	/**
-	 * check if feature already exists
+	 * avoid duplicating Models
 	 * 
-	 * @param features
-	 * @return features that already exist or a new one
+	 * @param modelName
+	 * @return an existing Model or a new one
 	 */
-	private Features avoidsDuplicatingFeatures(Features feature) {
-		Example<Features> example = Example.of(feature);
-		
-		if (!featuresRepo.exists(example)) 
-			return feature;
+	private Models checkAllModels(String modelName) {
 
-		Optional<Features> featOpt = featuresRepo.findOne(example);
-		Features feat = featOpt.get();
-		
-		return feat;
+		if (modelRepo.existsById(modelName)) {
+			Optional<Models> mod = modelRepo.findById(modelName);
+			Models m = mod.get();
+			return m;
+		} else {
+			Models m = new Models(modelName);
+			modelRepo.saveAndFlush(m);
+			return m;
+		}
+	}
+
+	/**
+	 * avoid duplicating Brands
+	 * 
+	 * @param brandName
+	 * @return an existing Brand or a new one
+	 */
+	public Brands checkAllBrands(String brandName) {
+
+		if (brandRepo.existsById(brandName)) {
+			Optional<Brands> bra = brandRepo.findById(brandName);
+			Brands b = bra.get();
+			return b;
+		} else {
+			Brands b = new Brands(brandName);
+			brandRepo.saveAndFlush(b);
+			return b;
+		}
+	}
+
+	/**
+	 * avoid duplicating Categorys
+	 * 
+	 * @param categoryName
+	 * @return an existing Category or a new one
+	 */
+	public Categorys checkAllCategorys(String categoryName) {
+
+		if (categoryRepo.existsById(categoryName)) {
+			Optional<Categorys> cat = categoryRepo.findById(categoryName);
+			Categorys c = cat.get();
+			return c;
+		} else {
+			Categorys c = new Categorys(categoryName);
+			categoryRepo.saveAndFlush(c);
+			return c;
+		}
 	}
 
 }

@@ -1,15 +1,10 @@
 package fr.huxor.service;
 
-import java.util.Date;
-import java.util.Map;
-
-import org.springframework.data.domain.Page;
-
 import fr.huxor.entities.Brands;
 import fr.huxor.entities.Cars;
+import fr.huxor.entities.Categorys;
 import fr.huxor.entities.CustomException;
 import fr.huxor.entities.Models;
-import fr.huxor.util.CarsCategorys;
 
 public interface IRentalService {
 
@@ -18,9 +13,9 @@ public interface IRentalService {
 			throws CustomException;
 
 	// Manager
-	public void addACar(String licencePlate, int kmNumber, CarsCategorys category, double dailyPrice, float kmPrice,
+	public void addACar(String licencePlate, int kmNumber, double dailyPrice, float kmPrice,
 			byte carDoor, byte seatingCapacity, byte power, String color, String transmission, String fuel,
-			Brands brand, Models model) throws CustomException;
+			String category, String brand, String model) throws CustomException;
 
 	public void deleteACar(String licensePlate) throws CustomException;
 

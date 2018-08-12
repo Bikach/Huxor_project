@@ -4,15 +4,11 @@ import java.io.Serializable;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
-
-import fr.huxor.util.CarsCategorys;
 
 @Entity
 public class Cars implements Serializable {
@@ -25,13 +21,24 @@ public class Cars implements Serializable {
 	private int kmNumber;
 	private double dailyPrice;
 	private float kmPrice;
-
-	@Enumerated(EnumType.STRING)
-	private CarsCategorys carCategory;
+	private byte carDoor;
+	private byte seatingCapacity;
+	private byte power;
+	private String color;
+	private String transmission;
+	private String fuel;
 
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinColumn(name = "CODE_FEATURE")
-	private Features feature;
+	@JoinColumn(name = "CATEGORY_NAME")
+	private Categorys category;;
+
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinColumn(name = "BRAND_NAME")
+	private Brands brand;
+
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinColumn(name = "MODEL_NAME")
+	private Models model;
 
 	/**
 	 * Default constructor
@@ -44,16 +51,30 @@ public class Cars implements Serializable {
 	 * 
 	 * @param licencePlate
 	 * @param kmNumber
-	 * @param category
 	 * @param dailyPrice
 	 * @param kmPrice
+	 * @param carDoor
+	 * @param seatingCapacity
+	 * @param power
+	 * @param color
+	 * @param transmission
+	 * @param fuel
+	 * @param carCategory
+	 * @param brand
+	 * @param model
 	 */
-	public Cars(String licencePlate, int kmNumber, CarsCategorys category, double dailyPrice, float kmPrice) {
+	public Cars(String licencePlate, int kmNumber, double dailyPrice, float kmPrice, byte carDoor, byte seatingCapacity,
+			byte power, String color, String transmission, String fuel) {
 		this.licencePlate = licencePlate;
 		this.kmNumber = kmNumber;
-		this.carCategory = category;
 		this.dailyPrice = dailyPrice;
 		this.kmPrice = kmPrice;
+		this.carDoor = carDoor;
+		this.seatingCapacity = seatingCapacity;
+		this.power = power;
+		this.color = color;
+		this.transmission = transmission;
+		this.fuel = fuel;
 	}
 
 	// ===== Getters & Setters =====//
@@ -74,22 +95,6 @@ public class Cars implements Serializable {
 		this.kmNumber = kmNumber;
 	}
 
-	public Features getFeature() {
-		return feature;
-	}
-
-	public void setFeature(Features feature) {
-		this.feature = feature;
-	}
-
-	public CarsCategorys getCarCategory() {
-		return carCategory;
-	}
-
-	public void setCarCategory(CarsCategorys carCategory) {
-		this.carCategory = carCategory;
-	}
-
 	public double getDailyPrice() {
 		return dailyPrice;
 	}
@@ -102,9 +107,80 @@ public class Cars implements Serializable {
 		return kmPrice;
 	}
 
-	public void setKmPrice(byte kmPrice) {
+	public void setKmPrice(float kmPrice) {
 		this.kmPrice = kmPrice;
 	}
-		
+
+	public byte getCarDoor() {
+		return carDoor;
+	}
+
+	public void setCarDoor(byte carDoor) {
+		this.carDoor = carDoor;
+	}
+
+	public byte getSeatingCapacity() {
+		return seatingCapacity;
+	}
+
+	public void setSeatingCapacity(byte seatingCapacity) {
+		this.seatingCapacity = seatingCapacity;
+	}
+
+	public byte getPower() {
+		return power;
+	}
+
+	public void setPower(byte power) {
+		this.power = power;
+	}
+
+	public String getColor() {
+		return color;
+	}
+
+	public void setColor(String color) {
+		this.color = color;
+	}
+
+	public String getTransmission() {
+		return transmission;
+	}
+
+	public void setTransmission(String transmission) {
+		this.transmission = transmission;
+	}
+
+	public String getFuel() {
+		return fuel;
+	}
+
+	public void setFuel(String fuel) {
+		this.fuel = fuel;
+	}
+
+	public Categorys getCategory() {
+		return category;
+	}
+
+	public void setCategory(Categorys category) {
+		this.category = category;
+	}
+
+	public Brands getBrand() {
+		return brand;
+	}
+
+	public void setBrand(Brands brand) {
+		this.brand = brand;
+	}
+
+	public Models getModel() {
+		return model;
+	}
+
+	public void setModel(Models model) {
+		this.model = model;
+	}
 
 }
