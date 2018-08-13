@@ -1,27 +1,25 @@
 package fr.huxor.service;
 
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import java.util.Date;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import fr.huxor.HuxorProject1Application;
-import fr.huxor.dao.IBrandsRepository;
 import fr.huxor.dao.ICarsRepository;
-import fr.huxor.dao.ICategorysRepository;
 import fr.huxor.dao.ILeaseAgreementsRepository;
-import fr.huxor.dao.IModelsRepository;
-import fr.huxor.entities.Brands;
 import fr.huxor.entities.Cars;
-import fr.huxor.entities.Categorys;
 import fr.huxor.entities.CustomException;
 import fr.huxor.entities.Customers;
 import fr.huxor.entities.LeaseAgreements;
-import fr.huxor.entities.Models;
 
 @Service
 @Transactional
@@ -33,12 +31,10 @@ public class RentalServiceImpl implements IRentalService {
 	private ILeaseAgreementsRepository leaseRepo;
 	@Autowired
 	private IUsersService userService;
-	@Autowired
-	private IModelsRepository modelRepo;
-	@Autowired
-	private IBrandsRepository brandRepo;
-	@Autowired
-	private ICategorysRepository categoryRepo;
+
+	ServiceUtility service;
+
+	public static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
 
 	// ===== Customer ===== //
 
@@ -57,10 +53,11 @@ public class RentalServiceImpl implements IRentalService {
 			throws CustomException {
 		Customers user = (Customers) userService.findAUser(username);
 		Cars car = findACar(licencePlate);
-		double totalPrice = totalPrice(pickupDate, dropDate, car.getDailyPrice());
+		double totalPrice = totalPriceWithoutKm(pickupDate, dropDate, car.getDailyPrice());
+		System.out.println("total");
 		try {
-			leaseRepo.save(new LeaseAgreements(null, HuxorProject1Application.DATE_FORMAT.parse(pickupDate),
-					HuxorProject1Application.DATE_FORMAT.parse(dropDate), car.getKmNumber(), 0, user, car, totalPrice));
+			leaseRepo.save(new LeaseAgreements(null, DATE_FORMAT.parse(pickupDate), DATE_FORMAT.parse(dropDate),
+					car.getKmNumber(), 0, user, car, totalPrice));
 		} catch (ParseException e) {
 			throw new CustomException("Le format de la date est incorect");
 		}
@@ -84,9 +81,9 @@ public class RentalServiceImpl implements IRentalService {
 
 			Cars car = new Cars(licencePlate, kmNumber, dailyPrice, kmPrice, carDoor, seatingCapacity, power, color,
 					transmission, fuel);
-			car.setCategory(checkAllCategorys(category));
-			car.setBrand(checkAllBrands(brand));
-			car.setModel(checkAllModels(model));
+			car.setCategory(service.checkAllCategorys(category));
+			car.setBrand(service.checkAllBrands(brand));
+			car.setModel(service.checkAllModels(model));
 
 			carsRepo.save(car);
 
@@ -135,7 +132,7 @@ public class RentalServiceImpl implements IRentalService {
 	 * Update km
 	 * 
 	 * @param licencePlate
-	 * @param numbre km
+	 * @param numbre       km
 	 */
 	@Override
 	public void updateKmCar(String licencePlate, int nbkm) throws CustomException {
@@ -154,12 +151,12 @@ public class RentalServiceImpl implements IRentalService {
 	 * @param page
 	 * @param size
 	 */
-//	@Override
-//	public Page<Map<String, String>> carListAvailable(Date pickup, Date drop, int page, int size) {
-//		return carsRepo.carListAvailable(pickup, drop, PageRequest.of(page, size));
-//	}
+	@Override
+	public Page<Map<String, String>> carListAvailable(Date pickup, Date drop, int page, int size) {
+		return carsRepo.carListAvailable(pickup, drop, PageRequest.of(page, size));
+	}
 
-	// ===== class methode ===== //
+	// ========private function===========//
 
 	/**
 	 * Calculate the total price of a reservation
@@ -169,68 +166,22 @@ public class RentalServiceImpl implements IRentalService {
 	 * @param dailyPrice
 	 * @return the total rental price
 	 */
-	private double totalPrice(String pickup, String drop, double dailyPrice) {
-		LocalDate startDate = LocalDate.parse(pickup);
-		LocalDate endDate = LocalDate.parse(drop);
-		long Days = ChronoUnit.DAYS.between(startDate, endDate);
+	private double totalPriceWithoutKm(String pickup, String drop, double dailyPrice) {
+		double Days = nbDaysRent(pickup, drop);
 		return Days * dailyPrice;
 	}
 
 	/**
-	 * avoid duplicating Models
+	 * calculates the number of days between two dates
 	 * 
-	 * @param modelName
-	 * @return an existing Model or a new one
+	 * @param pickup
+	 * @param drop
+	 * @return number of days to rent
 	 */
-	private Models checkAllModels(String modelName) {
-
-		if (modelRepo.existsById(modelName)) {
-			Optional<Models> mod = modelRepo.findById(modelName);
-			Models m = mod.get();
-			return m;
-		} else {
-			Models m = new Models(modelName);
-			modelRepo.saveAndFlush(m);
-			return m;
-		}
-	}
-
-	/**
-	 * avoid duplicating Brands
-	 * 
-	 * @param brandName
-	 * @return an existing Brand or a new one
-	 */
-	public Brands checkAllBrands(String brandName) {
-
-		if (brandRepo.existsById(brandName)) {
-			Optional<Brands> bra = brandRepo.findById(brandName);
-			Brands b = bra.get();
-			return b;
-		} else {
-			Brands b = new Brands(brandName);
-			brandRepo.saveAndFlush(b);
-			return b;
-		}
-	}
-
-	/**
-	 * avoid duplicating Categorys
-	 * 
-	 * @param categoryName
-	 * @return an existing Category or a new one
-	 */
-	public Categorys checkAllCategorys(String categoryName) {
-
-		if (categoryRepo.existsById(categoryName)) {
-			Optional<Categorys> cat = categoryRepo.findById(categoryName);
-			Categorys c = cat.get();
-			return c;
-		} else {
-			Categorys c = new Categorys(categoryName);
-			categoryRepo.saveAndFlush(c);
-			return c;
-		}
+	protected int nbDaysRent(String pickup, String drop) {
+		LocalDate startDate = LocalDate.parse(pickup);
+		LocalDate endDate = LocalDate.parse(drop);
+		return (int) ChronoUnit.DAYS.between(startDate, endDate);
 	}
 
 }

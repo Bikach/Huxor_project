@@ -1,8 +1,5 @@
 package fr.huxor;
 
-import java.text.SimpleDateFormat;
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -11,10 +8,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import fr.huxor.dao.IBrandsRepository;
 import fr.huxor.dao.ICarsRepository;
 import fr.huxor.dao.IModelsRepository;
-import fr.huxor.entities.Addresses;
-import fr.huxor.entities.Brands;
-import fr.huxor.entities.Categorys;
-import fr.huxor.entities.Models;
 import fr.huxor.service.IRentalService;
 import fr.huxor.service.IUsersService;
 
@@ -33,9 +26,7 @@ public class HuxorProject1Application implements CommandLineRunner {
 	private IModelsRepository modelsRepo;
 	@Autowired
 	private ICarsRepository carsRepo;
-	
-	public static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
-	
+		
 	public static void main(String[] args) {
 		SpringApplication.run(HuxorProject1Application.class, args);
 	}
@@ -71,8 +62,20 @@ public class HuxorProject1Application implements CommandLineRunner {
 //				"vert", "automatique", "gazol", new Categorys("FAMILIALE"), new Brands("FORD"), new Models("CMAX"));
 //		rentalService.addACar("immat 6", 8900, 100d, 2f, (byte) 5, (byte) 5, (byte) 8, "black",
 //				"automatique", "gazol", new Categorys("LUXE"), new Brands("MERCEDES"), new Models("CLASSE S"));
+//		rentalService.addACar("immat 7", 9400, 100d, 2f, (byte) 5, (byte) 5, (byte) 8, "black",
+//		"automatique", "gazol", "LUXE", "BMW","SERIE 7");
+//		rentalService.addACar("immat 8", 21500, 70d, 1.5f, (byte) 5, (byte) 5, (byte) 7, "bleu",
+//		"automatique", "gazol", "BERLINE","MERCEDES","CLASSE E");
+//		rentalService.addACar("immat 9", 11340, 35d, 0.8f, (byte) 4, (byte) 5, (byte) 4, "jaune",
+//		"manuelle", "essence", "CITADINE", "RENAULT", "TWINGO");
+//		rentalService.addACar("immat 10", 25730, 60d, 1.2f, (byte) 5, (byte) 5, (byte) 6, "rouge",
+//		"automatique", "gazol", "FAMILIALE", "PEUGEOT", "5008");
 
 		// LeaseAgreements, checkCars test
+//		rentalService.bookACar("Use1", "immat 1", "2018-08-02", "2018-08-12");
+//		rentalService.bookACar("Use2", "immat 4", "2018-09-21", "2018-10-21");
+
+		
 
 		// Messages & Newsletters test
 
@@ -82,14 +85,6 @@ public class HuxorProject1Application implements CommandLineRunner {
 //		ArrayList<Map<String, String>> objects = carsRepo.carListAvailable( dateFormat.parse("2018-09-04"),  dateFormat.parse("2018-09-18")););
 		
 
-//		Cars car = new Cars("immat 1", 12500, CarsCategorys.BERLINE, 70, 1.5f);
-//		car.setBrand(findABrand("ALFA"));
-//		car.setModel(findAModel("159"));
-//		Example<Cars> example = Example.of(car);
-//		System.out.println(carsRepo.exists(example));
-//		long id = avoidsDuplicatingFeatures(feat);
-//		Optional<Features> carOp = featuresRepo.findOne(example);
-//		Features list = carOp.get();
 		
 	}
 	
