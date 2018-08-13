@@ -41,7 +41,7 @@ public class HuxorProject1Application implements CommandLineRunner {
 //		usersService.addManager("Man1", "man1@email.com", "1234", "Jean", "Dupont", true, "273827EDZ");
 //		usersService.addManager("Man2", "man2@email.com", "1234", "Eric", "Lapierre", true, "278727KJH");
 //
-//		// Customers test
+		// Customers test
 //		usersService.addCustomer("Use1", "use1@email.com", "1234", "Bruce", "Wayne", true,
 //				DATE_FORMAT.parse("1980-09-16"), "2378736483",
 //				new Addresses("4 avenue Dausmenil", "Paris", "75012"));
@@ -52,7 +52,7 @@ public class HuxorProject1Application implements CommandLineRunner {
 //				DATE_FORMAT.parse("1968-03-20"), "9382473347",
 //				new Addresses("342 rue malibu", "Montrouge", "92100"));
 //
-//		// Cars test
+		// Cars test
 //		rentalService.addACar("immat 1", 12500,  70d, 1.5f, (byte) 5, (byte) 5, (byte) 7, "bleu",
 //				"automatique", "gazol", "BERLINE", "BMW", "SERIE 5");
 //		rentalService.addACar("immat 2", 14070, 50d, 1f, (byte) 5, (byte) 5, (byte) 6,
@@ -74,7 +74,7 @@ public class HuxorProject1Application implements CommandLineRunner {
 //		rentalService.addACar("immat 10", 25730, 60d, 1.2f, (byte) 5, (byte) 5, (byte) 6, "rouge",
 //				"automatique", "gazol", "FAMILIALE", "PEUGEOT", "5008");
 
-		// LeaseAgreements, checkCars test
+		// LeaseAgreements test
 //		rentalService.bookACar("Use1", "immat 1", "2018-08-02", "2018-08-12");
 //		rentalService.bookACar("Use2", "immat 4", "2018-09-21", "2018-10-21");
 //		rentalService.bookACar("Use1", "immat 7", "2018-12-02", "2018-12-22");
@@ -85,6 +85,10 @@ public class HuxorProject1Application implements CommandLineRunner {
 //		leaseService.addNumberAgreement(9, "cont901User3");
 //		leaseService.totalPriceReturnCar("cont123User1", 15000);
 
+		//CheckCar test
+		
+		
+		
 		// Messages & Newsletters test
 //		Date date = new Date();  
 //		contactService.addMessage("message1@email.com", "Pierre", "Dupont", "Louez vous des avions, merci", date, false);

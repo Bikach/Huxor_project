@@ -8,12 +8,12 @@ import fr.huxor.entities.Messages;
 
 public interface IContactService {
 
-	// Manager/Admin
+	// Manager
 	public void addMessage(String email, String firstName, String lastName, String post, Date postDate, boolean proces);
 
 	public void addNewslettter(String email);
 
 	public void deleteMessage(long id);
 	
-	public Page<Messages>  viewMessage(Date startDate,Date endDate, int page, int size);
+	public Page<Messages>  viewMessage(Date startDate,Date endDate, boolean process, int page, int size);
 }
