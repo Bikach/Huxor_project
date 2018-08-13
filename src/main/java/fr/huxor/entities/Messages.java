@@ -1,6 +1,7 @@
 package fr.huxor.entities;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -21,6 +22,8 @@ public class Messages implements Serializable {
 	@Email
 	private String email;
 	private String post;
+	private Date postDate;
+	private boolean process;
 
 	/**
 	 * Default constructor
@@ -36,11 +39,13 @@ public class Messages implements Serializable {
 	 * @param email
 	 * @param post
 	 */
-	public Messages(String lastName, String firstName, @Email String email, String post) {
+	public Messages(String lastName, String firstName,  String email, String post, Date postDate, boolean process) {
 		this.lastName = lastName;
 		this.firstName = firstName;
 		this.email = email;
 		this.post = post;
+		this.postDate = postDate;
+		this.process = process;
 	}
 
 	// ===== Getters & Setters =====//
@@ -83,6 +88,22 @@ public class Messages implements Serializable {
 
 	public void setPost(String post) {
 		this.post = post;
+	}
+
+	public Date getPostDate() {
+		return postDate;
+	}
+
+	public void setPostDate(Date postDate) {
+		this.postDate = postDate;
+	}
+
+	public boolean isProcess() {
+		return process;
+	}
+
+	public void setProcess(boolean process) {
+		this.process = process;
 	}
 
 }

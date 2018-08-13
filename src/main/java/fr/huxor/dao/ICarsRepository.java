@@ -1,7 +1,6 @@
 package fr.huxor.dao;
 
 import java.util.Date;
-import java.util.Map;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -14,23 +13,24 @@ import fr.huxor.entities.Cars;
 public interface ICarsRepository extends JpaRepository<Cars, String> {
 
 	/**
-	 * Allows you to retrieve a map of available cars between two dates in pageable
-	 * object
+	 * Allows you to retrieve of available cars between two dates in pageable object
 	 * 
 	 * @param startDate
 	 * @param comebackDate
 	 * @param pageable
-	 * @return ArrayLIst<Map<String, String>>
+	 * @return Cars
 	 */
 	@Query(value = "SELECT new map("
 			+ "c.licencePlate as licencePlate, c.dailyPrice as dailyPrice, c.category.category as category, c.carDoor as Door, "
 			+ "c.color as color, c.fuel as fuel, c.power as power, c.seatingCapacity as seat, c.transmission as transmission, "
-			+ "c.brand.brandName as brand, c.model.modelName as model) " + "FROM Cars c "
-			+ "WHERE c.licencePlate NOT IN " + "( SELECT l.car  " + "FROM LeaseAgreements l "
+			+ "c.brand.brandName as brand, c.model.modelName as model) " 
+			+ "FROM Cars c "
+			+ "WHERE c.licencePlate NOT IN " 
+			+"( SELECT l.car  " + "FROM LeaseAgreements l "
 			+ "WHERE :pickupDate BETWEEN l.startDate AND l.comebackDate "
 			+ "OR :dropDate BETWEEN l.startDate AND l.comebackDate "
 			+ "OR l.startDate BETWEEN :pickupDate AND :dropDate )")
-	public Page<Map<String, String>> carListAvailable(@Param("pickupDate") Date pickupDate,
+	public Page<Cars> carListAvailable(@Param("pickupDate") Date pickupDate,
 			@Param("dropDate") Date dropDate, Pageable pageable);
 
 }

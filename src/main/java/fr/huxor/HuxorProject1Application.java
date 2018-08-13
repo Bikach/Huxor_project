@@ -1,5 +1,9 @@
 package fr.huxor;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -7,7 +11,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import fr.huxor.dao.IBrandsRepository;
 import fr.huxor.dao.ICarsRepository;
+import fr.huxor.dao.ILeaseAgreementsRepository;
 import fr.huxor.dao.IModelsRepository;
+import fr.huxor.service.IContactService;
+import fr.huxor.service.ILeaseService;
 import fr.huxor.service.IRentalService;
 import fr.huxor.service.IUsersService;
 
@@ -18,14 +25,10 @@ public class HuxorProject1Application implements CommandLineRunner {
 	private IRentalService rentalService;
 	@Autowired
 	private IUsersService usersService;
-	
-
 	@Autowired
-	private IBrandsRepository brandsRepo;
+	private ILeaseService leaseService;
 	@Autowired
-	private IModelsRepository modelsRepo;
-	@Autowired
-	private ICarsRepository carsRepo;
+	private IContactService contactService;
 		
 	public static void main(String[] args) {
 		SpringApplication.run(HuxorProject1Application.class, args);
@@ -51,39 +54,51 @@ public class HuxorProject1Application implements CommandLineRunner {
 //
 //		// Cars test
 //		rentalService.addACar("immat 1", 12500,  70d, 1.5f, (byte) 5, (byte) 5, (byte) 7, "bleu",
-//				"automatique", "gazol", new Categorys("BERLINE"), new Brands("BMW"), new Models("SERIE 5"));
+//				"automatique", "gazol", "BERLINE", "BMW", "SERIE 5");
 //		rentalService.addACar("immat 2", 14070, 50d, 1f, (byte) 5, (byte) 5, (byte) 6,
-//				"blanche", "manuelle", "essence",new Categorys("COMPACT"),  new Brands("CITROEN"), new Models("C4"));
+//				"blanche", "manuelle", "essence", "COMPACT", "CITROEN", "C4");
 //		rentalService.addACar("immat 3", 22500,  50d, 1f, (byte) 3, (byte) 5, (byte) 6, "rouge",
-//				"manuelle", "gazol",new Categorys("COMPACT"), new Brands("PEUGOET"), new Models("308"));
+//				"manuelle", "gazol", "COMPACT", "PEUGEOT", "308");
 //		rentalService.addACar("immat 4", 8900, 35d, 0.8f, (byte) 2, (byte) 4, (byte) 5, "jaune",
-//				"manuelle", "essence", new Categorys("CITADINE"), new Brands("FIAT"), new Models("500"));
+//				"manuelle", "essence", "CITADINE", "FIAT", "500");
 //		rentalService.addACar("immat 5", 32500,  60d, 1.2f, (byte) 5, (byte) 6, (byte) 6,
-//				"vert", "automatique", "gazol", new Categorys("FAMILIALE"), new Brands("FORD"), new Models("CMAX"));
+//				"vert", "automatique", "gazol", "FAMILIALE", "FORD", "CMAX");
 //		rentalService.addACar("immat 6", 8900, 100d, 2f, (byte) 5, (byte) 5, (byte) 8, "black",
-//				"automatique", "gazol", new Categorys("LUXE"), new Brands("MERCEDES"), new Models("CLASSE S"));
+//				"automatique", "gazol", "LUXE", "MERCEDES", "CLASSE S");
 //		rentalService.addACar("immat 7", 9400, 100d, 2f, (byte) 5, (byte) 5, (byte) 8, "black",
-//		"automatique", "gazol", "LUXE", "BMW","SERIE 7");
+//				"automatique", "gazol", "LUXE", "BMW","SERIE 7");
 //		rentalService.addACar("immat 8", 21500, 70d, 1.5f, (byte) 5, (byte) 5, (byte) 7, "bleu",
-//		"automatique", "gazol", "BERLINE","MERCEDES","CLASSE E");
+//				"automatique", "gazol", "BERLINE","MERCEDES","CLASSE E");
 //		rentalService.addACar("immat 9", 11340, 35d, 0.8f, (byte) 4, (byte) 5, (byte) 4, "jaune",
-//		"manuelle", "essence", "CITADINE", "RENAULT", "TWINGO");
+//				"manuelle", "essence", "CITADINE", "RENAULT", "TWINGO");
 //		rentalService.addACar("immat 10", 25730, 60d, 1.2f, (byte) 5, (byte) 5, (byte) 6, "rouge",
-//		"automatique", "gazol", "FAMILIALE", "PEUGEOT", "5008");
+//				"automatique", "gazol", "FAMILIALE", "PEUGEOT", "5008");
 
 		// LeaseAgreements, checkCars test
 //		rentalService.bookACar("Use1", "immat 1", "2018-08-02", "2018-08-12");
 //		rentalService.bookACar("Use2", "immat 4", "2018-09-21", "2018-10-21");
-
-		
+//		rentalService.bookACar("Use1", "immat 7", "2018-12-02", "2018-12-22");
+//		rentalService.bookACar("Use3", "immat 9", "2019-02-14", "2019-02-16");
+//		rentalService.bookACar("Use2", "immat 5", "2018-11-30", "2018-12-05");
+//		leaseService.addNumberAgreement(1, "cont123User1");
+//		leaseService.addNumberAgreement(6, "cont678User1");
+//		leaseService.addNumberAgreement(9, "cont901User3");
+//		leaseService.totalPriceReturnCar("cont123User1", 15000);
 
 		// Messages & Newsletters test
+//		Date date = new Date();  
+//		contactService.addMessage("message1@email.com", "Pierre", "Dupont", "Louez vous des avions, merci", date, false);
+//		contactService.addMessage("message2@email.com", "Jean", "Grifon", "Vous etes le meilleur", date, false);
+//		contactService.addMessage("message3@email.com", "Eric", "Lafarge", "J'ai besoin de louer 500 mercedes classe S est ce possible ?", date, false);
+//		contactService.addNewslettter("premier@email.com");
+//		contactService.addNewslettter("second@email.com");
+//		contactService.addNewslettter("tertio@email.com");
 
-		// Permet d'afficher a la console les voitures libre entre deux date passé en
-		// parametre
-//		final SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
-//		ArrayList<Map<String, String>> objects = carsRepo.carListAvailable( dateFormat.parse("2018-09-04"),  dateFormat.parse("2018-09-18")););
+
+
 		
+		
+		//
 
 		
 	}

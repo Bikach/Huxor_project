@@ -155,7 +155,7 @@ public class LeaseAgreements implements Serializable {
 	}
 
 	public void setPrice(double price) {
-		this.price = price;
+		this.price += price;
 	}
 
 }

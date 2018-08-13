@@ -5,7 +5,6 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.Date;
-import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,12 +13,18 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import fr.huxor.dao.IBrandsRepository;
 import fr.huxor.dao.ICarsRepository;
+import fr.huxor.dao.ICategorysRepository;
 import fr.huxor.dao.ILeaseAgreementsRepository;
+import fr.huxor.dao.IModelsRepository;
+import fr.huxor.entities.Brands;
 import fr.huxor.entities.Cars;
+import fr.huxor.entities.Categorys;
 import fr.huxor.entities.CustomException;
 import fr.huxor.entities.Customers;
 import fr.huxor.entities.LeaseAgreements;
+import fr.huxor.entities.Models;
 
 @Service
 @Transactional
@@ -31,8 +36,12 @@ public class RentalServiceImpl implements IRentalService {
 	private ILeaseAgreementsRepository leaseRepo;
 	@Autowired
 	private IUsersService userService;
-
-	ServiceUtility service;
+	@Autowired
+	private IModelsRepository modelRepo;
+	@Autowired
+	private IBrandsRepository brandRepo;
+	@Autowired
+	private ICategorysRepository categoryRepo;
 
 	public static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
 
@@ -81,9 +90,9 @@ public class RentalServiceImpl implements IRentalService {
 
 			Cars car = new Cars(licencePlate, kmNumber, dailyPrice, kmPrice, carDoor, seatingCapacity, power, color,
 					transmission, fuel);
-			car.setCategory(service.checkAllCategorys(category));
-			car.setBrand(service.checkAllBrands(brand));
-			car.setModel(service.checkAllModels(model));
+			car.setCategory(checkAllCategorys(category));
+			car.setBrand(checkAllBrands(brand));
+			car.setModel(checkAllModels(model));
 
 			carsRepo.save(car);
 
@@ -152,7 +161,7 @@ public class RentalServiceImpl implements IRentalService {
 	 * @param size
 	 */
 	@Override
-	public Page<Map<String, String>> carListAvailable(Date pickup, Date drop, int page, int size) {
+	public Page<Cars> carListAvailable(Date pickup, Date drop, int page, int size) {
 		return carsRepo.carListAvailable(pickup, drop, PageRequest.of(page, size));
 	}
 
@@ -182,6 +191,63 @@ public class RentalServiceImpl implements IRentalService {
 		LocalDate startDate = LocalDate.parse(pickup);
 		LocalDate endDate = LocalDate.parse(drop);
 		return (int) ChronoUnit.DAYS.between(startDate, endDate);
+	}
+	
+	/**
+	 * avoid duplicating Models
+	 * 
+	 * @param modelName
+	 * @return an existing Model or a new one
+	 */
+	private Models checkAllModels(String modelName) {
+
+		if (modelRepo.existsById(modelName)) {
+			Optional<Models> mod = modelRepo.findById(modelName);
+			Models m = mod.get();
+			return m;
+		} else {
+			Models m = new Models(modelName);
+			modelRepo.saveAndFlush(m);
+			return m;
+		}
+	}
+
+	/**
+	 * avoid duplicating Brands
+	 * 
+	 * @param brandName
+	 * @return an existing Brand or a new one
+	 */
+	private Brands checkAllBrands(String brandName) {
+
+		if (brandRepo.existsById(brandName)) {
+			Optional<Brands> bra = brandRepo.findById(brandName);
+			Brands b = bra.get();
+			return b;
+		} else {
+			Brands b = new Brands(brandName);
+			brandRepo.saveAndFlush(b);
+			return b;
+		}
+	}
+
+	/**
+	 * avoid duplicating Categorys
+	 * 
+	 * @param categoryName
+	 * @return an existing Category or a new one
+	 */
+	private Categorys checkAllCategorys(String categoryName) {
+
+		if (categoryRepo.existsById(categoryName)) {
+			Optional<Categorys> cat = categoryRepo.findById(categoryName);
+			Categorys c = cat.get();
+			return c;
+		} else {
+			Categorys c = new Categorys(categoryName);
+			categoryRepo.saveAndFlush(c);
+			return c;
+		}
 	}
 
 }

@@ -1,7 +1,6 @@
 package fr.huxor.service;
 
 import java.util.Date;
-import java.util.Map;
 
 import org.springframework.data.domain.Page;
 
@@ -28,7 +27,7 @@ public interface IRentalService {
 	public void updateDailyPriceCar(String licencePlate, double dailyPrice) throws CustomException;
 	
 	// Customer/Manager
-	public Page<Map<String, String>> carListAvailable(Date pickup, Date drop, int page, int size)
+	public Page<Cars> carListAvailable(Date pickup, Date drop, int page, int size)
 			throws CustomException;
 
 }
