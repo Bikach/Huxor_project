@@ -15,5 +15,7 @@ public interface IContactService {
 
 	public void deleteMessage(long id);
 	
+	public void topicResolut(long id, boolean process);
+	
 	public Page<Messages>  viewMessage(Date startDate,Date endDate, boolean process, int page, int size);
 }

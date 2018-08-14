@@ -20,10 +20,7 @@ public interface ICarsRepository extends JpaRepository<Cars, String> {
 	 * @param pageable
 	 * @return Cars
 	 */
-	@Query(value = "SELECT new map("
-			+ "c.licencePlate as licencePlate, c.dailyPrice as dailyPrice, c.category.category as category, c.carDoor as Door, "
-			+ "c.color as color, c.fuel as fuel, c.power as power, c.seatingCapacity as seat, c.transmission as transmission, "
-			+ "c.brand.brandName as brand, c.model.modelName as model) " 
+	@Query(value = "SELECT c "
 			+ "FROM Cars c "
 			+ "WHERE c.licencePlate NOT IN " 
 			+"( SELECT l.car  " + "FROM LeaseAgreements l "
@@ -32,5 +29,8 @@ public interface ICarsRepository extends JpaRepository<Cars, String> {
 			+ "OR l.startDate BETWEEN :pickupDate AND :dropDate )")
 	public Page<Cars> carListAvailable(@Param("pickupDate") Date pickupDate,
 			@Param("dropDate") Date dropDate, Pageable pageable);
+	
+	
+	
 
 }

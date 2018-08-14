@@ -14,6 +14,6 @@ public interface ILeaseService {
 
 	public void addNumberAgreement(long id, String numberAgreement);
 	
-	public Page<LeaseAgreements> leaseAgreementPage(String status,  String customer, int page, int size);
+	public Page<LeaseAgreements> leaseAgreementPage(String nullOrNotNull,  String customer, int page, int size);
 
 }

@@ -1,18 +1,24 @@
 package fr.huxor;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.domain.Page;
 
 import fr.huxor.dao.IBrandsRepository;
 import fr.huxor.dao.ICarsRepository;
 import fr.huxor.dao.ILeaseAgreementsRepository;
 import fr.huxor.dao.IModelsRepository;
+import fr.huxor.entities.Cars;
+import fr.huxor.entities.LeaseAgreements;
+import fr.huxor.entities.Messages;
 import fr.huxor.service.IContactService;
 import fr.huxor.service.ILeaseService;
 import fr.huxor.service.IRentalService;
@@ -30,12 +36,15 @@ public class HuxorProject1Application implements CommandLineRunner {
 	@Autowired
 	private IContactService contactService;
 		
+	public static final SimpleDateFormat DATE = new SimpleDateFormat("yyyy-MM-dd");
+	
 	public static void main(String[] args) {
 		SpringApplication.run(HuxorProject1Application.class, args);
 	}
 
 	@Override
 	public void run(String... args) throws Exception {
+		
 
 	// Managers test
 //		usersService.addManager("Man1", "man1@email.com", "1234", "Jean", "Dupont", true, "273827EDZ");
@@ -73,6 +82,9 @@ public class HuxorProject1Application implements CommandLineRunner {
 //				"manuelle", "essence", "CITADINE", "RENAULT", "TWINGO");
 //		rentalService.addACar("immat 10", 25730, 60d, 1.2f, (byte) 5, (byte) 5, (byte) 6, "rouge",
 //				"automatique", "gazol", "FAMILIALE", "PEUGEOT", "5008");
+		
+//		Page<Cars> carPage = rentalService.carListAvailable(DATE.parse("2018-12-05"), DATE.parse("2018-12-24"), 1, 10);
+//		System.out.println(carPage.getTotalElements());
 
 		// LeaseAgreements test
 //		rentalService.bookACar("Use1", "immat 1", "2018-08-02", "2018-08-12");
@@ -84,6 +96,9 @@ public class HuxorProject1Application implements CommandLineRunner {
 //		leaseService.addNumberAgreement(6, "cont678User1");
 //		leaseService.addNumberAgreement(9, "cont901User3");
 //		leaseService.totalPriceReturnCar("cont123User1", 15000);
+		
+//		Page<LeaseAgreements> leasePage = leaseService.leaseAgreementPage("null", "Use2", 1, 10);
+//		System.out.println(leasePage.getTotalElements());
 
 		//CheckCar test
 		
@@ -97,12 +112,16 @@ public class HuxorProject1Application implements CommandLineRunner {
 //		contactService.addNewslettter("premier@email.com");
 //		contactService.addNewslettter("second@email.com");
 //		contactService.addNewslettter("tertio@email.com");
+//		contactService.topicResolut(2, true);
+		
+//		Page<Messages> messagePage = contactService.viewMessage(DATE.parse("2018-08-12"), DATE.parse("2018-08-14"), false, 1, 5);
+//		System.out.println(messagePage.getTotalElements());
 
 
 
 		
 		
-		//
+		
 
 		
 	}

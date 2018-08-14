@@ -1,6 +1,7 @@
 package fr.huxor.service;
 
 import java.util.Date;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -57,6 +58,19 @@ public class ContactServiceImpl implements IContactService {
 	}
 
 	/**
+	 * Pass the message in resolution
+	 * 
+	 * @param id
+	 * @param process
+	 */
+	@Override
+	public void topicResolut(long id, boolean process) {
+		Messages message = findMessage(id);
+		message.setProcess(process);
+		messageRepo.save(message);
+	}
+
+	/**
 	 * displays messages posted between two dates
 	 * 
 	 * @param startsate
@@ -67,6 +81,20 @@ public class ContactServiceImpl implements IContactService {
 	@Override
 	public Page<Messages> viewMessage(Date startDate, Date endDate, boolean process, int page, int size) {
 		return messageRepo.viewMessages(startDate, endDate, process, PageRequest.of(page, size));
+	}
+
+	// ===== private function =====//
+
+	/**
+	 * find a message to bdd
+	 * 
+	 * @param id
+	 * @return a message
+	 */
+	private Messages findMessage(long id) {
+		Optional<Messages> mesOpt = messageRepo.findById(id);
+		Messages message = mesOpt.get();
+		return message;
 	}
 
 }
