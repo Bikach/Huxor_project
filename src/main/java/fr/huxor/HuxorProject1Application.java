@@ -119,11 +119,6 @@ public class HuxorProject1Application implements CommandLineRunner {
 //		System.out.println(messagePage.getTotalElements());
 
 
-
-		
-		
-		
-
 		
 	}
 	

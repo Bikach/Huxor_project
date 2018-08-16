@@ -1,22 +1,33 @@
 @charset "UTF-8";
+@import url('https://fonts.googleapis.com/css?family=Anton');
 
 /* ===== General ===== */
-
-.huxor-dark{
+.huxor-dark {
 	background-color: #444148;
 }
 
-
 /* ===== header ===== */
-
-a{
+.head-nav{
 	color: #FEFEFE;
 	font-size: 1.5em;
-}
-a:hover{
-	color: #8b6949;
+	font-family: 'Anton', sans-serif;
 }
 
-a:active{
-	color: #8b6949 !important;
+.head-nav:hover {
+	color: #8b6949
 }
+
+.head-nav:active {
+	color: #8b6949 !important
+}
+
+/* ===== rent =====*/
+.rent-back {
+	background-image: url("../assets/fond_ecran_car.jpg");
+	background-repeat : no-repeat;
+	background-size: 100%;
+	height: 33em;
+}
+
+
+
