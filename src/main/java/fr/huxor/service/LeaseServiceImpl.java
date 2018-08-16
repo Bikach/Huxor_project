@@ -44,11 +44,11 @@ public class LeaseServiceImpl implements ILeaseService {
 	 * @throws CustomException
 	 */
 	@Override
-	public void totalPriceReturnCar(String numberAgreement, int comebackKm) throws CustomException {
+	public void totalPriceReturnCar(String numberAgreement, int endKm) throws CustomException {
 		LeaseAgreements lease = findALease(numberAgreement);
-		lease.setEndKm(comebackKm);
-		rentalServ.updateKmCar(lease.getCar().getLicencePlate(), comebackKm);
-		int days = rentalServ.nbDaysRent(lease.getStartDate().toString(), lease.getComebackDate().toString());
+		lease.setEndKm(endKm);
+		rentalServ.updateKmCar(lease.getCar().getLicencePlate(), endKm);
+		int days = rentalServ.nbDaysRent(lease.getStartDate().toString(), lease.getEndDate().toString());
 		int maxPermittedKm = days * DAILY_KM;
 		int totalKmDrive = lease.getEndKm() - lease.getStartKm();
 		int extraKm = maxPermittedKm - totalKmDrive;

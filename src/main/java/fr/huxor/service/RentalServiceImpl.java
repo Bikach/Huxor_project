@@ -48,7 +48,6 @@ public class RentalServiceImpl implements IRentalService {
 	// ===== Customer ===== //
 
 	/**
-	 * 
 	 * Customer book a car
 	 * 
 	 * @param idCustomer
@@ -58,14 +57,14 @@ public class RentalServiceImpl implements IRentalService {
 	 * @throws Custom Exeption
 	 */
 	@Override
-	public void bookACar(String username, String licencePlate, String pickupDate, String dropDate)
+	public void bookACar(String username, String licencePlate, String startDate, String endDate)
 			throws CustomException {
 		Customers user = (Customers) userService.findAUser(username);
 		Cars car = findACar(licencePlate);
-		double totalPrice = totalPriceWithoutKm(pickupDate, dropDate, car.getDailyPrice());
+		double totalPrice = totalPriceWithoutKm(startDate, endDate, car.getDailyPrice());
 		System.out.println("total");
 		try {
-			leaseRepo.save(new LeaseAgreements(null, DATE_FORMAT.parse(pickupDate), DATE_FORMAT.parse(dropDate),
+			leaseRepo.save(new LeaseAgreements(null, DATE_FORMAT.parse(startDate), DATE_FORMAT.parse(endDate),
 					car.getKmNumber(), 0, user, car, totalPrice));
 		} catch (ParseException e) {
 			throw new CustomException("Le format de la date est incorect");
@@ -161,8 +160,8 @@ public class RentalServiceImpl implements IRentalService {
 	 * @param size
 	 */
 	@Override
-	public Page<Cars> carListAvailable(Date pickup, Date drop, int page, int size) {
-		return carsRepo.carListAvailable(pickup, drop, PageRequest.of(page, size));
+	public Page<Cars> carListAvailable(Date start, Date end, int page, int size) {
+		return carsRepo.carListAvailable(start, end, PageRequest.of(page, size));
 	}
 
 	// ========private function===========//
@@ -175,8 +174,8 @@ public class RentalServiceImpl implements IRentalService {
 	 * @param dailyPrice
 	 * @return the total rental price
 	 */
-	private double totalPriceWithoutKm(String pickup, String drop, double dailyPrice) {
-		double Days = nbDaysRent(pickup, drop);
+	private double totalPriceWithoutKm(String startDate, String endDate, double dailyPrice) {
+		double Days = nbDaysRent(startDate, endDate);
 		return Days * dailyPrice;
 	}
 

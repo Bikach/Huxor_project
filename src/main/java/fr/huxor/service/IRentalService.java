@@ -10,7 +10,7 @@ import fr.huxor.entities.CustomException;
 public interface IRentalService {
 
 	// Customer
-	public void bookACar(String username, String idCar, String pickupDate, String dropDate)
+	public void bookACar(String username, String idCar, String startDate, String endDate)
 			throws CustomException;
 
 	// Manager
@@ -27,7 +27,7 @@ public interface IRentalService {
 	public void updateDailyPriceCar(String licencePlate, double dailyPrice) throws CustomException;
 	
 	// Customer/Manager
-	public Page<Cars> carListAvailable(Date pickup, Date drop, int page, int size)
+	public Page<Cars> carListAvailable(Date start, Date end, int page, int size)
 			throws CustomException;
 
 }

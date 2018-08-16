@@ -23,9 +23,10 @@ public interface ICarsRepository extends JpaRepository<Cars, String> {
 	@Query(value = "SELECT c "
 			+ "FROM Cars c "
 			+ "WHERE c.licencePlate NOT IN " 
-			+"( SELECT l.car  " + "FROM LeaseAgreements l "
-			+ "WHERE :pickupDate BETWEEN l.startDate AND l.comebackDate "
-			+ "OR :dropDate BETWEEN l.startDate AND l.comebackDate "
+			+"( SELECT l.car  " 
+			+ "FROM LeaseAgreements l "
+			+ "WHERE :pickupDate BETWEEN l.startDate AND l.endDate "
+			+ "OR :dropDate BETWEEN l.startDate AND l.endDate "
 			+ "OR l.startDate BETWEEN :pickupDate AND :dropDate )")
 	public Page<Cars> carListAvailable(@Param("pickupDate") Date pickupDate,
 			@Param("dropDate") Date dropDate, Pageable pageable);

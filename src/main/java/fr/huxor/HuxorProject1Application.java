@@ -16,6 +16,7 @@ import fr.huxor.dao.IBrandsRepository;
 import fr.huxor.dao.ICarsRepository;
 import fr.huxor.dao.ILeaseAgreementsRepository;
 import fr.huxor.dao.IModelsRepository;
+import fr.huxor.entities.Addresses;
 import fr.huxor.entities.Cars;
 import fr.huxor.entities.LeaseAgreements;
 import fr.huxor.entities.Messages;
@@ -52,13 +53,13 @@ public class HuxorProject1Application implements CommandLineRunner {
 //
 		// Customers test
 //		usersService.addCustomer("Use1", "use1@email.com", "1234", "Bruce", "Wayne", true,
-//				DATE_FORMAT.parse("1980-09-16"), "2378736483",
+//				DATE.parse("1980-09-16"), "2378736483",
 //				new Addresses("4 avenue Dausmenil", "Paris", "75012"));
 //		usersService.addCustomer("Use2", "use2@email.com", "1234", "Brad", "Pit", false,
-//				DATE_FORMAT.parse("1977-10-06"), "2808738947",
+//				DATE.parse("1977-10-06"), "2808738947",
 //				new Addresses("3 rue Victor Hugo", "Bondy", "93300"));
 //		usersService.addCustomer("Use3", "use3@email.com", "1234", "Pamela", "Anderson", true,
-//				DATE_FORMAT.parse("1968-03-20"), "9382473347",
+//				DATE.parse("1968-03-20"), "9382473347",
 //				new Addresses("342 rue malibu", "Montrouge", "92100"));
 //
 		// Cars test
@@ -93,8 +94,8 @@ public class HuxorProject1Application implements CommandLineRunner {
 //		rentalService.bookACar("Use3", "immat 9", "2019-02-14", "2019-02-16");
 //		rentalService.bookACar("Use2", "immat 5", "2018-11-30", "2018-12-05");
 //		leaseService.addNumberAgreement(1, "cont123User1");
-//		leaseService.addNumberAgreement(6, "cont678User1");
-//		leaseService.addNumberAgreement(9, "cont901User3");
+//		leaseService.addNumberAgreement(3, "cont678User1");
+//		leaseService.addNumberAgreement(4, "cont901User3");
 //		leaseService.totalPriceReturnCar("cont123User1", 15000);
 		
 //		Page<LeaseAgreements> leasePage = leaseService.leaseAgreementPage("null", "Use2", 1, 10);
@@ -114,7 +115,7 @@ public class HuxorProject1Application implements CommandLineRunner {
 //		contactService.addNewslettter("tertio@email.com");
 //		contactService.topicResolut(2, true);
 		
-//		Page<Messages> messagePage = contactService.viewMessage(DATE.parse("2018-08-12"), DATE.parse("2018-08-14"), false, 1, 5);
+//		Page<Messages> messagePage = contactService.viewMessage(DATE.parse("2018-08-12"), DATE.parse("2018-08-16"), false, 1, 5);
 //		System.out.println(messagePage.getTotalElements());
 
 

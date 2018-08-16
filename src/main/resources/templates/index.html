@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html  xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeLeaf.org" 
+	xmlns:sec="http://www.thymeLeaf.org/extras/spring-security">
 
 	<head>
 		<meta charset="UTF-8">
@@ -8,7 +9,13 @@
 	</head>
 	
 	<body>
-		<h1>Projet HUXOR</h1>
+		<!-- header.html -->
+		<header  th:replace="fragments/header :: header"></header>
+		
+		
+		
+		<!-- footer.html -->
+		<footer th:replace="fragments/footer :: footer"></footer> 	
 	</body>
 	
 </html>
