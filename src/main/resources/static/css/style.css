@@ -1,0 +1,22 @@
+@charset "UTF-8";
+
+/* ===== General ===== */
+
+.huxor-dark{
+	background-color: #444148;
+}
+
+
+/* ===== header ===== */
+
+a{
+	color: #FEFEFE;
+	font-size: 1.5em;
+}
+a:hover{
+	color: #8b6949;
+}
+
+a:active{
+	color: #8b6949 !important;
+}
