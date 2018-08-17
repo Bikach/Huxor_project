@@ -13,37 +13,62 @@
 		<header  th:replace="fragments/header :: header"></header>
 		
 		<!-- Rent -->
-		<section class="rent-back">
-			<fieldset>
-			
-			    <legend>Choose trip dates</legend>
-			
-			    <div>
-			        <label for="start">Start</label>
-			        <input type="date" id="start" name="trip"
-			               value="2018-07-22"
-			               min="2018-01-01" max="2018-12-31" />
-			    </div>
-			
-			    <div>
-			        <label for="end">End</label>
-			        <input type="date" id="end" name="trip"
-			               value="2018-07-29"
-			               min="2018-01-01" max="2018-12-31" />
-			    </div>
-			
-			</fieldset>
-		
+		<section class="container-fluid rent block">
+			<div class=" date-form ">
+				<form>
+					<div class="row form-group">
+						<p class="para-rent"> Choisir une date suivant ses besoins puis une voiture suivant ses envies :</p>
+					</div>
+				  	<div class="row form-group ">
+				  		<div class="offset-md-2 col-md-4">
+				    		<label for= "start">Date de départ</label>
+				    		<input type="date"  class="form-control" id="start" name="startDate" 
+				    			value="2018-07-22"  min="2018-01-01" max="2018-12-31" />
+				  		</div>
+						<div class="col-md-4">
+					    	<label for="start">Date de retour</label>
+					    	<input type="date" class="form-control" id="end" name="endDate" 
+					    		value="2018-07-29"  min="2018-01-01" max="2018-12-31"/>
+						</div>
+				  	</div>	
+					<div class="row form-group ">
+						<div class="offset-md-4 col-md-3">
+					  		<button type="submit" class="btn huxor-dark huxor-btn nav-hover nav-active" >Rechercher véhicule</button>
+						</div>
+					</div>				
+				</form>
+			</div>
 		</section>
 		
 		
 		<!-- service -->
-		<section>
-		
+		<section class="service block">
+			<div class="container serv-cont">
+				<div class="row">
+		          <div class="col-lg-4">
+		            <img class="rounded-circle" src="assets/fond_service.png" alt="Generic placeholder image" width="140" height="140">
+		            <h2>Service 1</h2>
+		            <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>
+		            <p><a class="btn huxor-btn huxor-dark nav-hover nav-active" href="#" role="button">Détails &raquo;</a></p>
+		          </div>
+		          <div class="col-lg-4">
+		            <img class="rounded-circle" src="assets/fond_service.png" alt="Generic placeholder image" width="140" height="140">
+		            <h2>Service 2</h2>
+		            <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
+		            <p><a class="btn huxor-btn huxor-dark nav-hover nav-active" href="#" role="button">Détails &raquo;</a></p>
+		          </div> 
+		          <div class="col-lg-4">
+		            <img class="rounded-circle" src="assets/fond_service.png" alt="Generic placeholder image" width="140" height="140">
+		            <h2>Service 3</h2>
+		            <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum.</p>
+		            <p><a class="btn huxor-dark huxor-btn nav-hover nav-active" href="#" role="button">Détails &raquo;</a></p>
+		          </div>
+		        </div>
+			</div>
 		</section>
 		
 		<!--contact -->
-		<section>
+		<section class="contact block">
 		
 		</section>
 	
