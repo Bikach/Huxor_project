@@ -7,6 +7,10 @@ label{
 		color: white;
 }
 
+h2{
+	font-family: 'Anton', sans-serif;
+}
+
 .huxor-dark {
 	background-color: #444148;
 	color: #FEFEFE;
@@ -55,7 +59,7 @@ label{
 	text-align: center;
 }
 
-.huxor-btn{ 	font-weight: bold; }
+.huxor-btn{  ont-weight: bold; }
 
 .date-form{
 	background-color: rgba(139, 105, 73, 0.4);
@@ -66,13 +70,18 @@ label{
 
 /* ===== SERVICE =====*/
 .service{
-		background-color: rgba(156, 170, 187, 0.3);
 		text-align: center;
 }
 
-.serv-cont{ 	padding-top: 10ex; }
+.cont{ 	padding-top: 10ex; }
 
 
 /* ===== CONTACT =====*/
+.contact{
+	background-color: rgba(156, 170, 187, 0.3);
+}
 
+.btn-form-contact{
+	width: 100%
+}
 

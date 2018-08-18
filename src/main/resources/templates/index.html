@@ -17,18 +17,18 @@
 			<div class=" date-form ">
 				<form>
 					<div class="row form-group">
-						<p class="para-rent"> Choisir une date suivant ses besoins puis une voiture suivant ses envies :</p>
+						<p class="para-rent"> Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod  :</p>
 					</div>
 				  	<div class="row form-group ">
 				  		<div class="offset-md-2 col-md-4">
 				    		<label for= "start">Date de départ</label>
 				    		<input type="date"  class="form-control" id="start" name="startDate" 
-				    			value="2018-07-22"  min="2018-01-01" max="2018-12-31" />
+				    			min="2018-01-01" max="2018-12-31" />
 				  		</div>
 						<div class="col-md-4">
 					    	<label for="start">Date de retour</label>
 					    	<input type="date" class="form-control" id="end" name="endDate" 
-					    		value="2018-07-29"  min="2018-01-01" max="2018-12-31"/>
+					    		min="2018-01-01" max="2018-12-31"/>
 						</div>
 				  	</div>	
 					<div class="row form-group ">
@@ -43,7 +43,7 @@
 		
 		<!-- service -->
 		<section class="service block">
-			<div class="container serv-cont">
+			<div class="container cont">
 				<div class="row">
 		          <div class="col-lg-4">
 		            <img class="rounded-circle" src="assets/fond_service.png" alt="Generic placeholder image" width="140" height="140">
@@ -69,13 +69,23 @@
 		
 		<!--contact -->
 		<section class="contact block">
-		
+			<div class="container-fluid cont">
+				<div class="row">
+					<div class="offset-md-1 col-md-4">
+						<h2>Titre d'accroche</h2>
+						<p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna</p>
+		            	<p><a class="btn huxor-dark huxor-btn btn-form-contact nav-hover nav-active" href="#" role="button">Formulaire &raquo;</a></p>
+					</div>
+					<div class="col-md-5">
+					</div>
+				</div>		
+			</div>
 		</section>
 	
 		
 		
 		<!-- footer.html -->
-<!-- 		<footer th:replace="fragments/footer :: footer"></footer> 	 -->
+		<footer th:replace="fragments/footer :: footer"></footer> 	
 	</body>
 	
 </html>
