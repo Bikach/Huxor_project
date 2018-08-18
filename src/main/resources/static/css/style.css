@@ -7,9 +7,7 @@ label{
 		color: white;
 }
 
-h2{
-	font-family: 'Anton', sans-serif;
-}
+h2, h3, h6{ font-family: 'Anton', sans-serif; }
 
 .huxor-dark {
 	background-color: #444148;
@@ -21,8 +19,9 @@ h2{
 	color: #444148;	
 }
 
-.block{
-	height: 33em;
+.block{ 	
+	padding-top: 4ex; 
+	padding-bottom: 4ex;
 }
 
 
@@ -54,34 +53,48 @@ h2{
 
 .para-rent{
 	color:white;
-	font-size: 1.8em;	
+	font-size: 1.5em;	
 	font-weight: bold;
 	text-align: center;
 }
 
-.huxor-btn{  ont-weight: bold; }
+.huxor-btn{  font-weight: bold; }
 
 .date-form{
 	background-color: rgba(139, 105, 73, 0.4);
-	position: absolute;
-	top: 60%; left: 50%; 
-  	transform: translate(-50%, -50%); 
+	margin: 10ex auto 3ex auto;
+	width: 50%;
+	padding: 3ex 0 2ex 0; 
 }
+
 
 /* ===== SERVICE =====*/
-.service{
-		text-align: center;
-}
-
-.cont{ 	padding-top: 10ex; }
+.service{ text-align: center; }
 
 
 /* ===== CONTACT =====*/
-.contact{
-	background-color: rgba(156, 170, 187, 0.3);
+.contact{ background-color: rgba(156, 170, 187, 0.3); }
+
+.btn-form-contact{ width: 100% }
+
+.title-social{ text-align: center; }
+
+.news{ padding-top: 3ex; }
+
+
+/* ===== FOOTER =====*/
+.block-foot{
+	padding-top: 2ex; 
+	padding-bottom: 2ex;
 }
 
-.btn-form-contact{
-	width: 100%
+.para-foot{
+	font-size: 1.5ex;
+	font-style:italic;
+	text-align: justify; 
 }
+
+.btn-foot{ font-size: 1.5ex; }
+
+
 

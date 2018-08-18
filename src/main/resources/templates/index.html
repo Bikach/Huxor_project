@@ -14,30 +14,28 @@
 		
 		<!-- Rent -->
 		<section class="container-fluid rent block">
-			<div class=" date-form ">
-				<form>
-					<div class="row form-group">
-						<p class="para-rent"> Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod  :</p>
+			<form class="date-form">
+				<div class="row form-group">
+					<p class="para-rent"> Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod  :</p>
+				</div>
+			  	<div class="row form-group ">
+			  		<div class="offset-md-2 col-md-4">
+			    		<label for= "start">Date de départ</label>
+			    		<input type="date"  class="form-control" id="start" name="startDate" 
+			    			min="2018-01-01" max="2018-12-31" />
+			  		</div>
+					<div class="col-md-4">
+				    	<label for="start">Date de retour</label>
+				    	<input type="date" class="form-control" id="end" name="endDate" 
+				    		min="2018-01-01" max="2018-12-31"/>
 					</div>
-				  	<div class="row form-group ">
-				  		<div class="offset-md-2 col-md-4">
-				    		<label for= "start">Date de départ</label>
-				    		<input type="date"  class="form-control" id="start" name="startDate" 
-				    			min="2018-01-01" max="2018-12-31" />
-				  		</div>
-						<div class="col-md-4">
-					    	<label for="start">Date de retour</label>
-					    	<input type="date" class="form-control" id="end" name="endDate" 
-					    		min="2018-01-01" max="2018-12-31"/>
-						</div>
-				  	</div>	
-					<div class="row form-group ">
-						<div class="offset-md-4 col-md-3">
-					  		<button type="submit" class="btn huxor-dark huxor-btn nav-hover nav-active" >Rechercher véhicule</button>
-						</div>
-					</div>				
-				</form>
-			</div>
+			  	</div>	
+				<div class="row form-group ">
+					<div class="offset-md-4 col-md-3">
+				  		<button type="submit" class="btn huxor-dark huxor-btn nav-hover nav-active" >Rechercher véhicule</button>
+					</div>
+				</div>				
+			</form>
 		</section>
 		
 		
@@ -69,21 +67,37 @@
 		
 		<!--contact -->
 		<section class="contact block">
-			<div class="container-fluid cont">
+			<div class="container cont">
 				<div class="row">
 					<div class="offset-md-1 col-md-4">
 						<h2>Titre d'accroche</h2>
 						<p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna</p>
 		            	<p><a class="btn huxor-dark huxor-btn btn-form-contact nav-hover nav-active" href="#" role="button">Formulaire &raquo;</a></p>
 					</div>
-					<div class="col-md-5">
-					</div>
-				</div>		
+					<div class="offset-md-1 col-md-5 social" >
+						<h2 class="title-social">Réseaux sociaux</h2>
+						<div class="container-fluid">
+							<div class="row">
+								<img class="rounded-circle offset-md-3 offset-1 offset-sm-1" src="assets/fond_service.png" alt="Generic placeholder image" width="70" height="70">
+					            <img class="rounded-circle offset-md-auto offset-1 offset-sm-1" src="assets/fond_service.png" alt="Generic placeholder image" width="70" height="70">
+			    		        <img class="rounded-circle offset-md-auto offset-1 offset-sm-1" src="assets/fond_service.png" alt="Generic placeholder image" width="70" height="70">		
+							</div>
+							<div class="row news">
+								<h3>Newsletter</h3>
+								<form class="form-inline">
+								  	<div class="form-group mx-sm-3 mb-2">
+								    	<label for="inputEmail" class="sr-only">Email</label>
+								    	<input type="email"  name="email" class="form-control" id="inputEmail" placeholder="LoremIpsum@email.com">
+								  	</div>
+								  	<button type="submit" class="btn huxor-dark huxor-btn nav-hover nav-active mb-2">Envoyez</button>
+								</form>
+							</div>	
+						</div>
+					</div>		
+				</div>
 			</div>
 		</section>
 	
-		
-		
 		<!-- footer.html -->
 		<footer th:replace="fragments/footer :: footer"></footer> 	
 	</body>
