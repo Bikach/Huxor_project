@@ -7,7 +7,12 @@ label{
 		color: white;
 }
 
-h2, h3, h6{ font-family: 'Anton', sans-serif; }
+h2, h3{ font-family: 'Anton', sans-serif; }
+
+h6{
+	font-family: 'Anton', sans-serif; 
+	color: #8b6949;
+}
 
 .huxor-dark {
 	background-color: #444148;
