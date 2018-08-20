@@ -82,6 +82,46 @@ public class HuxorProject1Application implements CommandLineRunner {
 //		rentalService.addACar("immat 9", 11340, 35d, 0.8f, (byte) 4, (byte) 5, (byte) 4, "jaune",
 //				"manuelle", "essence", "CITADINE", "RENAULT", "TWINGO");
 //		rentalService.addACar("immat 10", 25730, 60d, 1.2f, (byte) 5, (byte) 5, (byte) 6, "rouge",
+//			"automatique", "gazol", "FAMILIALE", "PEUGEOT", "5008");
+//		rentalService.addACar("immat 11", 12500,  70d, 1.5f, (byte) 5, (byte) 5, (byte) 7, "bleu",
+//				"automatique", "gazol", "BERLINE", "BMW", "SERIE 5");
+//		rentalService.addACar("immat 12", 14070, 50d, 1f, (byte) 5, (byte) 5, (byte) 6,
+//				"blanche", "manuelle", "essence", "COMPACT", "CITROEN", "C4");
+//		rentalService.addACar("immat 13", 22500,  50d, 1f, (byte) 3, (byte) 5, (byte) 6, "rouge",
+//				"manuelle", "gazol", "COMPACT", "PEUGEOT", "308");
+//		rentalService.addACar("immat 14", 8900, 35d, 0.8f, (byte) 2, (byte) 4, (byte) 5, "jaune",
+//				"manuelle", "essence", "CITADINE", "FIAT", "500");
+//		rentalService.addACar("immat 15", 32500,  60d, 1.2f, (byte) 5, (byte) 6, (byte) 6,
+//				"vert", "automatique", "gazol", "FAMILIALE", "FORD", "CMAX");
+//		rentalService.addACar("immat 16", 8900, 100d, 2f, (byte) 5, (byte) 5, (byte) 8, "black",
+//				"automatique", "gazol", "LUXE", "MERCEDES", "CLASSE S");
+//		rentalService.addACar("immat 17", 9400, 100d, 2f, (byte) 5, (byte) 5, (byte) 8, "black",
+//				"automatique", "gazol", "LUXE", "BMW","SERIE 7");
+//		rentalService.addACar("immat 18", 21500, 70d, 1.5f, (byte) 5, (byte) 5, (byte) 7, "bleu",
+//				"automatique", "gazol", "BERLINE","MERCEDES","CLASSE E");
+//		rentalService.addACar("immat 19", 11340, 35d, 0.8f, (byte) 4, (byte) 5, (byte) 4, "jaune",
+//				"manuelle", "essence", "CITADINE", "RENAULT", "TWINGO");
+//		rentalService.addACar("immat 20", 25730, 60d, 1.2f, (byte) 5, (byte) 5, (byte) 6, "rouge",
+//				"automatique", "gazol", "FAMILIALE", "PEUGEOT", "5008");
+//		rentalService.addACar("immat 21", 12500,  70d, 1.5f, (byte) 5, (byte) 5, (byte) 7, "bleu",
+//				"automatique", "gazol", "BERLINE", "BMW", "SERIE 5");
+//		rentalService.addACar("immat 22", 14070, 50d, 1f, (byte) 5, (byte) 5, (byte) 6,
+//				"blanche", "manuelle", "essence", "COMPACT", "CITROEN", "C4");
+//		rentalService.addACar("immat 23", 22500,  50d, 1f, (byte) 3, (byte) 5, (byte) 6, "rouge",
+//				"manuelle", "gazol", "COMPACT", "PEUGEOT", "308");
+//		rentalService.addACar("immat 24", 8900, 35d, 0.8f, (byte) 2, (byte) 4, (byte) 5, "jaune",
+//				"manuelle", "essence", "CITADINE", "FIAT", "500");
+//		rentalService.addACar("immat 25", 32500,  60d, 1.2f, (byte) 5, (byte) 6, (byte) 6,
+//				"vert", "automatique", "gazol", "FAMILIALE", "FORD", "CMAX");
+//		rentalService.addACar("immat 26", 8900, 100d, 2f, (byte) 5, (byte) 5, (byte) 8, "black",
+//				"automatique", "gazol", "LUXE", "MERCEDES", "CLASSE S");
+//		rentalService.addACar("immat 27", 9400, 100d, 2f, (byte) 5, (byte) 5, (byte) 8, "black",
+//				"automatique", "gazol", "LUXE", "BMW","SERIE 7");
+//		rentalService.addACar("immat 28", 21500, 70d, 1.5f, (byte) 5, (byte) 5, (byte) 7, "bleu",
+//				"automatique", "gazol", "BERLINE","MERCEDES","CLASSE E");
+//		rentalService.addACar("immat 29", 11340, 35d, 0.8f, (byte) 4, (byte) 5, (byte) 4, "jaune",
+//				"manuelle", "essence", "CITADINE", "RENAULT", "TWINGO");
+//		rentalService.addACar("immat 30", 25730, 60d, 1.2f, (byte) 5, (byte) 5, (byte) 6, "rouge",
 //				"automatique", "gazol", "FAMILIALE", "PEUGEOT", "5008");
 		
 //		Page<Cars> carPage = rentalService.carListAvailable(DATE.parse("2018-12-05"), DATE.parse("2018-12-24"), 1, 10);

@@ -81,13 +81,13 @@ public class RentalServiceImpl implements IRentalService {
 	 * @throws Custom Exeption
 	 */
 	@Override
-	public void addACar(String licencePlate, int kmNumber, double dailyPrice, float kmPrice, byte carDoor,
+	public void addACar(String licencePlate, String picturePath, int kmNumber, double dailyPrice, float kmPrice, byte carDoor,
 			byte seatingCapacity, byte power, String color, String transmission, String fuel, String category,
 			String brand, String model) throws CustomException {
 
 		if (!carsRepo.existsById(licencePlate)) {
 
-			Cars car = new Cars(licencePlate, kmNumber, dailyPrice, kmPrice, carDoor, seatingCapacity, power, color,
+			Cars car = new Cars(licencePlate, picturePath,  kmNumber, dailyPrice, kmPrice, carDoor, seatingCapacity, power, color,
 					transmission, fuel);
 			car.setCategory(checkAllCategorys(category));
 			car.setBrand(checkAllBrands(brand));

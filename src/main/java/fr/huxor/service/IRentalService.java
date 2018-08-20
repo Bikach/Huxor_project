@@ -14,7 +14,7 @@ public interface IRentalService {
 			throws CustomException;
 
 	// Manager
-	public void addACar(String licencePlate, int kmNumber, double dailyPrice, float kmPrice,
+	public void addACar(String licencePlate, String picturePath, int kmNumber, double dailyPrice, float kmPrice,
 			byte carDoor, byte seatingCapacity, byte power, String color, String transmission, String fuel,
 			String category, String brand, String model) throws CustomException;
 

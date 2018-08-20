@@ -18,6 +18,7 @@ public class Cars implements Serializable {
 	@Id
 	@NotNull
 	private String licencePlate;
+	private String picturePath;
 	private int kmNumber;
 	private double dailyPrice;
 	private float kmPrice;
@@ -50,6 +51,7 @@ public class Cars implements Serializable {
 	 * Constructor with parameters
 	 * 
 	 * @param licencePlate
+	 * @param picturePath
 	 * @param kmNumber
 	 * @param dailyPrice
 	 * @param kmPrice
@@ -63,8 +65,9 @@ public class Cars implements Serializable {
 	 * @param brand
 	 * @param model
 	 */
-	public Cars(String licencePlate, int kmNumber, double dailyPrice, float kmPrice, byte carDoor, byte seatingCapacity,
+	public Cars(String licencePlate, String picturePath, int kmNumber, double dailyPrice, float kmPrice, byte carDoor, byte seatingCapacity,
 			byte power, String color, String transmission, String fuel) {
+		this.picturePath = picturePath;
 		this.licencePlate = licencePlate;
 		this.kmNumber = kmNumber;
 		this.dailyPrice = dailyPrice;
@@ -85,6 +88,14 @@ public class Cars implements Serializable {
 
 	public void setLicencePlate(String licencePlate) {
 		this.licencePlate = licencePlate;
+	}
+
+	public String getPicturePath() {
+		return picturePath;
+	}
+
+	public void setPicturePath(String picturePath) {
+		this.picturePath = picturePath;
 	}
 
 	public int getKmNumber() {
