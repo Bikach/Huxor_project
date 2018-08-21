@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeLeaf.org" >
+
+	<head>
+		<meta charset="UTF-8">
+		<title>voitures disponibles</title>
+      	<link th:href="@{/bootstrap/css/bootstrap.min.css}"  rel="stylesheet" media="screen"/>
+      	<link href="css/style.css"  rel="stylesheet" media="screen"/>
+	</head>
+	
+	<body>
+		<!-- header.html -->
+		<header  th:replace="fragments/header :: header"></header>
+		
+		<div class="container cars">
+			<div th:each="car:${carsList}">
+				<div class="card">
+			  		<img class="card-img-top" src="@{${car.picturePath}}" alt="car picture">
+			  		<div class="card-body">
+			    		<h5 class="card-title"  th:text="${car.brand.brandName} + ${car.bodel.modelName}"></h5>
+			    		<p class="card-text"  th:text="${car.category.describtion}">description</p>
+			    		  <ul class="list-group list-group-flush">
+					    	<li class="list-group-item"  th:text="${car.color}"></li>
+					    	<li class="list-group-item"  th:text="${car.fuel}"><span class="item" >Carburant :</span> </li>
+					    	<li class="list-group-item" th:text="${car.transmission}"><span class="item" >Transmission :</span></li>
+					    	<li class="list-group-item price" th:text="${car.dailyPrice} +' €/jrs'"></li>
+					  	</ul>
+			    		<a href="#" class="btn huxor-btn huxor-dark nav-hover .nav-active">Réserver</a>
+			  		</div>
+				</div>
+			</div>
+		</div>		
+		
+		<!-- footer.html -->
+		<footer th:replace="fragments/footer :: footer"></footer> 	
+	</body>
+</html>

@@ -29,6 +29,7 @@ h6{
 	padding-bottom: 4ex;
 }
 
+.huxor-btn{  font-weight: bold; }
 
 /* ===== HEADER ===== */
 .logo-head{
@@ -63,8 +64,6 @@ h6{
 	text-align: center;
 }
 
-.huxor-btn{  font-weight: bold; }
-
 .date-form{
 	background-color: rgba(139, 105, 73, 0.4);
 	margin: 10ex auto 3ex auto;
@@ -88,6 +87,36 @@ h6{
 .news{ padding-top: 3ex; }
 
 
+/* =====  CARS ===== */
+.cars{
+	margin: 15ex auto;
+}
+
+.card{
+	width: 25rem;
+}
+
+.card-title{
+	font-family: 'Anton', sans-serif;
+	color: #8b6949;
+	font-weight: bold;
+}
+
+.card-text{
+	font-style: italic;
+}
+
+.item{
+	color:	#9caabb;
+}
+
+.price{
+	color: #8b6949;
+	font-weight: bold;
+	font-size: 2em;	
+}
+
+
 /* ===== FOOTER =====*/
 .block-foot{
 	padding-top: 2ex; 
@@ -108,7 +137,7 @@ h6{
 }
 
 .link-footer:hover{ color:#444148 }
-.
+
 
 
 

@@ -14,6 +14,7 @@ public class Categorys implements Serializable {
 	@Id
 	@NotNull
 	private String category;
+	private String describtion;
 
 	/**
 	 * Default constructor
@@ -41,4 +42,13 @@ public class Categorys implements Serializable {
 		this.category = category;
 	}
 
+	public String getDescribtion() {
+		return describtion;
+	}
+
+	public void setDescribtion(String describtion) {
+		this.describtion = describtion;
+	}
+
+	
 }

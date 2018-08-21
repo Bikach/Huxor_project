@@ -29,7 +29,7 @@ public class Cars implements Serializable {
 	private String transmission;
 	private String fuel;
 
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "CATEGORY_NAME")
 	private Categorys category;;
 

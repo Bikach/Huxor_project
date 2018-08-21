@@ -83,10 +83,10 @@ public class HuxorProject1Application implements CommandLineRunner {
 //				"manuelle", "essence", "CITADINE", "RENAULT", "TWINGO");
 //		rentalService.addACar("immat 10", 25730, 60d, 1.2f, (byte) 5, (byte) 5, (byte) 6, "rouge",
 //			"automatique", "gazol", "FAMILIALE", "PEUGEOT", "5008");
-//		rentalService.addACar("immat 11", 12500,  70d, 1.5f, (byte) 5, (byte) 5, (byte) 7, "bleu",
+//		rentalService.addACar("assets/bmw-serie-5-blanc.png","immat 11", 2500,  70d, 1.5f, (byte) 5, (byte) 5, (byte) 7, "blanche",
 //				"automatique", "gazol", "BERLINE", "BMW", "SERIE 5");
 //		rentalService.addACar("immat 12", 14070, 50d, 1f, (byte) 5, (byte) 5, (byte) 6,
-//				"blanche", "manuelle", "essence", "COMPACT", "CITROEN", "C4");
+//				"noir", "manuelle", "essence", "COMPACT", "CITROEN", "C4");
 //		rentalService.addACar("immat 13", 22500,  50d, 1f, (byte) 3, (byte) 5, (byte) 6, "rouge",
 //				"manuelle", "gazol", "COMPACT", "PEUGEOT", "308");
 //		rentalService.addACar("immat 14", 8900, 35d, 0.8f, (byte) 2, (byte) 4, (byte) 5, "jaune",
