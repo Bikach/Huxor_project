@@ -29,14 +29,15 @@ public class Brands implements Serializable {
 		this.brandName = brandName;
 	}
 
+
 	// ===== Getters & Setters =====//
 	
-	public String getlBrandName() {
+	public String getBrandName() {
 		return brandName;
 	}
-
-
+	
 	public void setBrandName(String brandName) {
 		this.brandName = brandName;
 	}
+
 }

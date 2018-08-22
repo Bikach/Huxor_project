@@ -88,12 +88,17 @@ h6{
 
 
 /* =====  CARS ===== */
-.cars{
-	margin: 15ex auto;
-}
+.cars{ margin: 15ex auto; }
 
 .card{
-	width: 25rem;
+	margin: 2ex;
+	height: 60ex;
+	width: 30.25ex;
+}
+
+.pic-size{
+	height: 18ex;
+ 	width: 30ex; 
 }
 
 .card-title{
@@ -102,13 +107,11 @@ h6{
 	font-weight: bold;
 }
 
-.card-text{
-	font-style: italic;
-}
+.card-text{ font-style: italic; }
 
-.item{
-	color:	#9caabb;
-}
+.card-btn{ margin: 0 auto; }
+
+.item{ color:	#9caabb; }
 
 .price{
 	color: #8b6949;

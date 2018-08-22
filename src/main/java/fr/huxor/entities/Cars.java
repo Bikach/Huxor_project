@@ -33,11 +33,11 @@ public class Cars implements Serializable {
 	@JoinColumn(name = "CATEGORY_NAME")
 	private Categorys category;;
 
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "BRAND_NAME")
 	private Brands brand;
 
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "MODEL_NAME")
 	private Models model;
 
@@ -61,9 +61,6 @@ public class Cars implements Serializable {
 	 * @param color
 	 * @param transmission
 	 * @param fuel
-	 * @param carCategory
-	 * @param brand
-	 * @param model
 	 */
 	public Cars(String licencePlate, String picturePath, int kmNumber, double dailyPrice, float kmPrice, byte carDoor, byte seatingCapacity,
 			byte power, String color, String transmission, String fuel) {

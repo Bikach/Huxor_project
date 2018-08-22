@@ -13,23 +13,31 @@
 		<header  th:replace="fragments/header :: header"></header>
 		
 		<div class="container cars">
-			<div th:each="car:${carsList}">
-				<div class="card">
-			  		<img class="card-img-top" src="@{${car.picturePath}}" alt="car picture">
-			  		<div class="card-body">
-			    		<h5 class="card-title"  th:text="${car.brand.brandName} + ${car.bodel.modelName}"></h5>
-			    		<p class="card-text"  th:text="${car.category.describtion}">description</p>
-			    		  <ul class="list-group list-group-flush">
-					    	<li class="list-group-item"  th:text="${car.color}"></li>
-					    	<li class="list-group-item"  th:text="${car.fuel}"><span class="item" >Carburant :</span> </li>
-					    	<li class="list-group-item" th:text="${car.transmission}"><span class="item" >Transmission :</span></li>
-					    	<li class="list-group-item price" th:text="${car.dailyPrice} +' €/jrs'"></li>
-					  	</ul>
-			    		<a href="#" class="btn huxor-btn huxor-dark nav-hover .nav-active">Réserver</a>
-			  		</div>
+			<div class="row ">
+				<div th:each="car:${carsList}">
+					<div class="card">
+				  		<img class="card-img-top pic-size" th:attr="src=@{${car.picturePath}},alt='car picture'">
+				  		<div class="card-body">
+				    		<h5 class="card-title"  th:text="${car.brand.brandName} +' '+ ${car.model.modelName}"></h5>
+				    		<p class="card-text"  th:text="${car.category.describtion}"></p>
+				    		  <ul class="list-group list-group-flush">
+						    	<li class="list-group-item" ><span class="item">Carburant : </span>[[${car.fuel}]]</li>
+						    	<li class="list-group-item"><span class="item" >Boite : </span>[[${car.transmission}]]</li>
+						    	<li class="list-group-item price" >[[${rental.totalPriceWithoutKm(${startDate}, ${endDate}, ${car.dailyPrice})}]]</li>
+						  	</ul>
+				    		<a href="#" class="btn huxor-btn huxor-dark nav-hover .nav-active card-btn">Réserver</a>
+				  		</div>
+					</div>
 				</div>
 			</div>
-		</div>		
+			<nav class="container">
+			  <ul class="pagination justify-content-center pagination-lg">
+				<li class="page-item" th:each="p, status:${pages}">
+					<a class="page-link" th:href="@{/availableCars(startDate=${startDate}, endDate=${endDate}, page=${status.index})}" th:text="${status.index}"></a>
+				</li> 		    
+			  </ul>
+			</nav>	
+		</div>	
 		
 		<!-- footer.html -->
 		<footer th:replace="fragments/footer :: footer"></footer> 	

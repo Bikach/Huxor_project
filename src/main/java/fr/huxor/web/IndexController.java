@@ -42,14 +42,16 @@ public class IndexController {
 	public String availableCars(Model model,
 			@RequestParam(name="page", defaultValue="0")int page, 
 			@RequestParam(name="size", defaultValue="6")int size,
-			@RequestParam(name="startDate")String startDate, 
-			@RequestParam(name="endDate")String endDate)  {
+			String startDate, String endDate)  {
 		
 		try {
 			Page<Cars> pageCars = rentalService.carListAvailable(DATE_FORMAT.parse(startDate), DATE_FORMAT.parse(endDate), page, size);
 			model.addAttribute("carsList", pageCars.getContent());
 			int[] pages = new int[pageCars.getTotalPages()];
 			model.addAttribute("pages", pages);
+			model.addAttribute("startDate", startDate);
+			model.addAttribute("endDate", endDate);
+			model.addAttribute("rental",rentalService);
 		} catch (CustomException | ParseException e) {
 			model.addAttribute("exception", e);
 		}

@@ -61,7 +61,7 @@ public class RentalServiceImpl implements IRentalService {
 			throws CustomException {
 		Customers user = (Customers) userService.findAUser(username);
 		Cars car = findACar(licencePlate);
-		double totalPrice = totalPriceWithoutKm(startDate, endDate, car.getDailyPrice());
+		double totalPrice = totalPriceWithoutKm(startDate, endDate, Double.toString(car.getDailyPrice()));
 		System.out.println("total");
 		try {
 			leaseRepo.save(new LeaseAgreements(null, DATE_FORMAT.parse(startDate), DATE_FORMAT.parse(endDate),
@@ -174,9 +174,9 @@ public class RentalServiceImpl implements IRentalService {
 	 * @param dailyPrice
 	 * @return the total rental price
 	 */
-	private double totalPriceWithoutKm(String startDate, String endDate, double dailyPrice) {
+	public double totalPriceWithoutKm(String startDate, String endDate, String dailyPrice) {
 		double Days = nbDaysRent(startDate, endDate);
-		return Days * dailyPrice;
+		return Days * Double.parseDouble(dailyPrice);
 	}
 
 	/**

@@ -28,14 +28,13 @@ public class Models implements Serializable {
 	public Models(String modelName) {
 		this.modelName = modelName;
 	}
+	
 
 	// ===== Getters & Setters =====//
 
-	
 	public String getModelName() {
 		return modelName;
 	}
-
 
 	public void setModelName(String modelName) {
 		this.modelName = modelName;
