@@ -13,7 +13,8 @@
 		<header  th:replace="fragments/header :: header"></header>
 		
 		<div class="container cars">
-			<div class="row ">
+			<div class="row">
+				<span class="text-danger" th:text="${#httpServletRequest.getParameter('exception')}"></span>	
 				<div th:each="car:${carsList}">
 					<div class="card">
 				  		<img class="card-img-top pic-size" th:attr="src=@{${car.picturePath}},alt='car picture'">
@@ -23,7 +24,7 @@
 				    		  <ul class="list-group list-group-flush">
 						    	<li class="list-group-item" ><span class="item">Carburant : </span>[[${car.fuel}]]</li>
 						    	<li class="list-group-item"><span class="item" >Boite : </span>[[${car.transmission}]]</li>
-						    	<li class="list-group-item price" >[[${rental.totalPriceWithoutKm(${startDate}, ${endDate}, ${car.dailyPrice})}]]</li>
+						    	<li class="list-group-item price" >[[${rental.totalPriceWithoutKm(startDate, endDate, car.dailyPrice)}]] €</li>
 						  	</ul>
 				    		<a href="#" class="btn huxor-btn huxor-dark nav-hover .nav-active card-btn">Réserver</a>
 				  		</div>
@@ -32,7 +33,7 @@
 			</div>
 			<nav class="container">
 			  <ul class="pagination justify-content-center pagination-lg">
-				<li class="page-item" th:each="p, status:${pages}">
+				<li class="page-item pagi" th:each="p, status:${pages}">
 					<a class="page-link" th:href="@{/availableCars(startDate=${startDate}, endDate=${endDate}, page=${status.index})}" th:text="${status.index}"></a>
 				</li> 		    
 			  </ul>

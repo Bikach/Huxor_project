@@ -13,24 +13,24 @@
 		<header  th:replace="fragments/header :: header"></header>
 		
 		<!-- Rent -->
-		<section class="container-fluid rent block">
+		<section class="container-fluid rent block" id="rent">
 			<form class="date-form" th:action="@{/availableCars}" method="get">
 				<div class="row form-group">
 					<p class="para-rent"> Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod  :</p>
 				</div>
 			  	<div class="row form-group ">
 			  		<div class="offset-md-2 col-md-4">
-			    		<label for= "start">Date de départ</label>
+			    		<label for= "start" class="lab">Date de départ</label>
 			    		<input type="date"  class="form-control" id="start" name="startDate" 
 			    			min="2018-01-01" max="2019-12-31" />
 			  		</div>
 					<div class="col-md-4">
-				    	<label for="start">Date de retour</label>
+				    	<label for="start" class="lab">Date de retour</label>
 				    	<input type="date" class="form-control" id="end" name="endDate" 
 				    		min="2018-01-01" max="2019-12-31"/>
 					</div>
 			  	</div>	
-				<div class="row form-group ">
+				<div class="row form-group "  id="service">
 					<div class="offset-md-4 col-md-3">
 				  		<button type="submit" class="btn huxor-dark huxor-btn nav-hover nav-active" >Rechercher véhicule</button>
 					</div>
@@ -66,7 +66,7 @@
 		</section>
 		
 		<!--contact -->
-		<section class="contact block">
+		<section class="contact block" id="contact">
 			<div class="container cont">
 				<div class="row">
 					<div class="offset-md-1 col-md-4">
@@ -100,6 +100,9 @@
 	
 		<!-- footer.html -->
 		<footer th:replace="fragments/footer :: footer"></footer> 	
+
+		<script type="text/javascript"  th:src="@{/bootstrap/js/bootstrap.min.js}" ></script>		
+<!-- 		<script type="text/javascript"  src="js/functions.js"></script> -->
 	</body>
 	
 </html>

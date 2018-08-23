@@ -3,8 +3,8 @@
 @import url('https://fonts.googleapis.com/css?family=Anton');
 
 label{
-		font-family: 'Anton', sans-serif;
-		color: white;
+		font-family: 'Anton', sans-serif; 
+		color: #9caabb;
 }
 
 h2, h3{ font-family: 'Anton', sans-serif; }
@@ -72,6 +72,9 @@ h6{
 	border-radius: 5px;
 }
 
+.lab{
+	color: white !important;
+}
 
 /* ===== SERVICE =====*/
 .service{ text-align: center; }
@@ -88,17 +91,17 @@ h6{
 
 
 /* =====  CARS ===== */
-.cars{ margin: 15ex auto; }
+.cars{ margin: 12ex auto; }
 
 .card{
 	margin: 2ex;
-	height: 60ex;
-	width: 30.25ex;
+	height: 65ex;
+	width: 30.5ex;
 }
 
 .pic-size{
 	height: 18ex;
- 	width: 30ex; 
+ 	width: 30.25ex; 
 }
 
 .card-title{
@@ -109,7 +112,9 @@ h6{
 
 .card-text{ font-style: italic; }
 
-.card-btn{ margin: 0 auto; }
+.card-btn{ 
+	margin-left: 7ex;
+}
 
 .item{ color:	#9caabb; }
 
@@ -117,7 +122,20 @@ h6{
 	color: #8b6949;
 	font-weight: bold;
 	font-size: 2em;	
+	text-align: center;
 }
+
+.pagi{
+	color: #9caabb; 
+}
+
+/* ===== LOGIN =====*/
+.login{
+	margin-top: 15ex;
+	margin-bottom: 5ex;
+}
+
+
 
 
 /* ===== FOOTER =====*/

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeLeaf.org" >
+
+	<head>
+		<meta charset="UTF-8">
+		<title>connexion</title>
+      	<link th:href="@{/bootstrap/css/bootstrap.min.css}"  rel="stylesheet" media="screen"/>
+      	<link href="css/style.css"  rel="stylesheet" media="screen"/>
+	</head>
+	<body>
+	
+		<!-- header.html -->
+		<header  th:replace="fragments/header :: header"></header>
+
+		<section class="container">
+			<div class="row login">
+				<!-- Connexion -->
+				<article class="col-md-5  col-sm ">
+					<h3>Connexion</h3>
+					<span class="text-danger" th:if="${param.error}">mot de passe ou login incorrect</span>
+					<span class="text-success" th:if="${param.logout}">Vous avez été déconnecté</span>
+					<div class="panel panel-primary">
+						<div class="panel-body">
+							<form th:action="@{/login}" method="post">
+								<div class="form-group">
+									<label class="control-label">Login</label>
+									<input class="form-control" type="text" name="username" placeholder="identifiant" />			
+								</div>
+								<div class="form-group">
+									<label class="control-label">Password</label>
+									<input class="form-control" type="password" name="password" placeholder="mot de passe"/>
+								</div>
+								<div>
+									<button class="btn huxor-btn huxor-dark nav-hover nav-active" type="submit">authentifier</button>
+								</div>
+							</form>
+						</div>
+					</div>		
+				</article>
+				
+				<!-- Registration -->
+				<article class="offset-md-1 col-md-5 col-sm border-left">
+					<h3>Formulaire d'inscription</h3>
+					<form  th:action="@{/login}" method="post">
+						<div class="form-group">
+							<label for="username">Login</label>
+							<input type="text" class="form-control" id="username" placeholder="identifiant de connexion">
+						</div>
+						<div class="form-row">
+							<div class="form-group col-md-6">
+								<label for="inputPassword">Password</label>
+								<input type="password" class="form-control" id="inputPassword" placeholder="mot de passe">
+							</div>
+							<div class="form-group col-md-6">
+								<label for="inputConfirm">Comfirmer password</label>
+								<input type="password" class="form-control" id="inputConfirm" placeholder="confirmer mot de passe">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="inputEmail">Email</label>
+							<input type="email" class="form-control" id="inputEmail" placeholder="email">
+						</div>
+						<div class="form-row">
+							<div class="form-group col-md-6">
+								<label for="inputLastName">Nom</label>
+								<input type="text" class="form-control" id="inputLastName" placeholder="nom">
+							</div>
+							<div class="form-group col-md-6">
+								<label for="inputFirstName">Prénom</label>
+								<input type="text" class="form-control" id="inputFirstName" placeholder="prénom">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="inputAddress">Adresse</label>
+							<input type="text" class="form-control" id="inputAddress" placeholder="numero, nom de la rue, avenue...">
+						</div>
+						<div class="form-row">
+							<div class="form-group col-md-6">
+								<label for="inputCity">Ville</label>
+								<input type="text" class="form-control" id="inputCity" placeholder="ville">
+							</div>
+							<div class="form-group col-md-6">
+								<label for="inputZip">Code postal</label>
+								<input type="text" class="form-control" id="inputZip" placeholder="code postal">
+							</div>
+						</div>
+						<button type="submit" class="btn huxor-btn huxor-dark nav-hover nav-active">inscription</button>
+					</form>				
+				</article>
+			</div>
+		</section>
+
+		<!-- footer.html -->
+		<footer th:replace="fragments/footer :: footer"></footer> 	
+	
+	</body>
+</html>
