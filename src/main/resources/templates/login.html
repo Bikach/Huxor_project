@@ -19,70 +19,78 @@
 					<h3>Connexion</h3>
 					<span class="text-danger" th:if="${param.error}">mot de passe ou login incorrect</span>
 					<span class="text-success" th:if="${param.logout}">Vous avez été déconnecté</span>
-					<div class="panel panel-primary">
-						<div class="panel-body">
-							<form th:action="@{/login}" method="post">
-								<div class="form-group">
-									<label class="control-label">Login</label>
-									<input class="form-control" type="text" name="username" placeholder="identifiant" />			
-								</div>
-								<div class="form-group">
-									<label class="control-label">Password</label>
-									<input class="form-control" type="password" name="password" placeholder="mot de passe"/>
-								</div>
-								<div>
-									<button class="btn huxor-btn huxor-dark nav-hover nav-active" type="submit">authentifier</button>
-								</div>
-							</form>
+					<form th:action="@{/login}" method="post">
+						<div class="form-group">
+							<label class="control-label">Login</label>
+							<input class="form-control" type="text" name="username" placeholder="identifiant" required="required" />			
 						</div>
-					</div>		
+						<div class="form-group">
+							<label class="control-label">Password</label>
+							<input class="form-control" type="password" name="password" placeholder="mot de passe" required="required"/>
+						</div>
+						<div>
+							<button class="btn huxor-btn huxor-dark nav-hover nav-active" type="submit">authentifier</button>
+						</div>
+					</form>
+					<span class="text-success" th:if="${param.user}">Bienvenue [[${user.username}]] !</span>
+					
 				</article>
 				
 				<!-- Registration -->
 				<article class="offset-md-1 col-md-5 col-sm border-left">
 					<h3>Formulaire d'inscription</h3>
-					<form  th:action="@{/login}" method="post">
+					<form  th:action="@{/saveCustomer}" method="post">
 						<div class="form-group">
 							<label for="username">Login</label>
-							<input type="text" class="form-control" id="username" placeholder="identifiant de connexion">
+							<input type="text" class="form-control" id="username" name="username" placeholder="identifiant de connexion" required="required">
 						</div>
 						<div class="form-row">
 							<div class="form-group col-md-6">
 								<label for="inputPassword">Password</label>
-								<input type="password" class="form-control" id="inputPassword" placeholder="mot de passe">
+								<input type="password" class="form-control" id="inputPassword" name="password" placeholder="mot de passe" required="required">
 							</div>
 							<div class="form-group col-md-6">
 								<label for="inputConfirm">Comfirmer password</label>
-								<input type="password" class="form-control" id="inputConfirm" placeholder="confirmer mot de passe">
+								<input type="password" class="form-control" id="inputConfirm" name="confirmPassword" placeholder="confirmer mot de passe" required="required">
 							</div>
 						</div>
 						<div class="form-group">
 							<label for="inputEmail">Email</label>
-							<input type="email" class="form-control" id="inputEmail" placeholder="email">
+							<input type="email" class="form-control" id="inputEmail" name="email"  placeholder="lorem@email.com" required="required">
 						</div>
 						<div class="form-row">
 							<div class="form-group col-md-6">
 								<label for="inputLastName">Nom</label>
-								<input type="text" class="form-control" id="inputLastName" placeholder="nom">
+								<input type="text" class="form-control" id="inputLastName" name="lastName" placeholder="nom" required="required">
 							</div>
 							<div class="form-group col-md-6">
 								<label for="inputFirstName">Prénom</label>
-								<input type="text" class="form-control" id="inputFirstName" placeholder="prénom">
+								<input type="text" class="form-control" id="inputFirstName" name="firstName"  placeholder="prénom" required="required">
 							</div>
 						</div>
 						<div class="form-group">
 							<label for="inputAddress">Adresse</label>
-							<input type="text" class="form-control" id="inputAddress" placeholder="numero, nom de la rue, avenue...">
+							<input type="text" class="form-control" id="inputAddress" name="street"  placeholder="numero, nom de la rue, avenue..." required="required">
 						</div>
 						<div class="form-row">
 							<div class="form-group col-md-6">
 								<label for="inputCity">Ville</label>
-								<input type="text" class="form-control" id="inputCity" placeholder="ville">
+								<input type="text" class="form-control" id="inputCity" name="city"  placeholder="ville" required="required"> 
 							</div>
 							<div class="form-group col-md-6">
 								<label for="inputZip">Code postal</label>
-								<input type="text" class="form-control" id="inputZip" placeholder="code postal">
+								<input type="text" class="form-control" id="inputZip"  name="zip"  placeholder="code postal" required="required">
 							</div>
+						</div>
+						<div class="form-row">
+							<div class="form-group col-md-6">
+								<label for="inputDriveLicence">Numéro du permis de conduire</label>
+								<input type="text" class="form-control" id="inputDriveLicence" name="driveLicence"  placeholder="2876386..." required="required">
+							</div>
+					  		<div class="form-group col-md-6">
+					    		<label for= "birth">Date de naissance</label>
+					    		<input type="date"  class="form-control" id="birth" name="birthday" min="1918-01-01"  required="required"/>
+					  		</div>
 						</div>
 						<button type="submit" class="btn huxor-btn huxor-dark nav-hover nav-active">inscription</button>
 					</form>				

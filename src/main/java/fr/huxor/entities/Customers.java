@@ -40,6 +40,7 @@ public class Customers extends Users {
 	/**
 	 * Constructor with parameters
 	 * 
+	 * @param username
 	 * @param email (Users)
 	 * @param password (Users)
 	 * @param lasName (Users)
