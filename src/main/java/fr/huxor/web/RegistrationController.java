@@ -47,13 +47,18 @@ public class RegistrationController {
 		HashMap<String, String> errorsMap = new HashMap<>();
 
 		if (!password.equals(confirmPassword))
-			errorsMap.put("pass", "les passwords ne sont pas identique ");
+			errorsMap.put("pass", "le mot de passe n'est pas identique ");
 
 		if (!emailValidate(email))
 			errorsMap.put("email", "l'email est incorrect ");
 
-		userService.addCustomer(username, email, password, lastName, firstName, false, DATE_FORMAT.parse(birthday),
-				driveLicence, new Addresses(street, city, zip));
+		if (errorsMap.isEmpty()) {
+			userService.addCustomer(username, email, password, lastName, firstName, false, DATE_FORMAT.parse(birthday),
+					driveLicence, new Addresses(street, city, zip));			
+			model.addAttribute("succes", "Votre inscription est bien enregistrée, vous pouvez désormée vous connectez avec votre identifiant !");
+		}else {
+			model.addAttribute("errorsMap", errorsMap);
+		}
 
 		return "login";
 	}

@@ -32,7 +32,7 @@
 							<button class="btn huxor-btn huxor-dark nav-hover nav-active" type="submit">authentifier</button>
 						</div>
 					</form>
-					<span class="text-success" th:if="${param.user}">Bienvenue [[${user.username}]] !</span>
+					<span class="text-success" th:if="${succes}"> [[${succes}]]</span>
 					
 				</article>
 				
@@ -42,7 +42,7 @@
 					<form  th:action="@{/saveCustomer}" method="post">
 						<div class="form-group">
 							<label for="username">Login</label>
-							<input type="text" class="form-control" id="username" name="username" placeholder="identifiant de connexion" required="required">
+							<input type="text" class="form-control" id="username" name="username"  placeholder="identifiant de connexion" required="required">
 						</div>
 						<div class="form-row">
 							<div class="form-group col-md-6">
@@ -53,10 +53,12 @@
 								<label for="inputConfirm">Comfirmer password</label>
 								<input type="password" class="form-control" id="inputConfirm" name="confirmPassword" placeholder="confirmer mot de passe" required="required">
 							</div>
+							<span class="text-danger" th:if="${errorsMap}">[[${errorsMap.pass}]]</span>
 						</div>
 						<div class="form-group">
 							<label for="inputEmail">Email</label>
 							<input type="email" class="form-control" id="inputEmail" name="email"  placeholder="lorem@email.com" required="required">
+							<span class="text-danger" th:if="${errorsMap}">[[${errorsMap.email}]]</span>
 						</div>
 						<div class="form-row">
 							<div class="form-group col-md-6">
