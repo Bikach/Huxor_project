@@ -1,20 +1,26 @@
 package fr.huxor.entities;
 
 import java.io.Serializable;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Inheritance(strategy=InheritanceType.JOINED)
+@Inheritance(strategy = InheritanceType.JOINED)
 @DiscriminatorColumn(name = "TYPE_USER", discriminatorType = DiscriminatorType.STRING, length = 2)
-public  abstract class Users implements Serializable {
+public abstract class Users implements Serializable {
 
 	private static final long serialVersionUID = -9125319231283171487L;
 
@@ -29,12 +35,30 @@ public  abstract class Users implements Serializable {
 	private String lastName;
 	@NotNull
 	private boolean enabled;
-
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "username"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+	private Set<Role> roles;
 
 	/**
 	 * Default constructor
 	 */
-	public Users() {}
+	public Users() {
+	}
+
+	/**
+	 * Constructor for the connection
+	 * 
+	 * @param user
+	 */
+	public Users(Users user) {
+		this.enabled = user.isEnabled();
+		this.email = user.getEmail();
+		this.roles = user.getRoles();
+		this.lastName = user.getLastName();
+		this.firstName = user.getFirstName();
+		this.username = user.getUsername();
+		this.password = user.getPassword();
+	}
 
 	/**
 	 * Constructor with parameters
@@ -45,9 +69,9 @@ public  abstract class Users implements Serializable {
 	 * @param lasName
 	 * @param firstName
 	 * @param enabled
-
+	 * 
 	 */
-	public Users(String username,String email, String password, String lasName, String firstName, boolean enabled) {
+	public Users(String username, String email, String password, String lasName, String firstName, boolean enabled) {
 		this.username = username;
 		this.email = email;
 		this.password = password;
@@ -61,11 +85,11 @@ public  abstract class Users implements Serializable {
 	public String getUsername() {
 		return username;
 	}
-	
+
 	public void setUsername(String username) {
 		this.username = username;
 	}
-	
+
 	public String getEmail() {
 		return email;
 	}
@@ -82,7 +106,6 @@ public  abstract class Users implements Serializable {
 		this.password = password;
 	}
 
-
 	public String getFirstName() {
 		return firstName;
 	}
@@ -94,7 +117,7 @@ public  abstract class Users implements Serializable {
 	public String getLastName() {
 		return lastName;
 	}
-	
+
 	public void setLastName(String lasName) {
 		this.lastName = lasName;
 	}
@@ -105,6 +128,14 @@ public  abstract class Users implements Serializable {
 
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
+	}
+
+	public Set<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
 	}
 
 }
