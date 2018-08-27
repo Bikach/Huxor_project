@@ -46,21 +46,6 @@ public abstract class Users implements Serializable {
 	}
 
 	/**
-	 * Constructor for the connection
-	 * 
-	 * @param user
-	 */
-	public Users(Users user) {
-		this.enabled = user.isEnabled();
-		this.email = user.getEmail();
-		this.roles = user.getRoles();
-		this.lastName = user.getLastName();
-		this.firstName = user.getFirstName();
-		this.username = user.getUsername();
-		this.password = user.getPassword();
-	}
-
-	/**
 	 * Constructor with parameters
 	 * 
 	 * @param username

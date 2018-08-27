@@ -60,7 +60,7 @@ public class RegistrationController {
 			model.addAttribute("errorsMap", errorsMap);
 		}
 
-		return "login";
+		return "login"; 
 	}
 
 	/**

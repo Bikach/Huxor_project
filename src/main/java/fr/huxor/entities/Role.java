@@ -23,7 +23,7 @@ public class Role {
 	 * Default constructor
 	 */
 	public Role() {
-	}
+	} 
 
 	// ===== Getters & Setters =====//
 
