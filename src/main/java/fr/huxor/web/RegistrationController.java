@@ -7,6 +7,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -53,7 +54,7 @@ public class RegistrationController {
 			errorsMap.put("email", "l'email est incorrect ");
 
 		if (errorsMap.isEmpty()) {
-			userService.addCustomer(username, email, password, lastName, firstName, false, DATE_FORMAT.parse(birthday),
+			userService.addCustomer(username, email, new BCryptPasswordEncoder().encode(password), lastName, firstName, false, DATE_FORMAT.parse(birthday),
 					driveLicence, new Addresses(street, city, zip));			
 			model.addAttribute("succes", "Votre inscription est bien enregistrée, vous pouvez désormée vous connectez avec votre identifiant !");
 		}else {

@@ -32,8 +32,9 @@
 							<button class="btn huxor-btn huxor-dark nav-hover nav-active" type="submit">authentifier</button>
 						</div>
 					</form>
-					<span class="text-success" th:if="${succes}"> [[${succes}]]</span>
-					
+					 <ul class="nav navbar-nav navbar-right">
+						<li><a class="nav-link" th:href="@{/login?logout}" >Déconnexion</a></li>		 
+		 			</ul>					
 				</article>
 				
 				<!-- Registration -->

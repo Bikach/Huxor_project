@@ -8,6 +8,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @EnableWebSecurity
 @Configuration 
@@ -17,24 +18,25 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	private DataSource dataSource;
 
     
-	@Override
-	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().antMatchers("/huxor").permitAll()
-		.antMatchers("/availableCars").permitAll()
-//		.antMatchers("/consulterCompte").hasAnyRole("USER", "ADMIN")
-//		.antMatchers("/saveOperation").hasAnyRole("ADMIN")
-		.anyRequest().authenticated()
-		.and()
-		.formLogin().loginPage("/login").permitAll()
-		.and().logout().permitAll();
-		http.csrf().disable();
-
-	}
-	
-    @Autowired
+	 
+    @Override
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
-
-
+    	auth.jdbcAuthentication()
+    		.dataSource(dataSource)
+    		.usersByUsernameQuery("select username as principale, password as credentials, enabled from users where username=?")
+			.authoritiesByUsernameQuery("select username as principale, role_id as role from user_role where username=?")
+			.rolePrefix("ROLE_")
+			.passwordEncoder(new BCryptPasswordEncoder());
+    }
+    
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+    	http.formLogin().loginPage("/login");
+    	http.authorizeRequests().antMatchers("/reserver").hasAnyRole("USER", "MANAGER")
+    	.antMatchers("/backOffice").hasRole("ADMIN");
+    	http.exceptionHandling().accessDeniedPage("/403");
+    	http.csrf().disable();
+    	
     }
 	
 

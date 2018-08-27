@@ -11,6 +11,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.domain.Page;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import fr.huxor.dao.IBrandsRepository;
 import fr.huxor.dao.ICarsRepository;
@@ -58,9 +59,10 @@ public class HuxorProject1Application implements CommandLineRunner {
 //		usersService.addCustomer("Use2", "use2@email.com", "1234", "Brad", "Pit", false,
 //				DATE.parse("1977-10-06"), "2808738947",
 //				new Addresses("3 rue Victor Hugo", "Bondy", "93300"));
-//		usersService.addCustomer("Use3", "use3@email.com", "1234", "Pamela", "Anderson", true,
-//				DATE.parse("1968-03-20"), "9382473347",
-//				new Addresses("342 rue malibu", "Montrouge", "92100"));
+//		usersService.addCustomer("Use6", "use3@email.com", "azerty", "John", "Phenix", true,
+//				DATE.parse("1968-03-20"), "9723672989",
+//				new Addresses("123 boulevard Raspail", "Paris", "75014"));
+		
 //
 		// Cars test
 //		rentalService.addACar("immat 1", 12500,  70d, 1.5f, (byte) 5, (byte) 5, (byte) 7, "bleu",
@@ -157,6 +159,8 @@ public class HuxorProject1Application implements CommandLineRunner {
 		
 //		Page<Messages> messagePage = contactService.viewMessage(DATE.parse("2018-08-12"), DATE.parse("2018-08-16"), false, 1, 5);
 //		System.out.println(messagePage.getTotalElements());
+
+//		System.out.println("pass : " + new BCryptPasswordEncoder().encode("azerty"));
 
 
 		
