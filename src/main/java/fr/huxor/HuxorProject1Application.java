@@ -65,66 +65,27 @@ public class HuxorProject1Application implements CommandLineRunner {
 		
 //
 		// Cars test
-//		rentalService.addACar("immat 1", 12500,  70d, 1.5f, (byte) 5, (byte) 5, (byte) 7, "bleu",
+//		rentalService.addACar("immat 1", "assets/voitures/bmw-serie-5-noir.png",12500,  70d, 1.5f, (byte) 5, (byte) 5, (byte) 7, "bleu",
 //				"automatique", "gazol", "BERLINE", "BMW", "SERIE 5");
-//		rentalService.addACar("immat 2", 14070, 50d, 1f, (byte) 5, (byte) 5, (byte) 6,
+//		rentalService.addACar("immat 2", "assets/voitures/citroen-C4-blanc.pngs", 14070, 50d, 1f, (byte) 5, (byte) 5, (byte) 6,
 //				"blanche", "manuelle", "essence", "COMPACT", "CITROEN", "C4");
-//		rentalService.addACar("immat 3", 22500,  50d, 1f, (byte) 3, (byte) 5, (byte) 6, "rouge",
+//		rentalService.addACar("immat 3", "assets/voitures/peugeot-308-rouge.png",  22500,  50d, 1f, (byte) 3, (byte) 5, (byte) 6, "rouge",
 //				"manuelle", "gazol", "COMPACT", "PEUGEOT", "308");
-//		rentalService.addACar("immat 4", 8900, 35d, 0.8f, (byte) 2, (byte) 4, (byte) 5, "jaune",
+//		rentalService.addACar("immat 4", "assets/voitures/fiat-500-jaune.png", 8900, 35d, 0.8f, (byte) 2, (byte) 4, (byte) 5, "jaune",
 //				"manuelle", "essence", "CITADINE", "FIAT", "500");
-//		rentalService.addACar("immat 5", 32500,  60d, 1.2f, (byte) 5, (byte) 6, (byte) 6,
-//				"vert", "automatique", "gazol", "FAMILIALE", "FORD", "CMAX");
-//		rentalService.addACar("immat 6", 8900, 100d, 2f, (byte) 5, (byte) 5, (byte) 8, "black",
+//		rentalService.addACar("immat 5", "assets/voitures/ford-c-max-bleu.png", 32500,  60d, 1.2f, (byte) 5, (byte) 6, (byte) 6,
+//				"bleu", "automatique", "gazol", "FAMILIALE", "FORD", "CMAX");
+//		rentalService.addACar("immat 6", "assets/voitures/mercedes-classe-s-noir.png.png", 8900, 100d, 2f, (byte) 5, (byte) 5, (byte) 8, "black",
 //				"automatique", "gazol", "LUXE", "MERCEDES", "CLASSE S");
-//		rentalService.addACar("immat 7", 9400, 100d, 2f, (byte) 5, (byte) 5, (byte) 8, "black",
+//		rentalService.addACar("immat 7", "assets/voitures/bmw-7-Series-noir.png",  9400, 100d, 2f, (byte) 5, (byte) 5, (byte) 8, "black",
 //				"automatique", "gazol", "LUXE", "BMW","SERIE 7");
-//		rentalService.addACar("immat 8", 21500, 70d, 1.5f, (byte) 5, (byte) 5, (byte) 7, "bleu",
+//		rentalService.addACar("immat 8", "assets/voitures/mercedes-classe-e-bleu.png", 21500, 70d, 1.5f, (byte) 5, (byte) 5, (byte) 7, "bleu",
 //				"automatique", "gazol", "BERLINE","MERCEDES","CLASSE E");
-//		rentalService.addACar("immat 9", 11340, 35d, 0.8f, (byte) 4, (byte) 5, (byte) 4, "jaune",
+//		rentalService.addACar("immat 9", "assets/voitures/renault-twingo-jaune.png", 11340, 35d, 0.8f, (byte) 4, (byte) 5, (byte) 4, "jaune",
 //				"manuelle", "essence", "CITADINE", "RENAULT", "TWINGO");
-//		rentalService.addACar("immat 10", 25730, 60d, 1.2f, (byte) 5, (byte) 5, (byte) 6, "rouge",
+//		rentalService.addACar("immat 10", "assets/voitures/peugeot-5008-gris.png", 25730, 60d, 1.2f, (byte) 5, (byte) 5, (byte) 6, "rouge",
 //			"automatique", "gazol", "FAMILIALE", "PEUGEOT", "5008");
-//		rentalService.addACar("assets/bmw-serie-5-blanc.png","immat 11", 2500,  70d, 1.5f, (byte) 5, (byte) 5, (byte) 7, "blanche",
-//				"automatique", "gazol", "BERLINE", "BMW", "SERIE 5");
-//		rentalService.addACar("immat 12", 14070, 50d, 1f, (byte) 5, (byte) 5, (byte) 6,
-//				"noir", "manuelle", "essence", "COMPACT", "CITROEN", "C4");
-//		rentalService.addACar("immat 13", 22500,  50d, 1f, (byte) 3, (byte) 5, (byte) 6, "rouge",
-//				"manuelle", "gazol", "COMPACT", "PEUGEOT", "308");
-//		rentalService.addACar("immat 14", 8900, 35d, 0.8f, (byte) 2, (byte) 4, (byte) 5, "jaune",
-//				"manuelle", "essence", "CITADINE", "FIAT", "500");
-//		rentalService.addACar("immat 15", 32500,  60d, 1.2f, (byte) 5, (byte) 6, (byte) 6,
-//				"vert", "automatique", "gazol", "FAMILIALE", "FORD", "CMAX");
-//		rentalService.addACar("immat 16", 8900, 100d, 2f, (byte) 5, (byte) 5, (byte) 8, "black",
-//				"automatique", "gazol", "LUXE", "MERCEDES", "CLASSE S");
-//		rentalService.addACar("immat 17", 9400, 100d, 2f, (byte) 5, (byte) 5, (byte) 8, "black",
-//				"automatique", "gazol", "LUXE", "BMW","SERIE 7");
-//		rentalService.addACar("immat 18", 21500, 70d, 1.5f, (byte) 5, (byte) 5, (byte) 7, "bleu",
-//				"automatique", "gazol", "BERLINE","MERCEDES","CLASSE E");
-//		rentalService.addACar("immat 19", 11340, 35d, 0.8f, (byte) 4, (byte) 5, (byte) 4, "jaune",
-//				"manuelle", "essence", "CITADINE", "RENAULT", "TWINGO");
-//		rentalService.addACar("immat 20", 25730, 60d, 1.2f, (byte) 5, (byte) 5, (byte) 6, "rouge",
-//				"automatique", "gazol", "FAMILIALE", "PEUGEOT", "5008");
-//		rentalService.addACar("immat 21", 12500,  70d, 1.5f, (byte) 5, (byte) 5, (byte) 7, "bleu",
-//				"automatique", "gazol", "BERLINE", "BMW", "SERIE 5");
-//		rentalService.addACar("immat 22", 14070, 50d, 1f, (byte) 5, (byte) 5, (byte) 6,
-//				"blanche", "manuelle", "essence", "COMPACT", "CITROEN", "C4");
-//		rentalService.addACar("immat 23", 22500,  50d, 1f, (byte) 3, (byte) 5, (byte) 6, "rouge",
-//				"manuelle", "gazol", "COMPACT", "PEUGEOT", "308");
-//		rentalService.addACar("immat 24", 8900, 35d, 0.8f, (byte) 2, (byte) 4, (byte) 5, "jaune",
-//				"manuelle", "essence", "CITADINE", "FIAT", "500");
-//		rentalService.addACar("immat 25", 32500,  60d, 1.2f, (byte) 5, (byte) 6, (byte) 6,
-//				"vert", "automatique", "gazol", "FAMILIALE", "FORD", "CMAX");
-//		rentalService.addACar("immat 26", 8900, 100d, 2f, (byte) 5, (byte) 5, (byte) 8, "black",
-//				"automatique", "gazol", "LUXE", "MERCEDES", "CLASSE S");
-//		rentalService.addACar("immat 27", 9400, 100d, 2f, (byte) 5, (byte) 5, (byte) 8, "black",
-//				"automatique", "gazol", "LUXE", "BMW","SERIE 7");
-//		rentalService.addACar("immat 28", 21500, 70d, 1.5f, (byte) 5, (byte) 5, (byte) 7, "bleu",
-//				"automatique", "gazol", "BERLINE","MERCEDES","CLASSE E");
-//		rentalService.addACar("immat 29", 11340, 35d, 0.8f, (byte) 4, (byte) 5, (byte) 4, "jaune",
-//				"manuelle", "essence", "CITADINE", "RENAULT", "TWINGO");
-//		rentalService.addACar("immat 30", 25730, 60d, 1.2f, (byte) 5, (byte) 5, (byte) 6, "rouge",
-//				"automatique", "gazol", "FAMILIALE", "PEUGEOT", "5008");
+		
 		
 //		Page<Cars> carPage = rentalService.carListAvailable(DATE.parse("2018-12-05"), DATE.parse("2018-12-24"), 1, 10);
 //		System.out.println(carPage.getTotalElements());
