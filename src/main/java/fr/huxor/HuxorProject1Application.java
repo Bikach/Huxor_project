@@ -3,6 +3,7 @@ package fr.huxor;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.Date;
 import java.util.List;
 
@@ -122,9 +123,20 @@ public class HuxorProject1Application implements CommandLineRunner {
 //		System.out.println(messagePage.getTotalElements());
 
 //		System.out.println("pass : " + new BCryptPasswordEncoder().encode("azerty"));
+		
+		
+		
 
-
+//		System.out.println(birthdayValidate("1994-02-01"));
 		
 	}
 	
+	
+//	private boolean birthdayValidate(String birthday) {
+//		LocalDate birthDate = LocalDate.parse(birthday);
+//		LocalDate dateDays = LocalDate.now();
+//		double nbYear =  ChronoUnit.YEARS.between( birthDate, dateDays);
+//		System.out.println(nbYear);
+//		return (nbYear >= 25)? true : false;
+//	}
 }

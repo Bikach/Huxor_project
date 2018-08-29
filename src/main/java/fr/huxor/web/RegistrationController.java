@@ -2,7 +2,12 @@ package fr.huxor.web;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+import java.time.temporal.Temporal;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -18,6 +23,8 @@ import fr.huxor.service.IUsersService;
 
 @Controller
 public class RegistrationController {
+	
+	private static int NB_YEAR_MIN= 25;
 
 	@Autowired
 	IUsersService userService;
@@ -45,20 +52,23 @@ public class RegistrationController {
 			String lastName, String firstName, String driveLicence, String birthday, String street, String city,
 			String zip) throws ParseException {
 
-		HashMap<String, String> errorsMap = new HashMap<>();
+		List<String> errorsList = new ArrayList<>();
 
 		if (!password.equals(confirmPassword))
-			errorsMap.put("pass", "le mot de passe n'est pas identique ");
+			errorsList.add(0, "le mot de passe n'est pas identique ");
 
 		if (!emailValidate(email))
-			errorsMap.put("email", "l'email est incorrect ");
+			errorsList.add(1, "l'email est incorrect ");
+		
+		if(!birthdayValidate(birthday))
+			errorsList.add(2, "Vous devez avoir 25 ans minimum au moment de la réservation, merci !");
 
-		if (errorsMap.isEmpty()) {
+		if (errorsList.isEmpty()) {
 			userService.addCustomer(username, email, new BCryptPasswordEncoder().encode(password), lastName, firstName, false, DATE_FORMAT.parse(birthday),
 					driveLicence, new Addresses(street, city, zip));			
-			model.addAttribute("succes", "Votre inscription est bien enregistrée, vous pouvez désormée vous connectez avec votre identifiant !");
+			model.addAttribute("succes", "Votre inscription est bien enregistrée, vouscalculer une duree en annee depuis une date anterieur a celle du jour java date pouvez désormée vous connectez avec votre identifiant !");
 		}else {
-			model.addAttribute("errorsMap", errorsMap);
+			model.addAttribute("errorsMap", errorsList);
 		}
 
 		return "login"; 
@@ -81,8 +91,10 @@ public class RegistrationController {
 	 * @param birthdday
 	 * @return boolean
 	 */
-	private boolean birthdayValidate(String birthdday) {
-
-		return false;
+	private boolean birthdayValidate(String birthday) {
+		LocalDate birthDate = LocalDate.parse(birthday);
+		LocalDate dateDays = LocalDate.now();
+		long nbYear =  ChronoUnit.YEARS.between( birthDate, dateDays);
+		return (nbYear >= NB_YEAR_MIN)? true : false;
 	}
 }

@@ -13,8 +13,9 @@
 			<li class="nav-item"><a class="nav-link head-nav nav-hover nav-active" href="/#rent">Louer</a></li>
 			<li class="nav-item "><a class="nav-link head-nav nav-hover nav-active" href="/#service">Service</a></li>
 			<li class="nav-item "><a class="nav-link head-nav nav-hover nav-active" href="/#contact">Contact</a></li>
-			<li class="nav-item "><a class="nav-link head-nav nav-hover nav-active" th:href="@{/login}">Connexion</a></li>
+			<li class="nav-item " th:if="${#httpServletRequest.remoteUser == null}"><a class="nav-link head-nav nav-hover nav-active" th:href="@{/login}">Connexion</a></li>
 		</ul>
-			<span  class="navbar-text " th:if="${#httpServletRequest.remoteUser}"  th:inline="text">Bienvenue [[${#httpServletRequest.remoteUser}]] !</span>
+			<span  class="navbar-text" th:if="${#httpServletRequest.remoteUser != null}"  th:inline="text">Bienvenue [[${#httpServletRequest.remoteUser}]] !  
+				<a class="nav-link head-nav nav-hover nav-active" href="#">Mon compte</a></span>
 	</div>
 </nav>
