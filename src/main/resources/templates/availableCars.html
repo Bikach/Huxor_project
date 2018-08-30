@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeLeaf.org" >
+<html xmlns:th="http://www.thymeLeaf.org"  xmlns:sec="http://www.thymeLeaf.org/extras/spring-security">
 
 	<head>
 		<meta charset="UTF-8">
@@ -14,7 +14,6 @@
 		
 		<div class="container cars">
 			<div class="row">
-				<span class="text-danger" th:text="${#httpServletRequest.getParameter('exception')}"></span>	
 				<div th:each="car:${carsList}">
 					<div class="card">
 				  		<img class="card-img-top pic-size" th:attr="src=@{${car.picturePath}},alt='car picture'">
@@ -26,7 +25,7 @@
 						    	<li class="list-group-item"><span class="item" >Boite : </span>[[${car.transmission}]]</li>
 						    	<li class="list-group-item price" >[[${rental.totalPriceWithoutKm(startDate, endDate, car.dailyPrice)}]] €</li>
 						  	</ul>
-				    		<a href="#" class="btn huxor-btn huxor-dark nav-hover .nav-active card-btn">Réserver</a>
+				    		<a th:href="@{/confirmBooking(licencePlate=${car.licencePlate})}" ><button class="btn huxor-btn huxor-dark nav-hover .nav-active card-btn" >Réserver</button></a>
 				  		</div>
 					</div>
 				</div>

@@ -41,7 +41,7 @@ public class IndexController {
 	@RequestMapping(value = "/availableCars")
 	public String availableCars(Model model,
 			@RequestParam(name="page", defaultValue="0")int page, 
-			@RequestParam(name="size", defaultValue="6")int size,
+			@RequestParam(name="size", defaultValue="8")int size,
 			String startDate, String endDate)  {
 		
 		try {
@@ -52,8 +52,9 @@ public class IndexController {
 			model.addAttribute("startDate", startDate);
 			model.addAttribute("endDate", endDate);
 			model.addAttribute("rental",rentalService);
-		} catch (CustomException | ParseException e) {
-			model.addAttribute("exception", e);
+		} catch (CustomException  | ParseException e) {
+			model.addAttribute("falseDate",e);
+			return "redirect:/?falseDate=" +e.getMessage();
 		}
 		
 		return "availableCars";

@@ -51,12 +51,12 @@
 								<label for="inputConfirm">Comfirmer password</label>
 								<input type="password" class="form-control" id="inputConfirm" name="confirmPassword" placeholder="confirmer mot de passe" required="required">
 							</div>
-							<span class="text-danger" th:if="${errorsList[0] != null}" th:text="${errorsList[0}}"></span>
+							<span class="text-danger" th:if="${errorsList}" th:text="${errorsList.get(pass)}"></span>
 						</div>
 						<div class="form-group">
 							<label for="inputEmail">Email</label>
 							<input type="email" class="form-control" id="inputEmail" name="email"  placeholder="lorem@email.com" required="required">
-							<span class="text-danger" th:if="${errorsList[1] != null}" th:text="${errorsList[1]}"></span>
+							<span class="text-danger" th:if="${errorsList}" th:text="${errorsList.get(email)}"></span>
 						</div>
 						<div class="form-row">
 							<div class="form-group col-md-6">
@@ -90,7 +90,7 @@
 					  		<div class="form-group col-md-6">
 					    		<label for= "birth">Date de naissance</label>
 					    		<input type="date"  class="form-control" id="birth" name="birthday" min="1918-01-01"  required="required"/>
-					    		<span class="text-danger" th:if="${errorsList[2] != null}" th:text="${errorsList[2]}"></span>
+					    		<span class="text-danger" th:if="${errorsList}" th:text="${errorsList.get(birth)}"></span>
 					  		</div>
 						</div>
 						<button type="submit" class="btn huxor-btn huxor-dark nav-hover nav-active">inscription</button>

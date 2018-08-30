@@ -62,7 +62,6 @@ public class RentalServiceImpl implements IRentalService {
 		Customers user = (Customers) userService.findAUser(username);
 		Cars car = findACar(licencePlate);
 		double totalPrice = totalPriceWithoutKm(startDate, endDate, Double.toString(car.getDailyPrice()));
-		System.out.println("total");
 		try {
 			leaseRepo.save(new LeaseAgreements(null, DATE_FORMAT.parse(startDate), DATE_FORMAT.parse(endDate),
 					car.getKmNumber(), 0, user, car, totalPrice));

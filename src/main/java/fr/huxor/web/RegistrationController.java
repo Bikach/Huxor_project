@@ -4,10 +4,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
-import java.time.temporal.Temporal;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -52,16 +49,16 @@ public class RegistrationController {
 			String lastName, String firstName, String driveLicence, String birthday, String street, String city,
 			String zip) throws ParseException {
 
-		List<String> errorsList = new ArrayList<>();
+		HashMap<String, String> errorsList = new HashMap<>();
 
 		if (!password.equals(confirmPassword))
-			errorsList.add(0, "le mot de passe n'est pas identique ");
+			errorsList.put("pass", "le mot de passe n'est pas identique ");
 
 		if (!emailValidate(email))
-			errorsList.add(1, "l'email est incorrect ");
+			errorsList.put("email", "l'email est incorrect ");
 		
 		if(!birthdayValidate(birthday))
-			errorsList.add(2, "Vous devez avoir 25 ans minimum au moment de la réservation, merci !");
+			errorsList.put("birth", "Vous devez avoir 25 ans minimum au moment de la réservation, merci !");
 
 		if (errorsList.isEmpty()) {
 			userService.addCustomer(username, email, new BCryptPasswordEncoder().encode(password), lastName, firstName, false, DATE_FORMAT.parse(birthday),
