@@ -1,6 +1,7 @@
 package fr.huxor.entities;
 
 import java.util.Date;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.DiscriminatorValue;
@@ -34,7 +35,7 @@ public class Customers extends Users {
 	 * Default constructor
 	 */
 	public Customers() {
-		super();
+		super(); 
 	}
 
 	/**
@@ -51,13 +52,13 @@ public class Customers extends Users {
 	 * @param address
 	 */
 	public Customers(String username,  String email, String password, String lasName, String firstName, boolean enabled,
-			Date birthDate, String drivingLicenceNumber, Addresses address) {
-		super(username,  email, password, lasName, firstName, enabled);
+			Date birthDate, String drivingLicenceNumber, Addresses address, Set<Role>roles) {
+		super(username, email, password, lasName, firstName, enabled, roles);
 		this.birthDate = birthDate;
 		this.drivingLicenceNumber = drivingLicenceNumber;
 		this.address = address;
 	}
-
+ 
 	// ===== Getters & Setters =====//
 
 	public Date getBirthDate() {

@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-center huxor-dark fixed-top"
-	xmlns:th="http://www.thymeLeaf.org" th:fragment="header">
+	xmlns:th="http://www.thymeLeaf.org" th:fragment="header" xmlns:sec="http://www.thymeLeaf.org/extras/spring-security">
 	<a class="navbar-brand" href="/"> 
 	<img src="assets/logo_huxor.png" class="d-inline-block align-top logo-head" alt="logo_huxor">
 	</a>
@@ -13,9 +13,9 @@
 			<li class="nav-item"><a class="nav-link head-nav nav-hover nav-active" href="/#rent">Louer</a></li>
 			<li class="nav-item "><a class="nav-link head-nav nav-hover nav-active" href="/#service">Service</a></li>
 			<li class="nav-item "><a class="nav-link head-nav nav-hover nav-active" href="/#contact">Contact</a></li>
-			<li class="nav-item " th:if="${#httpServletRequest.remoteUser == null}"><a class="nav-link head-nav nav-hover nav-active" th:href="@{/login}">Connexion</a></li>
+			<li class="nav-item " sec:authorize="isAnonymous()" ><a class="nav-link head-nav nav-hover nav-active" th:href="@{/login}">Connexion</a></li>
 		</ul>
-			<span  class="navbar-text" th:if="${#httpServletRequest.remoteUser != null}"  th:inline="text">Bienvenue [[${#httpServletRequest.remoteUser}]] !  
+			<span  class="navbar-text" sec:authorize="isAuthenticated()"  th:inline="text">Bienvenue [[${#httpServletRequest.remoteUser}]] !  
 				<a class="nav-link head-nav nav-hover nav-active" href="#">Mon compte</a></span>
 	</div>
 </nav>

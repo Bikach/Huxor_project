@@ -56,13 +56,14 @@ public abstract class Users implements Serializable {
 	 * @param enabled
 	 * 
 	 */
-	public Users(String username, String email, String password, String lasName, String firstName, boolean enabled) {
+	public Users(String username, String email, String password, String lasName, String firstName, boolean enabled, Set<Role> roles) {
 		this.username = username;
 		this.email = email;
 		this.password = password;
 		this.lastName = lasName;
 		this.firstName = firstName;
 		this.enabled = enabled;
+		this.roles = roles;
 	}
 
 	// ===== Getters & Setters =====//

@@ -35,12 +35,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
     	http.formLogin().loginPage("/login");
-    	http.authorizeRequests().antMatchers("/reserver").hasAnyRole("USER", "MANAGER")
-    	.antMatchers("/backOffice").hasRole("ADMIN")
-    	.and()
-        .sessionManagement().maximumSessions(1)
-        .sessionRegistry(sessionRegistry());
-//        http.logout().invalidateHttpSession(false);
+    	http.authorizeRequests()
+    		.antMatchers("/confirmBooking").hasAnyRole("USER", "MANAGER")
+    		.antMatchers("/backOffice").hasRole("MANAGER")
+    		.and()
+    		.sessionManagement().maximumSessions(1)
+    		.sessionRegistry(sessionRegistry());
+//     http.logout().invalidateHttpSession(false);
         http.csrf().disable();
     	
     }

@@ -1,5 +1,7 @@
 package fr.huxor.entities;
 
+import java.util.Set;
+
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.PrimaryKeyJoinColumn;
@@ -34,10 +36,10 @@ public class Managers extends Users {
 	 * @param registrationNumber
 	 */
 	public Managers(String username, String email, String password, String lasName, String firstName, boolean enabled,
-			String registrationNumber) {
-		super(username, email, password, lasName, firstName, enabled);
+			String registrationNumber, Set<Role> roles) {
+		super(username, email, password, lasName, firstName, enabled, roles);
 		this.registrationNumber = registrationNumber;
-	}
+	} 
 
 	// ===== Getters & Setters =====//
 

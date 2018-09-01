@@ -5,6 +5,8 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -16,10 +18,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import fr.huxor.entities.Addresses;
+import fr.huxor.entities.Role;
 import fr.huxor.service.IUsersService;
 
 @Controller
-public class RegistrationController {
+public class RegistrationController { 
 	
 	private static int NB_YEAR_MIN= 25;
 
@@ -50,6 +53,10 @@ public class RegistrationController {
 			String zip) throws ParseException {
 
 		HashMap<String, String> errorsList = new HashMap<>();
+		Set<Role> roles = new HashSet<>();
+		Role role = new Role();
+		role.setRole("USER");
+		roles.add(role);
 
 		if (!password.equals(confirmPassword))
 			errorsList.put("pass", "le mot de passe n'est pas identique ");
@@ -62,8 +69,8 @@ public class RegistrationController {
 
 		if (errorsList.isEmpty()) {
 			userService.addCustomer(username, email, new BCryptPasswordEncoder().encode(password), lastName, firstName, false, DATE_FORMAT.parse(birthday),
-					driveLicence, new Addresses(street, city, zip));			
-			model.addAttribute("succes", "Votre inscription est bien enregistrée, vouscalculer une duree en annee depuis une date anterieur a celle du jour java date pouvez désormée vous connectez avec votre identifiant !");
+					driveLicence, new Addresses(street, city, zip), roles);			
+			model.addAttribute("succes", "Votre inscription est bien enregistrée, vous pouvez désormée vous connectez avec votre identifiant !");
 		}else {
 			model.addAttribute("errorsMap", errorsList);
 		}

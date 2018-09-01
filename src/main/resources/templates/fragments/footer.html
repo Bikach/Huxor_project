@@ -13,10 +13,8 @@
 				<p><a class="btn btn-foot huxor-btn huxor-dark nav-hover nav-active" href="#" role="button">Info &raquo;</a></p>
 			</div>		
 			<div class="offset-md-1">
-				<div th:switch="${#httpServletRequest.remoteUser}? ${true} : ${false}">
-				    <span th:case="${false}"><a class="link-footer" th:href="@{/login}">Connexion</a>	</span>
-				    <span th:case="${true}"><a class="link-footer" th:href="@{/login?logout}">Déconnexion</a>	</span>
-				</div>
+			    <span sec:authorize="isAnonymous()"><a class="link-footer" th:href="@{/login}">Connexion</a>	</span>
+			    <span sec:authorize= "isAuthenticated()"><a class="link-footer" th:href="@{/login?logout}">Déconnexion</a>	</span>
 			</div>
 			<div class="offset-md-2">
 				<a class="navbar-brand" href="/"> 

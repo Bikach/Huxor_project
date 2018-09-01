@@ -2,6 +2,7 @@ package fr.huxor.service;
 
 import java.util.Date;
 import java.util.Optional;
+import java.util.Set;
 
 import javax.transaction.Transactional;
 
@@ -13,8 +14,9 @@ import fr.huxor.entities.Addresses;
 import fr.huxor.entities.CustomException;
 import fr.huxor.entities.Customers;
 import fr.huxor.entities.Managers;
+import fr.huxor.entities.Role;
 import fr.huxor.entities.Users;
-
+ 
 @Service
 @Transactional
 public class UsersServiceImpl implements IUsersService {
@@ -23,13 +25,13 @@ public class UsersServiceImpl implements IUsersService {
 	private IUsersRepository usersRepo;
 
 	// ===== Customer/Manager =====//
-
-	@Override
-	public void addCustomer(String username, String email, String password, String lastName, String firstName, boolean enabled,
-			Date birthDate, String drivingLicenceNumber, Addresses address) {
-		usersRepo.save(new Customers(username, email, password, lastName, firstName, enabled, birthDate, drivingLicenceNumber, address));
-	}
 	
+	@Override
+	public void addCustomer(String username, String email, String passwordEncoder, String lastName, String firstName,
+			boolean enabled, Date birthDate, String drivingLicenceNumber, Addresses address, Set<Role> roles) {
+		usersRepo.save(new Customers(username, email, passwordEncoder, lastName, firstName, enabled, birthDate, drivingLicenceNumber, address, roles));
+		
+	}
 
 	@Override
 	public void updateCustomer(String idCustomer) {
@@ -42,11 +44,11 @@ public class UsersServiceImpl implements IUsersService {
 	}
 
 	// ===== Admin =====//
-
+	
 	@Override
 	public void addManager(String username, String email, String password, String lastName, String firstName, boolean enabled,
-			String registrationNumber) {
-		usersRepo.save(new Managers(username, email, password, lastName, firstName, enabled, registrationNumber));
+			String registrationNumber, Set<Role> roles) {
+		usersRepo.save(new Managers(username, email, password, lastName, firstName, enabled, registrationNumber, roles));
 	}
 
 	@Override
@@ -60,7 +62,7 @@ public class UsersServiceImpl implements IUsersService {
 	}
 
 	// ===== Manager/Admin =====//
-
+	
 	@Override
 	public Users findAUser(String username) throws CustomException {
 		Optional<Users> user = usersRepo.findById(username);
@@ -70,7 +72,5 @@ public class UsersServiceImpl implements IUsersService {
 		Users u = user.get();
 		return u;
 	}
-
-
 
 }
