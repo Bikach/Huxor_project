@@ -31,6 +31,8 @@ h6{
 
 .huxor-btn{  font-weight: bold; }
 
+.margin-top { margin-top: 9.9ex }
+
 /* ===== HEADER ===== */
 .logo-head{
 	width: 7ex;
@@ -54,7 +56,6 @@ h6{
 	background-image: url("../assets/fond_ecran_car.jpg");
 	background-repeat : no-repeat;
 	background-size: 100%;
-	margin-top: 11ex;
 }
 
 .para-rent{

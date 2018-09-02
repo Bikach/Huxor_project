@@ -17,6 +17,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import fr.huxor.dao.IRoleRepository;
 import fr.huxor.entities.Addresses;
 import fr.huxor.entities.Role;
 import fr.huxor.service.IUsersService;
@@ -28,6 +29,8 @@ public class RegistrationController {
 
 	@Autowired
 	IUsersService userService;
+	@Autowired
+	IRoleRepository roleRepo;
 
 	public static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
 	public static final Pattern VALID_EMAIL_ADDRESS_REGEX = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$",
@@ -54,8 +57,7 @@ public class RegistrationController {
 
 		HashMap<String, String> errorsList = new HashMap<>();
 		Set<Role> roles = new HashSet<>();
-		Role role = new Role();
-		role.setRole("USER");
+		Role role = roleRepo.findByName("USER");
 		roles.add(role);
 
 		if (!password.equals(confirmPassword))

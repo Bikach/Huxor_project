@@ -14,7 +14,7 @@
 			</div>		
 			<div class="offset-md-1">
 			    <span sec:authorize="isAnonymous()"><a class="link-footer" th:href="@{/login}">Connexion</a>	</span>
-			    <span sec:authorize= "isAuthenticated()"><a class="link-footer" th:href="@{/login?logout}">Déconnexion</a>	</span>
+			    <span sec:authorize= "isAuthenticated()"><a class="link-footer" th:href="@{/logout}">Déconnexion</a>	</span>
 			</div>
 			<div class="offset-md-2">
 				<a class="navbar-brand" href="/"> 
