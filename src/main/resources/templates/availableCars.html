@@ -25,7 +25,7 @@
 						    	<li class="list-group-item"><span class="item" >Boite : </span>[[${car.transmission}]]</li>
 						    	<li class="list-group-item price" >[[${rental.totalPriceWithoutKm(startDate, endDate, car.dailyPrice)}]] €</li>
 						  	</ul>
-				    		<a th:href="@{/confirmBooking(licencePlate=${car.licencePlate})}" ><button class="btn huxor-btn huxor-dark nav-hover .nav-active card-btn" >Réserver</button></a>
+				    		<a th:href="@{/user/confirmBooking(licencePlate=${car.licencePlate})}" ><button class="btn huxor-btn huxor-dark nav-hover .nav-active card-btn" >Réserver</button></a>
 				  		</div>
 					</div>
 				</div>

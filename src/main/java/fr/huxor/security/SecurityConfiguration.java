@@ -30,21 +30,33 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 			.authoritiesByUsernameQuery("select username as principale, role_id as role from user_role where username=?")
 			.rolePrefix("ROLE_")
 			.passwordEncoder(new BCryptPasswordEncoder());
+    	
     }
+    
+    
+    
+//	@Autowired
+//	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+//		authO
+//			.inMemoryAuthentication()
+//				.withUser("batman").password("aze").roles("USER");
+//	}
     
     @Override
     protected void configure(HttpSecurity http) throws Exception {
     	http.formLogin().loginPage("/login");
     	http.authorizeRequests()
-    		.antMatchers("/confirmBooking").hasAnyRole("USER", "MANAGER")
-    		.antMatchers("/backOffice").hasRole("MANAGER")
+    		.antMatchers("/","/css/**", "/js/**", "/availableCars","/contactForm", "/services").permitAll()
+    		.antMatchers("/user/**").hasAnyRole("USER")
+    		.antMatchers("/manager/**").hasRole("MANAGER")
+    		.antMatchers("/admin/**").hasRole("ADMIN")
     		.and()
     		.sessionManagement().maximumSessions(1)
     		.sessionRegistry(sessionRegistry());
-//     http.logout().invalidateHttpSession(false);
         http.csrf().disable();
     	
     }
+
     
     /**
      * Is closed, we need to have this custom sessionRegistry

@@ -9,7 +9,7 @@ public class BookingController {
 	/**
 	 * @return confirmBooking.html
 	 */
-	@RequestMapping(value = "/confirmBooking")
+	@RequestMapping(value = "/user/confirmBooking")
 	public String Booking() {
 		return "confirmBooking";
 	}
@@ -19,7 +19,7 @@ public class BookingController {
 	 * 
 	 * @return userAccount.html
 	 */
-	@RequestMapping(value = "/userAccount")
+	@RequestMapping(value = "/user/userAccount")
 	public String confirmBooking() {
 		// TODO
 		return "userAccount";
