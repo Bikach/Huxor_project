@@ -101,8 +101,8 @@ h6{
 }
 
 .pic-size{
-	height: 18ex;
- 	width: 30.25ex; 
+	height: 40%;
+ 	width: 100%; 
 }
 
 .card-title{
@@ -113,9 +113,7 @@ h6{
 
 .card-text{ font-style: italic; }
 
-.card-btn{ 
-	margin-left: 7ex;
-}
+.card-btn{ margin-left: 7ex; }
 
 .item{ color:	#9caabb; }
 
@@ -137,8 +135,25 @@ h6{
 }
 
 /* ===== BOOKING =====*/
-.booking{
-	margin-top: 15ex;
+.booking{ margin-top: 15ex; }
+
+.descript{ }
+
+.paiement { border: 1px solid black }
+
+.creditCard{ border: 1px solid black }
+
+.confirm { border: 1px solid black }
+
+.card-booking {
+	margin: 2ex ;
+/* 	height: 70ex; */
+	width: 90%;
+}
+
+.pic-size-booking {
+	height: 30%;
+ 	width: 90%; 
 }
 
 

@@ -12,11 +12,48 @@
 		<!-- header.html -->
 		<header  th:replace="fragments/header :: header"></header>
 		
-		<div class="container booking">
-			<p th:text="${param.licencePlate}"></p>
-			<p sec:authorize="hasRole('ROLE_USER')">test</p>
-
-		</div>	
+		<section class="container booking">
+	
+			<section class=" row">
+				<!-- left zone -->
+				<section class="col-md-6 descript">
+					<article class="bookingDetail">
+						<div class="card-booking">
+					  		<img class="card-img-top pic-size-booking" th:attr="src=@{${car.picturePath}},alt='car picture'">
+					  		<div class="card-body">
+					    		<h5 class="card-title"  th:text="${car.brand.brandName} +' '+ ${car.model.modelName}"></h5>
+					    		<p class="card-text"  th:text="${car.category.describtion}"></p>
+					    		  <ul class="list-group list-group-flush">
+							    	<li class="list-group-item"><span class="item" >Couleur : </span>[[${car.color}]]</li>
+							    	<li class="list-group-item" ><span class="item">Carburant : </span>[[${car.fuel}]]</li>
+							    	<li class="list-group-item"><span class="item" >Boite : </span>[[${car.transmission}]]</li>
+							    	<li class="list-group-item"><span class="item" >Nombre de siège : </span>[[${car.seatingCapacity}]]</li>
+							    	<li class="list-group-item"><span class="item" >Nombre de porte : </span>[[${car.carDoor}]]</li>
+							    	<li class="list-group-item"><span class="item" >Prix km supplémentaire : </span>[[${car.kmPrice}]]0 €</li>
+							    	<li class="list-group-item"><span class="item" >Prix à la journée : </span>[[${car.dailyPrice}]]0 €</li>
+							    	<li class="list-group-item"><span class="item" >Période de location: </span>[[${param.startDate + ' au ' + param.endDate}]]</li>				    	
+							    	<li class="list-group-item price" >[[${param.price}]] €</li>
+							  	</ul>
+					  		</div>		
+					  	</div>				
+					</article>
+				</section>
+				
+				<!-- right zone -->
+				<section class="col-md-6 paiement">
+					<article class="row creditCard">
+						<h3>Zone de paiement</h3>
+					
+					</article>
+		
+					<article class="row confirm">
+						<h3>Zone de confirmation</h3>
+						
+					</article>
+				</section>
+	
+				</section>	
+			</section>
 		
 		<!-- footer.html -->
 		<footer th:replace="fragments/footer :: footer"></footer> 	

@@ -70,8 +70,9 @@ public class RegistrationController {
 			errorsList.put("birth", "Vous devez avoir 25 ans minimum au moment de la réservation, merci !");
 
 		if (errorsList.isEmpty()) {
-			userService.addCustomer(username, email, new BCryptPasswordEncoder().encode(password), lastName, firstName, false, DATE_FORMAT.parse(birthday),
-					driveLicence, new Addresses(street, city, zip), roles);			
+			userService.addCustomer(username, email, new BCryptPasswordEncoder().encode(password), lastName, firstName, true, DATE_FORMAT.parse(birthday),
+					driveLicence, new Addresses(street, city, zip), roles);	
+			System.out.println("succes");
 			model.addAttribute("succes", "Votre inscription est bien enregistrée, vous pouvez désormée vous connectez avec votre identifiant !");
 		}else {
 			model.addAttribute("errorsMap", errorsList);

@@ -3,11 +3,9 @@ package fr.huxor.entities;
 import java.io.Serializable;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
@@ -27,22 +25,22 @@ public abstract class Users implements Serializable {
 	@Id
 	private String username;
 	@Email
-	@NotNull
-	private String email;
+	@NotNull 
+	private String email;  
 	@NotNull
 	private String password;
 	private String firstName;
 	private String lastName;
 	@NotNull
 	private boolean enabled;
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToMany
 	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "username"), inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private Set<Role> roles;
 
 	/**
 	 * Default constructor
 	 */
-	public Users() {
+	public Users() { 
 	}
 
 	/**

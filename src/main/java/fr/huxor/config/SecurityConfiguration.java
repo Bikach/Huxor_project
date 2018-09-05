@@ -1,4 +1,4 @@
-package fr.huxor.security;
+package fr.huxor.config;
 
 import javax.sql.DataSource;
 
@@ -19,35 +19,25 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	private DataSource dataSource;
-
-    
-	 
+ 
+      
     @Override
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
     	auth.jdbcAuthentication()
     		.dataSource(dataSource)
     		.usersByUsernameQuery("select username as principale, password as credentials, enabled from users where username=?")
-			.authoritiesByUsernameQuery("select username as principale, role_id as role from user_role where username=?")
+			.authoritiesByUsernameQuery("select username , role  from user_role  natural join role r  where username=?")
 			.rolePrefix("ROLE_")
 			.passwordEncoder(new BCryptPasswordEncoder());
     	
     }
     
-    
-    
-//	@Autowired
-//	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-//		authO
-//			.inMemoryAuthentication()
-//				.withUser("batman").password("aze").roles("USER");
-//	}
-    
     @Override
     protected void configure(HttpSecurity http) throws Exception {
     	http.formLogin().loginPage("/login");
     	http.authorizeRequests()
-    		.antMatchers("/","/css/**", "/js/**", "/availableCars","/contactForm", "/services").permitAll()
-    		.antMatchers("/user/**").hasAnyRole("USER")
+    		.antMatchers("/", "/availableCars","/contactForm", "/services").permitAll()
+    		.antMatchers("/confirmBooking").hasAnyRole("USER")
     		.antMatchers("/manager/**").hasRole("MANAGER")
     		.antMatchers("/admin/**").hasRole("ADMIN")
     		.and()
