@@ -68,7 +68,7 @@ public class Cars implements Serializable {
 		this.licencePlate = licencePlate;
 		this.kmNumber = kmNumber;
 		this.dailyPrice = dailyPrice;
-		this.kmPrice = kmPrice;
+		this.kmPrice = kmPrice; 
 		this.carDoor = carDoor;
 		this.seatingCapacity = seatingCapacity;
 		this.power = power;

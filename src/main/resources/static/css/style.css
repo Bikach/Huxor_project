@@ -31,7 +31,7 @@ h6{
 
 .huxor-btn{  font-weight: bold; }
 
-.margin-top { margin-top: 9.9ex }
+.margin-top { margin-top: 9.7ex }
 
 /* ===== HEADER ===== */
 .logo-head{
@@ -101,7 +101,7 @@ h6{
 }
 
 .pic-size{
-	height: 40%;
+	height: 30%;
  	width: 100%; 
 }
 
@@ -139,11 +139,11 @@ h6{
 
 .descript{ }
 
-.paiement { border: 1px solid black }
+.paiement { }
 
-.creditCard{ border: 1px solid black }
+.creditCard{ color: black !important }
 
-.confirm { border: 1px solid black }
+.confirm { }
 
 .card-booking {
 	margin: 2ex ;
@@ -152,10 +152,18 @@ h6{
 }
 
 .pic-size-booking {
+	height: 50%;
+ 	width: 90%; 
+}
+
+.pic-logo-booking{
 	height: 30%;
  	width: 90%; 
 }
 
+.button-paid{ margin: 2ex; }
+
+.paid-title { text-align: center; }
 
 /* ===== FOOTER =====*/
 .block-foot{

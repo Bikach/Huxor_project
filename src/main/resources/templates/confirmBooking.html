@@ -17,7 +17,7 @@
 			<section class=" row">
 				<!-- left zone -->
 				<section class="col-md-6 descript">
-					<article class="bookingDetail">
+					<article class="bookingDetail border-right">
 						<div class="card-booking">
 					  		<img class="card-img-top pic-size-booking" th:attr="src=@{${car.picturePath}},alt='car picture'">
 					  		<div class="card-body">
@@ -30,30 +30,68 @@
 							    	<li class="list-group-item"><span class="item" >Nombre de siège : </span>[[${car.seatingCapacity}]]</li>
 							    	<li class="list-group-item"><span class="item" >Nombre de porte : </span>[[${car.carDoor}]]</li>
 							    	<li class="list-group-item"><span class="item" >Prix km supplémentaire : </span>[[${car.kmPrice}]]0 €</li>
+							    	<li class="list-group-item"><span class="item" >Nombre de km alloué au contrat : </span>[[${nbDays * 150}]] km</li>				    				    							
+							    	<li class="list-group-item"><span class="item" >Nombre de jour loué : </span>[[${nbDays}]] jours</li>				    				    	
 							    	<li class="list-group-item"><span class="item" >Prix à la journée : </span>[[${car.dailyPrice}]]0 €</li>
-							    	<li class="list-group-item"><span class="item" >Période de location: </span>[[${param.startDate + ' au ' + param.endDate}]]</li>				    	
-							    	<li class="list-group-item price" >[[${param.price}]] €</li>
+							    	<li class="list-group-item"><span class="item" >Période de location : </span>[[${param.startDate + ' au ' + param.endDate}]]</li>	
+							    	<li class="list-group-item price" >Total : [[${param.price}]] €*</li>
 							  	</ul>
+							  	<small>*Hors kilomètres suplémentaires</small>
 					  		</div>		
 					  	</div>				
 					</article>
 				</section>
 				
 				<!-- right zone -->
-				<section class="col-md-6 paiement">
-					<article class="row creditCard">
-						<h3>Zone de paiement</h3>
+				<section class="offset-md-1 col-md-5 paiement">
+					<article class="row">
+						<img src="assets/logo_huxor.png" class="pic-logo-booking" alt="logo_huxor">
+					</article>
 					
-					</article>
-		
-					<article class="row confirm">
-						<h3>Zone de confirmation</h3>
-						
-					</article>
+					<article class="row creditCard">
+						<form class="" th:action="@{/book}" method="post">
+							<h3 class="paid-title">Effectuez votre paiment ici :</h3>
+							<div class="form-group">
+								<div class="form-check form-check-inline">
+									<input class="control-label form-check-input" type="radio" id="VISA" value="VISA" name="card"/>
+									<label class="form-control form-check-label" for="VISA">VISA</label>
+								</div>
+								<div class="form-check form-check-inline">
+									<input class="control-label form-check-input" type="radio" id="MASTER CARD" value="MASTER CARD" name="card"/>
+								 	<label class="form-control form-check-label" for="MASTER CARD">MASTER CARD</label>
+								</div>
+								<div class="form-check form-check-inline">
+									<input class="control-label form-check-input" type="radio" id="AMERICAN EXPRESS" value="AMERICAN EXPRESS" name="card"/>
+								 	<label class="form-control form-check-label" for="AMERICAN EXPRESS">AMERICAN EXPRESS</label>
+								</div>
+							</div>
+							<div class="form-group col-md-12">
+								<label class="control-label">Saisir vos numéro de carte bleu</label>
+								<input class="form-control" type="text" name="numberCard">		
+							</div>
+							<div class="row">
+								<div class="form-group col-md-2">				
+									<label class="control-label">mois</label>
+									<input class="form-control" type="text"  id="limitMonth" name="monthLimitCard" />
+								</div>
+								<div class="form-group col-md-2">
+									<label class="control-label">année</label>
+									<input class="form-control" type="text"  id="limitYear" name="yearLimitCard" />
+								</div>
+								<div class="form-group offset-md-1">				
+									<label class="control-label">Cryptogramme</label>
+									<input class="form-control" type="text" name="cryptogramme" />
+								</div>
+							</div>
+							<div class="button-paid">
+								<button  type="submit" class="btn huxor-dark huxor-btn nav-hover nav-active" >Payer</button>
+							</div>
+						</form>
+					</article>		
 				</section>
 	
-				</section>	
-			</section>
+			</section>	
+		</section>
 		
 		<!-- footer.html -->
 		<footer th:replace="fragments/footer :: footer"></footer> 	

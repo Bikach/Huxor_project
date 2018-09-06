@@ -18,7 +18,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	@Autowired
-	private DataSource dataSource;
+	private DataSource dataSource; 
  
       
     @Override
@@ -37,7 +37,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     	http.formLogin().loginPage("/login");
     	http.authorizeRequests()
     		.antMatchers("/", "/availableCars","/contactForm", "/services").permitAll()
-    		.antMatchers("/confirmBooking").hasAnyRole("USER")
+    		.antMatchers("/confirmBooking", "/userAccount", "/myReservations").hasAnyRole("USER")
     		.antMatchers("/manager/**").hasRole("MANAGER")
     		.antMatchers("/admin/**").hasRole("ADMIN")
     		.and()

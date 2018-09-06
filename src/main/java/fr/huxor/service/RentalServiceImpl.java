@@ -26,7 +26,7 @@ import fr.huxor.entities.Customers;
 import fr.huxor.entities.LeaseAgreements;
 import fr.huxor.entities.Models;
 
-@Service
+@Service 
 @Transactional
 public class RentalServiceImpl implements IRentalService {
 
@@ -70,7 +70,7 @@ public class RentalServiceImpl implements IRentalService {
 		}
 	}
 
-	// ===== Manager ===== //
+	// ===== Manager ===== // 
 
 	/**
 	 * Add a car to the BDD

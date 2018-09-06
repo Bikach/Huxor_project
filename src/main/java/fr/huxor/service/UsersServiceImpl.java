@@ -16,7 +16,7 @@ import fr.huxor.entities.Customers;
 import fr.huxor.entities.Managers;
 import fr.huxor.entities.Role;
 import fr.huxor.entities.Users;
- 
+  
 @Service
 @Transactional
 public class UsersServiceImpl implements IUsersService {

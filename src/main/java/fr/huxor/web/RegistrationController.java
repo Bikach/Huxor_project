@@ -63,7 +63,7 @@ public class RegistrationController {
 		if (!password.equals(confirmPassword))
 			errorsList.put("pass", "le mot de passe n'est pas identique ");
 
-		if (!emailValidate(email))
+		if (!emailValidate(email)) 
 			errorsList.put("email", "l'email est incorrect ");
 		
 		if(!birthdayValidate(birthday))
