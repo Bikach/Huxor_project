@@ -5,7 +5,6 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -40,18 +39,20 @@ public class BookingController {
 		}
 		return "confirmBooking";
 	}
-
-	@RequestMapping(value="/book")
-	public String book(Model model, String user, String startDate, String endDate, String licencePlate) {
+ 
+	@RequestMapping(value="/save")
+	public String save(Model model, String user, String licencePlate, String startDate, String endDate, String price) {
 		
 		try {
 			rentalService.bookACar(user, licencePlate, startDate, endDate);
-			model.addAttribute("succesBook", "confirmation enregistrée");
+
 		} catch (CustomException | ParseException e) {
 			model.addAttribute("error", e);
 		}
 		
-		return "myReservations";
+		return "redirect:/confirmBooking?user=" +user+ "&licencePlate=" +licencePlate
+				+ "&startDate=" +startDate+ "&endDate=" +endDate+ "&price=" +price
+				+ "&succesBook=Reservation enregistree dans votre compte client avec succes !" ;
 	}
 	
 

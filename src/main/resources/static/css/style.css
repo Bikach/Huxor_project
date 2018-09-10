@@ -31,7 +31,7 @@ h6{
 
 .huxor-btn{  font-weight: bold; }
 
-.margin-top { margin-top: 9.7ex }
+.margin-top { margin-top: 9.8ex }
 
 /* ===== HEADER ===== */
 .logo-head{
@@ -128,6 +128,7 @@ h6{
 	color: #9caabb; 
 }
 
+
 /* ===== LOGIN =====*/
 .login{
 	margin-top: 15ex;
@@ -163,7 +164,15 @@ h6{
 
 .button-paid{ margin: 2ex; }
 
-.paid-title { text-align: center; }
+.paid-title { margin-top: 1.5ex; }
+
+/* ===== RESERVATIONS =====*/
+.title{margin-top: 5ex;}
+
+.nullList{
+	text-align: center;
+	font-size:  4ex;
+}
 
 /* ===== FOOTER =====*/
 .block-foot{

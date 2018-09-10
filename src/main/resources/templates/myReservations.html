@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeLeaf.org" xmlns:sec="http://www.thymeLeaf.org/extras/spring-security">
 
-	<head>
+	<head	>
 		<meta charset="UTF-8">
 		<title>mes réservations</title>
       	<link th:href="@{/bootstrap/css/bootstrap.min.css}"  rel="stylesheet" media="screen"/>
@@ -12,13 +12,35 @@
 		<!-- header.html -->
 		<header  th:replace="fragments/header :: header"></header>
 		
-		<section class="margin-top">
-			<h1>reservations</h1>
-			
-			<p th:text="${succesBook}"></p>
-			<p th:text="${error}"></p>			
-			
-		
+		<section class="margin-top container">
+			<h3 class="title">Mes réservations</h3>
+			<table class="table table-hover">
+				<thead>
+			    	<tr>
+			      		<th scope="col">#</th>
+			      		<th scope="col">Numéro de contrat</th>
+			      		<th scope="col">Date de départ</th>
+			      		<th scope="col">Date retour</th>
+			      		<th scope="col">Km compteur départ</th>
+			      		<th scope="col">Km compteur retour</th>
+			      		<th scope="col">prix</th>
+		    		</tr>
+			  	</thead>
+			  	<tbody>
+			  		<tr th:if="${nullList}">
+						<td th:text="${nullList}" colspan="7" class="nullList"></td>
+					</tr>
+			    	<tr th:unless="${nullList}" th:each="lease, status : ${leaseList}">
+			      		<th scope="row" th:text="${status.index + 1}"></th>
+			      		<td th:text="${lease.numberAgreement}"></td>
+			      		<td th:text="${lease.startDate}"></td>
+			      		<td th:text="${lease.endDate}"></td>
+			      		<td th:text="${lease.startKm}"></td>
+			      		<td th:text="${lease.endKm}"></td>
+			      		<td th:text="${lease.price} +0€"></td>
+			    	</tr>
+			  </tbody>
+			</table>	
 		</section>
 		
 		<!-- footer.html -->

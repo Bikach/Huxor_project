@@ -26,10 +26,19 @@ public interface ILeaseAgreementsRepository extends JpaRepository<LeaseAgreement
 	 * null or not to a customer
 	 * 
 	 * @param pageable
-	 * @return leaseAgreements
+	 * @return leaseAgreements with number null or not null
 	 */
 	@Query("SELECT l FROM LeaseAgreements l where l.numberAgreement IS :nullOrNotNull and l.customer.username = :user")
-	public Page<LeaseAgreements> leaseAgreementPage(@Param("nullOrNotNull") String status, @Param("user") String customer,
-			Pageable pageable);
+	public Page<LeaseAgreements> leaseAgreementNullPage(@Param("nullOrNotNull") String status,
+			@Param("user") String customer, Pageable pageable);
 
+	/**
+	 * Find a leaseAgreements by username
+	 * 
+	 * @param user
+	 * @param pageable
+	 * @return leaseAgreements by user
+	 */
+	@Query("SELECT l FROM LeaseAgreements l where l.customer.username = :user")
+	public Page<LeaseAgreements> leaseAgreementFromUser(@Param("user") String user, Pageable pageable);
 }

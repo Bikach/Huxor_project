@@ -82,8 +82,20 @@ public class LeaseServiceImpl implements ILeaseService {
 	 * @return page of leaseAgreements
 	 */
 	@Override
-	public Page<LeaseAgreements> leaseAgreementPage(String nullOrNotNull, String customer, int page, int size) {
-		return leaseRepo.leaseAgreementPage(nullOrNotNull, customer, PageRequest.of(page, size));
+	public Page<LeaseAgreements> leaseAgreementNullPage(String nullOrNotNull, String customer, int page, int size) {
+		return leaseRepo.leaseAgreementNullPage(nullOrNotNull, customer, PageRequest.of(page, size));
 	}
 
+	/**
+	 * 
+	 * @param customer
+	 * @param page and size
+	 * @return page of leaseAgreement by username
+	 */
+	@Override
+	public Page<LeaseAgreements> leaseAgreementFromUser(String user, int page, int size) {
+		return leaseRepo.leaseAgreementFromUser(user, PageRequest.of(page, size));
+	}
+
+	
 }

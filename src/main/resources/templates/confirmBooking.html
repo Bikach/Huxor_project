@@ -48,46 +48,57 @@
 						<img src="assets/logo_huxor.png" class="pic-logo-booking" alt="logo_huxor">
 					</article>
 					
+					
+					<article class="row confirmMessage">
+						<h3 class="paid-title">Zone de confirmation :</h3>
+						<div th:if="${param.succesBook}">
+							<p th:text="${param.succesBook}" class="text-success"></p>
+							<a th:href="@{/myReservations(user=${param.user})}"><button class="btn huxor-btn huxor-dark nav-hover .nav-active card-btn button-paid">Mes réservations</button></a>
+						</div>
+						<div th:unless="${param.succesBook}" class="text-danger">
+						   <div>Veuillez éffectuer le paiement pour confirmer votre réservation</div>
+						</div>				
+					</article>
+					
 					<article class="row creditCard">
-						<form class="" th:action="@{/book}" method="post">
-							<h3 class="paid-title">Effectuez votre paiment ici :</h3>
-							<div class="form-group">
-								<div class="form-check form-check-inline">
-									<input class="control-label form-check-input" type="radio" id="VISA" value="VISA" name="card"/>
-									<label class="form-control form-check-label" for="VISA">VISA</label>
-								</div>
-								<div class="form-check form-check-inline">
-									<input class="control-label form-check-input" type="radio" id="MASTER CARD" value="MASTER CARD" name="card"/>
-								 	<label class="form-control form-check-label" for="MASTER CARD">MASTER CARD</label>
-								</div>
-								<div class="form-check form-check-inline">
-									<input class="control-label form-check-input" type="radio" id="AMERICAN EXPRESS" value="AMERICAN EXPRESS" name="card"/>
-								 	<label class="form-control form-check-label" for="AMERICAN EXPRESS">AMERICAN EXPRESS</label>
-								</div>
+						<h3 class="paid-title">Effectuez votre paiment ici :</h3>
+						<div class="form-group">
+							<div class="form-check form-check-inline">
+								<input class="control-label form-check-input" type="radio" id="VISA" value="VISA" name="card"/>
+								<label class="form-control form-check-label" for="VISA">VISA</label>
 							</div>
-							<div class="form-group col-md-12">
-								<label class="control-label">Saisir vos numéro de carte bleu</label>
-								<input class="form-control" type="text" name="numberCard">		
+							<div class="form-check form-check-inline">
+								<input class="control-label form-check-input" type="radio" id="MASTER CARD" value="MASTER CARD" name="card"/>
+							 	<label class="form-control form-check-label" for="MASTER CARD">MASTER CARD</label>
 							</div>
-							<div class="row">
-								<div class="form-group col-md-2">				
-									<label class="control-label">mois</label>
-									<input class="form-control" type="text"  id="limitMonth" name="monthLimitCard" />
-								</div>
-								<div class="form-group col-md-2">
-									<label class="control-label">année</label>
-									<input class="form-control" type="text"  id="limitYear" name="yearLimitCard" />
-								</div>
-								<div class="form-group offset-md-1">				
-									<label class="control-label">Cryptogramme</label>
-									<input class="form-control" type="text" name="cryptogramme" />
-								</div>
+							<div class="form-check form-check-inline">
+								<input class="control-label form-check-input" type="radio" id="AMERICAN EXPRESS" value="AMERICAN EXPRESS" name="card"/>
+							 	<label class="form-control form-check-label" for="AMERICAN EXPRESS">AMERICAN EXPRESS</label>
 							</div>
-							<div class="button-paid">
-								<button  type="submit" class="btn huxor-dark huxor-btn nav-hover nav-active" >Payer</button>
+						</div>
+						<div class="form-group col-md-12">
+							<label class="control-label">Saisir vos numéro de carte bleu</label>
+							<input class="form-control" type="text" name="numberCard">		
+						</div>
+						<div class="row">
+							<div class="form-group col-md-2">				
+								<label class="control-label">mois</label>
+								<input class="form-control" type="text"  id="limitMonth" name="monthLimitCard" />
 							</div>
-						</form>
-					</article>		
+							<div class="form-group col-md-2">
+								<label class="control-label">année</label>
+								<input class="form-control" type="text"  id="limitYear" name="yearLimitCard" />
+							</div>
+							<div class="form-group offset-md-1">				
+								<label class="control-label">Cryptogramme</label>
+								<input class="form-control" type="text" name="cryptogramme" />
+							</div>
+						</div>
+				    		<a th:href="@{/save(user=${param.user}, licencePlate=${car.licencePlate}, startDate=${param.startDate}, endDate=${param.endDate}, price=${param.price})}" >
+				    			<button class="btn huxor-btn huxor-dark nav-hover .nav-active card-btn button-paid" >Payé</button>
+				    		</a>
+					</article>
+					
 				</section>
 	
 			</section>	

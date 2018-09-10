@@ -33,6 +33,5 @@ public interface ICarsRepository extends JpaRepository<Cars, String> {
 			@Param("dropDate") Date dropDate, Pageable pageable);
 	
 	
-	
 
 }
