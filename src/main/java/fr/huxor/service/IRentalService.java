@@ -1,6 +1,7 @@
 package fr.huxor.service;
 
 import java.text.ParseException;
+import java.time.LocalDate;
 import java.util.Date;
 
 import org.springframework.data.domain.Page;
@@ -28,7 +29,7 @@ public interface IRentalService {
 	public void updateDailyPriceCar(String licencePlate, double dailyPrice) throws CustomException;
 	
 	// Customer/Manager
-	public Page<Cars> carListAvailable(Date start, Date end, int page, int size)
+	public Page<Cars> carListAvailable(LocalDate start, LocalDate end, int page, int size)
 			throws CustomException;
 
 }

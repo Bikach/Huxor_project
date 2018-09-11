@@ -15,7 +15,7 @@
 		<div class="container cars">
 			<div class="row">
 				<div th:each="car:${carsList}">
-					<div class="card shadow p-1 mb-7 bg-white rounded">
+					<div class="card shadow p-0.5 mb-7 bg-white rounded">
 				  		<img class="card-img-top pic-size" th:attr="src=@{${car.picturePath}},alt='car picture'">
 				  		<div class="card-body">
 				    		<h5 class="card-title"  th:text="${car.brand.brandName} +' '+ ${car.model.modelName}"></h5>

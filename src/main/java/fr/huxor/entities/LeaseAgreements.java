@@ -1,7 +1,7 @@
 package fr.huxor.entities;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDate;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -25,11 +25,9 @@ public class LeaseAgreements implements Serializable {
 	private long idLeaseArgreements;
 	private String numberAgreement;
 	@NotNull
-	@Temporal(TemporalType.DATE)
-	private Date startDate;
+	private LocalDate startDate;
 	@NotNull
-	@Temporal(TemporalType.DATE)
-	private Date endDate;
+	private LocalDate endDate;
 	@NotNull
 	private int startKm;
 	private int endKm;
@@ -62,7 +60,7 @@ public class LeaseAgreements implements Serializable {
 	 * @param car
 	 * @param price
 	 */
-	public LeaseAgreements(String numberAgreement, Date startDate, Date endDate, int startKm, int endKm,
+	public LeaseAgreements(String numberAgreement, LocalDate startDate, LocalDate endDate, int startKm, int endKm,
 			Customers customer, Cars car, double price) {
 		this.numberAgreement = numberAgreement ;
 		this.startDate = startDate;
@@ -94,19 +92,19 @@ public class LeaseAgreements implements Serializable {
 		this.numberAgreement = numberAgreement;
 	}
 
-	public Date getStartDate() {
+	public LocalDate getStartDate() {
 		return startDate;
 	}
 
-	public void setStartDate(Date startDate) {
+	public void setStartDate(LocalDate startDate) {
 		this.startDate = startDate;
 	}
 
-	public Date getEndDate() {
+	public LocalDate getEndDate() {
 		return endDate;
 	}
 
-	public void setEndDate(Date endDate) {
+	public void setEndDate(LocalDate endDate) {
 		this.endDate = endDate;
 	}
 

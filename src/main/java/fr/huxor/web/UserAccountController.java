@@ -12,7 +12,7 @@ import fr.huxor.service.ILeaseService;
 
 @Controller
 public class UserAccountController {
-	
+
 	@Autowired
 	private ILeaseService leaseService;
 	
@@ -24,8 +24,9 @@ public class UserAccountController {
 		// TODO
 		return "userAccount";
 	}
-	
+
 	/**
+	 * Manage my reservation list
 	 * 
 	 * @param model
 	 * @param page
@@ -33,25 +34,37 @@ public class UserAccountController {
 	 * @param user
 	 * @return mysReservations.html
 	 */
-	@RequestMapping(value="/myReservations")
-	public String myReservation(Model model, 
-			@RequestParam(name="page", defaultValue="0")int page, 
-			@RequestParam(name="size", defaultValue="10")int size,
-			String user) {
-			
+	@RequestMapping(value = "/myReservations")
+	public String myReservation(Model model, @RequestParam(name = "page", defaultValue = "0") int page,
+			@RequestParam(name = "size", defaultValue = "10") int size, String user) {
+
 		Page<LeaseAgreements> pageLease = leaseService.leaseAgreementFromUser(user, page, size);
-		if (pageLease.getTotalElements() > 0) {			
+		if (pageLease.getTotalElements() > 0) {
 			model.addAttribute("leaseList", pageLease.getContent());
 			int[] pages = new int[pageLease.getTotalPages()];
 			model.addAttribute("pages", pages);
-		}else {
-			String nullList = "Vous navez pas encore de réservations à votre active !";
+			model.addAttribute("lease",leaseService);
+		} else {
+			String nullList = "Vous n'avez pas de réservations en cours ou passé !";
 			model.addAttribute("nullList", nullList);
 		}
 
 		return "myReservations";
 	}
-	
 
-	
+	/**
+	 * Deletes leases that have not yet occurred
+	 * 
+	 * @param id
+	 * @param user
+	 * @param page
+	 * @param size
+	 * @return myReservations.html
+	 */
+	@RequestMapping(value = "/delete")
+	public String delete(String id, String user, int page, int size) {
+		leaseService.deleteLease(Long.parseLong(id));
+		return "redirect:/myReservations?user=" + user + "&page=" + page + "&size=" + size;
+	}
+
 }

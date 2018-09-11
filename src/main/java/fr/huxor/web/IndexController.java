@@ -2,6 +2,7 @@ package fr.huxor.web;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -44,18 +45,21 @@ public class IndexController {
 			@RequestParam(name="size", defaultValue="8")int size,
 			String startDate, String endDate)  {
 		
-		try {
-			Page<Cars> pageCars = rentalService.carListAvailable(DATE_FORMAT.parse(startDate), DATE_FORMAT.parse(endDate), page, size);
-			model.addAttribute("carsList", pageCars.getContent());
-			int[] pages = new int[pageCars.getTotalPages()];
-			model.addAttribute("pages", pages);
-			model.addAttribute("startDate", startDate);
-			model.addAttribute("endDate", endDate);
-			model.addAttribute("rental",rentalService);
-		} catch (CustomException  | ParseException e) {
-			model.addAttribute("falseDate",e);
-			return "redirect:/?falseDate=" +e.getMessage();
-		}
+
+			Page<Cars> pageCars;
+			try {
+				pageCars = rentalService.carListAvailable(LocalDate.parse(startDate), LocalDate.parse(endDate), page, size);
+				model.addAttribute("carsList", pageCars.getContent());
+				int[] pages = new int[pageCars.getTotalPages()];
+				model.addAttribute("pages", pages);
+				model.addAttribute("startDate", startDate);
+				model.addAttribute("endDate", endDate);
+				model.addAttribute("rental",rentalService);
+			} catch (CustomException e) {
+				model.addAttribute("erro", e);
+				return "redirect:/?falseDate=" +e.getMessage();
+			}
+		
 		
 		return "availableCars";
 	}

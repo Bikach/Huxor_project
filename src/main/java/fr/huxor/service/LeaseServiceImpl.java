@@ -1,5 +1,8 @@
 package fr.huxor.service;
 
+import java.text.ParseException;
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,9 +20,30 @@ public class LeaseServiceImpl implements ILeaseService {
 	@Autowired
 	private ILeaseAgreementsRepository leaseRepo;
 	@Autowired
-	RentalServiceImpl rentalServ;
+	private RentalServiceImpl rentalServ;
 
 	private static final int DAILY_KM = 150;
+
+	/**
+	 * Delete lease by id
+	 * 
+	 * @param id LeaseAgreements
+	 */
+	@Override
+	public void deleteLease(long id) {
+		leaseRepo.deleteById(id);
+	}
+
+	/**
+	 * 
+	 * @param customer
+	 * @param page     and size
+	 * @return page of leaseAgreement by username
+	 */
+	@Override
+	public Page<LeaseAgreements> leaseAgreementFromUser(String user, int page, int size) {
+		return leaseRepo.leaseAgreementFromUser(user, PageRequest.of(page, size));
+	}
 
 	/**
 	 * Search lease agreement in database
@@ -87,15 +111,15 @@ public class LeaseServiceImpl implements ILeaseService {
 	}
 
 	/**
+	 * Check that the date is later than the current date
 	 * 
-	 * @param customer
-	 * @param page and size
-	 * @return page of leaseAgreement by username
+	 * @param Date
+	 * @return true or false
+	 * @throws ParseException
 	 */
-	@Override
-	public Page<LeaseAgreements> leaseAgreementFromUser(String user, int page, int size) {
-		return leaseRepo.leaseAgreementFromUser(user, PageRequest.of(page, size));
+	public boolean checkBookingDate(Date date) throws ParseException {
+		LocalDate startDate = LocalDate.parse(date.toString());
+		return startDate.isAfter(LocalDate.now());
 	}
 
-	
 }

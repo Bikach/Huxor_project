@@ -1,10 +1,8 @@
 package fr.huxor.service;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
-import java.util.Date;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,12 +60,10 @@ public class RentalServiceImpl implements IRentalService {
 		Customers user = (Customers) userService.findAUser(username);
 		Cars car = findACar(licencePlate);
 		double totalPrice = totalPriceWithoutKm(startDate, endDate, Double.toString(car.getDailyPrice()));
-		try {
-			leaseRepo.save(new LeaseAgreements(null, DATE_FORMAT.parse(startDate), DATE_FORMAT.parse(endDate),
-					car.getKmNumber(), 0, user, car, totalPrice));
-		} catch (ParseException e) {
-			throw new CustomException("Le format de la date est incorect");
-		}
+
+		leaseRepo.save(new LeaseAgreements(null, LocalDate.parse(startDate), LocalDate.parse(endDate),
+				car.getKmNumber(), 0, user, car, totalPrice));
+
 	}
 
 	// ===== Manager ===== // 
@@ -159,7 +155,7 @@ public class RentalServiceImpl implements IRentalService {
 	 * @param size
 	 */
 	@Override
-	public Page<Cars> carListAvailable(Date start, Date end, int page, int size) {
+	public Page<Cars> carListAvailable(LocalDate start, LocalDate end, int page, int size) {
 		return carsRepo.carListAvailable(start, end, PageRequest.of(page, size));
 	}
 

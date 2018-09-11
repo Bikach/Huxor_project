@@ -29,15 +29,15 @@ public class Cars implements Serializable {
 	private String transmission;
 	private String fuel;
 
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@ManyToOne( fetch = FetchType.EAGER)
 	@JoinColumn(name = "CATEGORY_NAME")
 	private Categorys category;;
 
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "BRAND_NAME")
 	private Brands brand;
 
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@ManyToOne( fetch = FetchType.EAGER)
 	@JoinColumn(name = "MODEL_NAME")
 	private Models model;
 

@@ -19,8 +19,7 @@ public class BookingController {
 	@Autowired
 	private IRentalService rentalService;
 	
-	
- 
+
 	/**
 	 * @return confirmBooking.html
 	 */
@@ -45,7 +44,6 @@ public class BookingController {
 		
 		try {
 			rentalService.bookACar(user, licencePlate, startDate, endDate);
-
 		} catch (CustomException | ParseException e) {
 			model.addAttribute("error", e);
 		}

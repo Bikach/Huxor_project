@@ -1,5 +1,6 @@
 package fr.huxor.dao;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 import org.springframework.data.domain.Page;
@@ -29,8 +30,8 @@ public interface ICarsRepository extends JpaRepository<Cars, String> {
 			+ "OR :dropDate BETWEEN l.startDate AND l.endDate "
 			+ "OR l.startDate BETWEEN :pickupDate AND :dropDate )"
 			+ "ORDER BY c.dailyPrice ASC")
-	public Page<Cars> carListAvailable(@Param("pickupDate") Date pickupDate,
-			@Param("dropDate") Date dropDate, Pageable pageable);
+	public Page<Cars> carListAvailable(@Param("pickupDate") LocalDate pickupDate,
+			@Param("dropDate") LocalDate dropDate, Pageable pageable);
 	
 	
 
