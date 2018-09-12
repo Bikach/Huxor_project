@@ -20,7 +20,7 @@ public class Managers extends Users {
 	/**
 	 * Default constructor
 	 */
-	public Managers() {
+	public Managers() { 
 		super();
 	}
 

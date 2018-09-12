@@ -2,7 +2,6 @@ package fr.huxor.service;
 
 import java.text.ParseException;
 import java.time.LocalDate;
-import java.util.Date;
 
 import org.springframework.data.domain.Page;
 

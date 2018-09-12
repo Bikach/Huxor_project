@@ -2,7 +2,6 @@ package fr.huxor.service;
 
 import java.text.ParseException;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +17,7 @@ import fr.huxor.entities.LeaseAgreements;
 public class LeaseServiceImpl implements ILeaseService {
 
 	@Autowired
-	private ILeaseAgreementsRepository leaseRepo;
+	private ILeaseAgreementsRepository leaseRepo; 
 	@Autowired
 	private RentalServiceImpl rentalServ;
 
@@ -117,8 +116,8 @@ public class LeaseServiceImpl implements ILeaseService {
 	 * @return true or false
 	 * @throws ParseException
 	 */
-	public boolean checkBookingDate(Date date) throws ParseException {
-		LocalDate startDate = LocalDate.parse(date.toString());
+	public  boolean checkBookingDate(String date) throws ParseException {
+		LocalDate startDate = LocalDate.parse(date);
 		return startDate.isAfter(LocalDate.now());
 	}
 

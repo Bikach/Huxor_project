@@ -31,7 +31,7 @@ h6{
 
 .huxor-btn{  font-weight: bold; }
 
-.margin-top { margin-top: 9.8ex }
+.margin-top { margin-top: 9.7ex }
 
 /* ===== HEADER ===== */
 .logo-head{
@@ -144,7 +144,7 @@ h6{
 
 .creditCard{ color: black !important }
 
-.confirm { }
+.confirmMessage { font-size: 3ex;}
 
 .card-booking {
 	margin: 2ex ;

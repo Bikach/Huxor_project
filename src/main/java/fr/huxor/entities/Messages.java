@@ -1,14 +1,12 @@
 package fr.huxor.entities;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDate;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.validation.constraints.Email;
 
 @Entity
@@ -22,10 +20,9 @@ public class Messages implements Serializable {
 	private String lastName;
 	private String firstName;
 	@Email
-	private String email;
+	private String email; 
 	private String post;
-	@Temporal(TemporalType.DATE)
-	private Date postDate;
+	private LocalDate postDate;
 	private boolean process;
 
 	/**
@@ -42,7 +39,7 @@ public class Messages implements Serializable {
 	 * @param email
 	 * @param post
 	 */
-	public Messages(String lastName, String firstName,  String email, String post, Date postDate, boolean process) {
+	public Messages(String lastName, String firstName,  String email, String post, LocalDate postDate, boolean process) {
 		this.lastName = lastName;
 		this.firstName = firstName;
 		this.email = email;
@@ -93,11 +90,11 @@ public class Messages implements Serializable {
 		this.post = post;
 	}
 
-	public Date getPostDate() {
+	public LocalDate getPostDate() {
 		return postDate;
 	}
 
-	public void setPostDate(Date postDate) {
+	public void setPostDate(LocalDate postDate) {
 		this.postDate = postDate;
 	}
 

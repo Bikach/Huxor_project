@@ -11,8 +11,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -47,7 +45,7 @@ public class LeaseAgreements implements Serializable {
 	 * Default constructor
 	 */
 	public LeaseAgreements() {
-	}
+	} 
 
 	/**
 	 * Constructor with parameters

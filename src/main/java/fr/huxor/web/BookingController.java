@@ -14,7 +14,7 @@ import fr.huxor.entities.CustomException;
 import fr.huxor.service.IRentalService;
 
 @Controller
-public class BookingController {
+public class BookingController { 
 	
 	@Autowired
 	private IRentalService rentalService;

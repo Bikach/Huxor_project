@@ -1,6 +1,5 @@
 package fr.huxor.service;
 
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.Optional;
@@ -26,7 +25,7 @@ import fr.huxor.entities.Models;
 
 @Service 
 @Transactional
-public class RentalServiceImpl implements IRentalService {
+public class RentalServiceImpl implements IRentalService { 
 
 	@Autowired
 	private ICarsRepository carsRepo;
@@ -41,7 +40,6 @@ public class RentalServiceImpl implements IRentalService {
 	@Autowired
 	private ICategorysRepository categoryRepo;
 
-	public static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
 
 	// ===== Customer ===== //
 
@@ -89,7 +87,7 @@ public class RentalServiceImpl implements IRentalService {
 			car.setModel(checkAllModels(model));
 
 			carsRepo.save(car);
-
+ 
 		} else {
 			throw new CustomException("Le véhicule " + licencePlate + " est déja enregistré");
 		}

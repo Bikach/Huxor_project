@@ -1,6 +1,6 @@
 package fr.huxor.service;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +32,7 @@ public class ContactServiceImpl implements IContactService {
 	 * @param process
 	 */
 	@Override
-	public void addMessage(String email, String firstName, String lastName, String post, Date postDate,
+	public void addMessage(String email, String firstName, String lastName, String post, LocalDate postDate,
 			boolean process) {
 		messageRepo.save(new Messages(lastName, firstName, email, post, postDate, process));
 	}
@@ -41,7 +41,7 @@ public class ContactServiceImpl implements IContactService {
 	 * Add a email to newsletter
 	 * 
 	 * @param email
-	 */
+	 */ 
 	@Override
 	public void addNewslettter(String email) {
 		newRepo.save(new Newsletters(email));
@@ -79,7 +79,7 @@ public class ContactServiceImpl implements IContactService {
 	 * @param size
 	 */
 	@Override
-	public Page<Messages> viewMessage(Date startDate, Date endDate, boolean process, int page, int size) {
+	public Page<Messages> viewMessage(LocalDate startDate, LocalDate endDate, boolean process, int page, int size) {
 		return messageRepo.viewMessages(startDate, endDate, process, PageRequest.of(page, size));
 	}
 

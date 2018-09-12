@@ -1,27 +1,12 @@
 package fr.huxor;
 
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
-import java.util.Date;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.data.domain.Page;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import fr.huxor.dao.IBrandsRepository;
-import fr.huxor.dao.ICarsRepository;
-import fr.huxor.dao.ILeaseAgreementsRepository;
-import fr.huxor.dao.IModelsRepository;
-import fr.huxor.entities.Addresses;
-import fr.huxor.entities.Cars;
-import fr.huxor.entities.LeaseAgreements;
-import fr.huxor.entities.Messages;
 import fr.huxor.service.IContactService;
 import fr.huxor.service.ILeaseService;
 import fr.huxor.service.IRentalService;
@@ -39,8 +24,6 @@ public class HuxorProject1Application implements CommandLineRunner {
 	@Autowired
 	private IContactService contactService;
 		
-	public static final SimpleDateFormat DATE = new SimpleDateFormat("yyyy-MM-dd");
-	
 	public static void main(String[] args) {
 		SpringApplication.run(HuxorProject1Application.class, args);
 	}
@@ -100,7 +83,7 @@ public class HuxorProject1Application implements CommandLineRunner {
 //		leaseService.addNumberAgreement(1, "cont123User1");
 //		leaseService.addNumberAgreement(3, "cont678User1");
 //		leaseService.addNumberAgreement(4, "cont901User3");
-//		leaseService.totalPriceReturnCar("cont123User1", 15000);
+//		leaseService.totalPriceReturnCar("cont123tin", 15670);
 		
 //		Page<LeaseAgreements> leasePage = leaseService.leaseAgreementPage("null", "Use2", 1, 10);
 //		System.out.println(leasePage.getTotalElements());
@@ -124,12 +107,18 @@ public class HuxorProject1Application implements CommandLineRunner {
 
 //		System.out.println("pass : " + new BCryptPasswordEncoder().encode("azerty"));
 		
-		
+//		boolean test = checkBookingDate("2018-09-13");
+//		
+//		System.out.println(test);
 		
 
 //		System.out.println(birthdayValidate("1994-02-01"));
 		
 	}
+//	public static boolean checkBookingDate(String date) throws ParseException {
+//		LocalDate startDate = LocalDate.parse(date);
+//		return startDate.isAfter(LocalDate.now());
+//	}
 	
 	
 //	private boolean birthdayValidate(String birthday) {

@@ -13,12 +13,12 @@ public class Brands implements Serializable {
 	
 	@Id
 	@NotNull
-	private String brandName;
+	private String brandName; 
 
 	/**
 	 * Default constructor
 	 */
-	public Brands() {}
+	public Brands() {} 
 
 	/**
 	 * Constructor with parameters

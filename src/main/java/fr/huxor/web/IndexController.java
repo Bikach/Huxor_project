@@ -1,7 +1,6 @@
 package fr.huxor.web;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,15 +15,13 @@ import fr.huxor.entities.CustomException;
 import fr.huxor.service.IRentalService;
 
 @Controller
-public class IndexController {
+public class IndexController { 
 	
 	@Autowired
 	private IRentalService rentalService;
 
-	public static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
 
 	/**
-	 * 
 	 * @return huxor.html
 	 */
 	@RequestMapping(value = "/huxor")

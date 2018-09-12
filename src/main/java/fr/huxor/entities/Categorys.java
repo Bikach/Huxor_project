@@ -17,7 +17,7 @@ public class Categorys implements Serializable {
 	private String describtion;
 
 	/**
-	 * Default constructor
+	 * Default constructor 
 	 */
 	public Categorys() {
 	}

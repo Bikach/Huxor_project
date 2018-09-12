@@ -18,12 +18,12 @@
 				<thead>
 			    	<tr>
 			      		<th scope="col">#</th>
-			      		<th scope="col">Numéro de contrat</th>
+			      		<th scope="col">Numéro de contrat*</th>
 			      		<th scope="col">Date de départ</th>
 			      		<th scope="col">Date retour</th>
-			      		<th scope="col">Km compteur départ</th>
+			      		<th scope="col">Km compteur départ**</th>
 			      		<th scope="col">Km compteur retour</th>
-			      		<th scope="col">prix</th>
+			      		<th scope="col">prix***</th>
 		    		</tr>
 			  	</thead>
 			  	<tbody>
@@ -38,8 +38,7 @@
 			      		<td th:text="${lease.startKm}"></td>
 			      		<td th:text="${lease.endKm}"></td>
 			      		<td th:text="${lease.price} +0€"></td>
-<!-- 			      		<td th:if="${lease.checkBookingDate(lease.startDate)}"> -->
-						<td>
+			      		<td th:if="${leaseService.checkBookingDate(lease.startDate.toString())}">
 				    		<a onclick="return confirm('Etes-vous sur de vouloir annuler cette réservation ?')"  
 				    			th:href="@{/delete(id=${lease.idLeaseArgreements}, user=${param.user}, page=0, size=10)}" >
 				    			<button class="btn huxor-btn huxor-dark nav-hover .nav-active card-btn" >Annuler</button>
@@ -55,6 +54,15 @@
 				</li> 		    
 			  </ul>
 			</nav>	
+			<div>
+				<small>* La réservation est validée lorsque le numéro du contrat est notifié</small>
+			</div>
+			<div>
+				<small>** Le nombre de km peut evoluer le jour du départ</small>
+			</div>
+			<div>
+				<small>*** Le prix sera mis à jour en cas de dépassement de km autorisé (150km/jours)</small>
+			</div>
 		</section>
 		
 		<!-- footer.html -->

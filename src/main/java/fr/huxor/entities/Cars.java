@@ -2,7 +2,6 @@ package fr.huxor.entities;
 
 import java.io.Serializable;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
@@ -31,7 +30,7 @@ public class Cars implements Serializable {
 
 	@ManyToOne( fetch = FetchType.EAGER)
 	@JoinColumn(name = "CATEGORY_NAME")
-	private Categorys category;;
+	private Categorys category;
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "BRAND_NAME")

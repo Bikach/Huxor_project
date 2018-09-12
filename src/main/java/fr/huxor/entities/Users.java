@@ -37,7 +37,7 @@ public abstract class Users implements Serializable {
 	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "username"), inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private Set<Role> roles;
 
-	/**
+	/** 
 	 * Default constructor
 	 */
 	public Users() { 

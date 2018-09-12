@@ -1,6 +1,6 @@
 package fr.huxor.dao;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -22,7 +22,7 @@ public interface IMessagesRepository extends JpaRepository<Messages, Long> {
 	 * @return message page
 	 */
 	@Query("SELECT m FROM Messages m WHERE m.postDate BETWEEN :pickupDate AND :dropDate AND process = :process")
-	public Page<Messages> viewMessages(@Param("pickupDate") Date pickupDate, @Param("dropDate") Date dropDate,
+	public Page<Messages> viewMessages(@Param("pickupDate") LocalDate pickupDate, @Param("dropDate") LocalDate dropDate,
 			@Param("process") boolean process, Pageable pageable);
 
 }

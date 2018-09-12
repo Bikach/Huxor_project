@@ -1,16 +1,13 @@
 package fr.huxor.entities;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 
@@ -23,18 +20,17 @@ public class Customers extends Users {
 
 	@Past
 	@NotNull
-	@Temporal(TemporalType.DATE)
-	private Date birthDate;
+	private LocalDate birthDate;
 	@NotNull
 	private String drivingLicenceNumber;
-	@ManyToOne(cascade=CascadeType.ALL, optional = false)
+	@ManyToOne(optional = false)
 	@JoinColumn(name = "CODE_ADRESS")
 	private Addresses address;
 
-	/**
+	/**O
 	 * Default constructor
 	 */
-	public Customers() {
+	public Customers() { 
 		super(); 
 	}
 
@@ -52,7 +48,7 @@ public class Customers extends Users {
 	 * @param address
 	 */
 	public Customers(String username,  String email, String password, String lasName, String firstName, boolean enabled,
-			Date birthDate, String drivingLicenceNumber, Addresses address, Set<Role>roles) {
+			LocalDate birthDate, String drivingLicenceNumber, Addresses address, Set<Role>roles) {
 		super(username, email, password, lasName, firstName, enabled, roles);
 		this.birthDate = birthDate;
 		this.drivingLicenceNumber = drivingLicenceNumber;
@@ -61,11 +57,11 @@ public class Customers extends Users {
  
 	// ===== Getters & Setters =====//
 
-	public Date getBirthDate() {
+	public LocalDate getBirthDate() {
 		return birthDate;
 	}
 
-	public void setBirthDate(Date birthDate) {
+	public void setBirthDate(LocalDate birthDate) {
 		this.birthDate = birthDate;
 	}
 

@@ -1,7 +1,6 @@
 package fr.huxor.web;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.HashMap;
@@ -23,17 +22,16 @@ import fr.huxor.entities.Role;
 import fr.huxor.service.IUsersService;
 
 @Controller
-public class RegistrationController { 
+public class RegistrationController {  
 	
-	private static int NB_YEAR_MIN= 25;
-
+	private static final int NB_YEAR_MIN= 25;
+ 
 	@Autowired
 	IUsersService userService;
 	@Autowired
 	IRoleRepository roleRepo;
 
-	public static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
-	public static final Pattern VALID_EMAIL_ADDRESS_REGEX = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$",
+	private static final Pattern VALID_EMAIL_ADDRESS_REGEX = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$",
 			Pattern.CASE_INSENSITIVE);
 
 	/** 
@@ -70,7 +68,7 @@ public class RegistrationController {
 			errorsList.put("birth", "Vous devez avoir 25 ans minimum au moment de la réservation, merci !");
 
 		if (errorsList.isEmpty()) {
-			userService.addCustomer(username, email, new BCryptPasswordEncoder().encode(password), lastName, firstName, true, DATE_FORMAT.parse(birthday),
+			userService.addCustomer(username, email, new BCryptPasswordEncoder().encode(password), lastName, firstName, true, LocalDate.parse(birthday),
 					driveLicence, new Addresses(street, city, zip), roles);	
 			System.out.println("succes");
 			model.addAttribute("succes", "Votre inscription est bien enregistrée, vous pouvez désormée vous connectez avec votre identifiant !");

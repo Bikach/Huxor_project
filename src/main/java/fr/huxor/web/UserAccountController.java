@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import fr.huxor.entities.LeaseAgreements;
 import fr.huxor.service.ILeaseService;
 
-@Controller
+@Controller 
 public class UserAccountController {
 
 	@Autowired
@@ -43,7 +43,7 @@ public class UserAccountController {
 			model.addAttribute("leaseList", pageLease.getContent());
 			int[] pages = new int[pageLease.getTotalPages()];
 			model.addAttribute("pages", pages);
-			model.addAttribute("lease",leaseService);
+			model.addAttribute("leaseService",leaseService);
 		} else {
 			String nullList = "Vous n'avez pas de réservations en cours ou passé !";
 			model.addAttribute("nullList", nullList);

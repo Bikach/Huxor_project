@@ -1,6 +1,6 @@
 package fr.huxor.service;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.Optional;
 import java.util.Set;
 
@@ -17,18 +17,18 @@ import fr.huxor.entities.Managers;
 import fr.huxor.entities.Role;
 import fr.huxor.entities.Users;
   
-@Service
+@Service 
 @Transactional
 public class UsersServiceImpl implements IUsersService {
 
-	@Autowired
+	@Autowired 
 	private IUsersRepository usersRepo;
 
 	// ===== Customer/Manager =====//
 	
 	@Override
 	public void addCustomer(String username, String email, String passwordEncoder, String lastName, String firstName,
-			boolean enabled, Date birthDate, String drivingLicenceNumber, Addresses address, Set<Role> roles) {
+			boolean enabled, LocalDate birthDate, String drivingLicenceNumber, Addresses address, Set<Role> roles) {
 		usersRepo.save(new Customers(username, email, passwordEncoder, lastName, firstName, enabled, birthDate, drivingLicenceNumber, address, roles));
 		
 	}

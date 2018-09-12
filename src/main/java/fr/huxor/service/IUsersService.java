@@ -1,6 +1,6 @@
 package fr.huxor.service;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.Set;
 
 import fr.huxor.entities.Addresses;
@@ -12,7 +12,7 @@ public interface IUsersService {
 
 	// ===== Customer/Manager =====//
 	public void addCustomer(String username, String email, String passwordEncoder, String lastName, String firstName,
-			boolean enabled, Date birthDate, String drivingLicenceNumber, Addresses address, Set<Role> roles);
+			boolean enabled, LocalDate birthDate, String drivingLicenceNumber, Addresses address, Set<Role> roles);
 
 	public void updateCustomer(String username);
 
