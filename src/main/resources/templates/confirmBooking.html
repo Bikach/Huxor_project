@@ -53,7 +53,7 @@
 						<h3 class="paid-title">Zone de confirmation :</h3>
 						<div th:if="${param.succesBook}">
 							<p th:text="${param.succesBook}" class="text-success confirmMessage"></p>
-							<a th:href="@{/myReservations(user=${param.user})}"><button class="btn huxor-btn huxor-dark nav-hover .nav-active card-btn button-paid">Mes réservations</button></a>
+							<a th:href="@{/myReservations(username=${param.user})}"><button class="btn huxor-btn huxor-dark nav-hover .nav-active card-btn button-paid">Mes réservations</button></a>
 						</div>
 						<div th:unless="${param.succesBook}" class="text-danger">
 						   <div>Veuillez éffectuer le paiement pour confirmer votre réservation</div>

@@ -13,18 +13,10 @@
 			<li class="nav-item "><a class="nav-link head-nav nav-hover nav-active" href="/#contact">Contact</a></li>
 			<li class="nav-item " sec:authorize="isAnonymous()" ><a class="nav-link head-nav nav-hover nav-active" th:href="@{/login}">Connexion</a></li>
 		</ul>
-		<span  class="navbar-text"  sec:authorize="isAuthenticated()" th:inline="text">Bienvenue [[${#httpServletRequest.remoteUser}]] !  </span>
-		<ul class="navbar-nav">
-	     	<li class="nav-item dropdown " sec:authorize="isAuthenticated()" >
-	        	<a class="nav-link dropdown-toggle head-nav nav-hover nav-active" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-	          		Mon Compte
-	        	</a>
-	        	<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-	          		<a class="dropdown-item" href="#">Profil</a>
-	          		<a class="dropdown-item" href="#">Mes réservations</a>          		
-	          		<a class="dropdown-item" href="@{/logout}">Déconnexion</a>
-	        	</div>
-	    	</li>		
+		<ul class="navbar-nav" sec:authorize="isAuthenticated()" >
+          		<li class="nav-item"><a class="nav-link head-nav nav-hover"  th:href="@{/userAccount?username=}+${#httpServletRequest.remoteUser}">Profil</a></li>
+          		<li class="nav-item"><a class="nav-link head-nav nav-hover" th:href="@{/myReservations?username=}+${#httpServletRequest.remoteUser}">Mes réservations</a></li>     		
+          		<li class="nav-item"><a class="nav-link head-nav nav-hover" th:href="@{/logout}">Déconnexion</a></li>
 		</ul>
 	</div>
 </nav>

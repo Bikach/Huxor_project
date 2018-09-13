@@ -1,0 +1,26 @@
+<a href="blabla">
+	<button type="button" class="btn huxor-btn huxor-dark nav-hover .nav-active card-btn" data-toggle="modal" data-target="#ModalCenter">
+				Annuler
+	</button>
+</a>
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true"
+	xmlns:th="http://www.thymeLeaf.org" th:fragment="poppup" xmlns:sec="http://www.thymeLeaf.org/extras/spring-security">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">Confirmation d'annulation</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Confirmer par oui ou oui l'annulation de votre réservation : 
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">non</button>
+        <button type="button" class="btn btn-primary">oui</button>
+      </div>
+    </div>
+  </div>
+</div>

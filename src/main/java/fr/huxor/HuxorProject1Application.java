@@ -83,7 +83,7 @@ public class HuxorProject1Application implements CommandLineRunner {
 //		leaseService.addNumberAgreement(1, "cont123User1");
 //		leaseService.addNumberAgreement(3, "cont678User1");
 //		leaseService.addNumberAgreement(4, "cont901User3");
-//		leaseService.totalPriceReturnCar("cont123tin", 15670);
+//		leaseService.totalPriceReturnCar("cont456tin", 27000);
 		
 //		Page<LeaseAgreements> leasePage = leaseService.leaseAgreementPage("null", "Use2", 1, 10);
 //		System.out.println(leasePage.getTotalElements());

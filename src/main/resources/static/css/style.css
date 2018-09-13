@@ -138,10 +138,6 @@ h6{
 /* ===== BOOKING =====*/
 .booking{ margin-top: 15ex; }
 
-.descript{ }
-
-.paiement { }
-
 .creditCard{ color: black !important }
 
 .confirmMessage { font-size: 3ex;}
@@ -172,6 +168,28 @@ h6{
 .nullList{
 	text-align: center;
 	font-size:  4ex;
+}
+
+.profil-account{ margin: 0 auto; }
+
+.width-account{width: 50%;}
+
+.width-username{width: 36%;}
+
+.width-btn{width: 50%;}
+
+/* ===== PROFIL =====*/
+.account{
+	margin-top: 12ex;	
+	margin-bottom: 6ex;
+}
+
+.profil-title{
+	text-align: center;
+}
+
+.userDetail{
+float:right
 }
 
 /* ===== FOOTER =====*/
