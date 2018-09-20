@@ -17,7 +17,7 @@ import fr.huxor.service.ILeaseService;
 import fr.huxor.service.IUsersService;
 
 @Controller
-public class UserAccountController {
+public class UserAccountController { 
 
 	@Autowired
 	private ILeaseService leaseService;
@@ -60,7 +60,7 @@ public class UserAccountController {
 			@RequestParam(name = "size", defaultValue = "10") int size, String username) {
 
 		Page<LeaseAgreements> pageLease = leaseService.leaseAgreementFromUser(username, page, size);
-		if (pageLease.getTotalElements() > 0) {
+		if (pageLease.getTotalElements() > 0) { 
 			model.addAttribute("leaseList", pageLease.getContent());
 			int[] pages = new int[pageLease.getTotalPages()];
 			model.addAttribute("pages", pages);
@@ -83,9 +83,9 @@ public class UserAccountController {
 	 * @return myReservations.html
 	 */
 	@RequestMapping(value = "/delete")
-	public String delete(String id, String user, int page, int size) {
+	public String delete(String id, String username, int page, int size) {
 		leaseService.deleteLease(Long.parseLong(id));
-		return "redirect:/myReservations?user=" + user + "&page=" + page + "&size=" + size;
+		return "redirect:/myReservations?username=" + username + "&page=" + page + "&size=" + size;
 	}
 
 }

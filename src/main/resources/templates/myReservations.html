@@ -40,7 +40,7 @@
 			      		<td th:text="${lease.price} +0€"></td>
 			      		<td th:if="${leaseService.checkBookingDate(lease.startDate.toString())}">
 				    		<a onclick="return confirm('Etes-vous sur de vouloir annuler cette réservation ?')"  
-				    			th:href="@{/delete(id=${lease.idLeaseArgreements}, user=${param.user}, page=0, size=10)}" >
+				    			th:href="@{/delete(id=${lease.idLeaseArgreements}, username=${param.username}, page=0, size=10)}" >
 				    			<button class="btn huxor-btn huxor-dark nav-hover .nav-active card-btn" >Annuler</button>
 				    		</a>
 			      		</td>
@@ -63,6 +63,7 @@
 			<div>
 				<small>*** Le prix sera mis à jour en cas de dépassement de km autorisé (150km/jours)</small>
 			</div>
+		</section>
 		
 		<!-- footer.html -->
 		<footer th:replace="fragments/footer :: footer"></footer> 

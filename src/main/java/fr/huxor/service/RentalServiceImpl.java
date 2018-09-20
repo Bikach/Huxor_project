@@ -49,7 +49,7 @@ public class RentalServiceImpl implements IRentalService {
 	 * @param idCustomer
 	 * @param licencePlate
 	 * @param pickupDate
-	 * @paramdropDate
+	 * @param dropDate
 	 * @throws Custom Exeption
 	 */
 	@Override
